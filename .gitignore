@@ -1,0 +1,34 @@
+# Environment variables and secrets
+.env
+.env.*
+*.env
+!.env.example
+
+# Dependencies
+node_modules/
+bun.lock
+
+# Build & Deployment outputs
+dist/
+build/
+.vercel/
+.output/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# AI Studio internal files
+.aistudio/

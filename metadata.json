@@ -1,0 +1,8 @@
+{
+  "name": "Shinchan Comfort Corner",
+  "description": "A wholesome, emotionally intelligent comfort haven featuring Shinnosuke Nohara and Kasukabe friends, with personalized Gemini character chat, feelings check-in, and calming activities.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
