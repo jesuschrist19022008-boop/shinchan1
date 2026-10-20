@@ -1,4 +1,4 @@
-import { app } from "./app.js";
+import { app } from "./expressApp.js";
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
