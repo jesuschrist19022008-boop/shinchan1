@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "esModuleInterop": true,
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
     "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
     "strict": false,
-    "noEmit": true
+    "esModuleInterop": true,
+    "types": ["node", "vite/client"]
   },
-  "include": ["server.ts", "app.ts", "api/**/*"]
+  "include": ["src", "server.ts", "expressApp.ts", "api/**/*"]
 }

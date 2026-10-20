@@ -10,6 +10,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "node:path";
+import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import { GoogleGenAI } from "@google/genai";
 
@@ -328,7 +329,7 @@ function generateContextualFallback(
 }
 
 // POST /api/chat - Primary intelligent conversation endpoint
-const chatHandler = async (req: express.Request, res: express.Response) => {
+export const chatHandler = async (req: express.Request, res: express.Response) => {
   try {
     const {
       character = "Shinchan",
@@ -431,7 +432,7 @@ const chatHandler = async (req: express.Request, res: express.Response) => {
 app.post(["/api/chat", "/chat"], chatHandler);
 
 // GET /api/health
-const healthHandler = (_req: express.Request, res: express.Response) => {
+export const healthHandler = (_req: express.Request, res: express.Response) => {
   res.json({
     status: "ok",
     service: "Shinchan Comfort Corner Backend",
@@ -442,15 +443,39 @@ const healthHandler = (_req: express.Request, res: express.Response) => {
 
 app.get(["/api/health", "/health"], healthHandler);
 
-// Serve static frontend files
+// Explicit favicon and robots.txt handlers to prevent 500 errors on serverless
+app.get("/favicon.ico", (_req, res) => {
+  const publicFav = path.join(__dirname, "public", "favicon.ico");
+  const rootFav = path.join(__dirname, "favicon.ico");
+  if (fs.existsSync(publicFav)) return res.sendFile(publicFav);
+  if (fs.existsSync(rootFav)) return res.sendFile(rootFav);
+  return res.status(204).end();
+});
+
+app.get("/robots.txt", (_req, res) => {
+  const publicRobots = path.join(__dirname, "public", "robots.txt");
+  const rootRobots = path.join(__dirname, "robots.txt");
+  if (fs.existsSync(publicRobots)) return res.sendFile(publicRobots);
+  if (fs.existsSync(rootRobots)) return res.sendFile(rootRobots);
+  res.type("text/plain").send("User-agent: *\nAllow: /\n");
+});
+
+// Serve static frontend files from public/ or root
+if (fs.existsSync(path.join(__dirname, "public"))) {
+  app.use(express.static(path.join(__dirname, "public")));
+}
 app.use(express.static(__dirname));
 
-// Route handlers for SPA navigation fallback
-app.get("*", (req, res, next) => {
+// Route handlers for SPA navigation fallback (safe against missing files)
+app.get("*", (req, res) => {
   if (req.path.startsWith("/api")) {
     return res.status(404).json({ error: "API route not found" });
   }
-  res.sendFile(path.join(__dirname, "index.html"), (err) => {
-    if (err) next(err);
-  });
+  const publicIndex = path.join(__dirname, "public", "index.html");
+  const rootIndex = path.join(__dirname, "index.html");
+  if (fs.existsSync(publicIndex)) return res.sendFile(publicIndex);
+  if (fs.existsSync(rootIndex)) return res.sendFile(rootIndex);
+  return res.status(200).type("text/html").send("<!DOCTYPE html><html><head><title>Shinchan Comfort Corner</title></head><body><h1>Shinchan Comfort Corner</h1></body></html>");
 });
+
+export default app;

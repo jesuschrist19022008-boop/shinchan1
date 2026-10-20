@@ -1,9 +1,18 @@
 {
   "version": 2,
+  "outputDirectory": "public",
   "rewrites": [
     {
+      "source": "/api/chat",
+      "destination": "/api/chat"
+    },
+    {
+      "source": "/api/health",
+      "destination": "/api/health"
+    },
+    {
       "source": "/api/(.*)",
-      "destination": "/api"
+      "destination": "/api/index"
     }
   ]
 }

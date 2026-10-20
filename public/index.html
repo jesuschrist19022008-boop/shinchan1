@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="web_standard" name="shell-type"/>
+  <title>Shinchan Comfort Corner</title>
+  <meta name="description" content="A wholesome, emotionally intelligent comfort haven featuring Shinnosuke Nohara and Kasukabe friends, with personalized Gemini character chat, feelings check-in, and calming activities."/>
+  <meta property="og:title" content="Shinchan Comfort Corner"/>
+  <meta property="og:description" content="A wholesome, emotionally intelligent comfort haven featuring Shinnosuke Nohara and Kasukabe friends, with personalized Gemini character chat, feelings check-in, and calming activities."/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="alternate icon" href="/favicon.ico"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..800&amp;family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #faf0ff; }
+    ::-webkit-scrollbar-thumb { background: #ffb1c1; border-radius: 9999px; }
+    
+    @keyframes gentlePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    .animate-gentle-pulse {
+      animation: gentlePulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes breatheRing {
+      0%, 100% { transform: scale(0.85); opacity: 0.35; }
+      50% { transform: scale(1.25); opacity: 0.75; }
+    }
+    .animate-breathe {
+      animation: breatheRing 8s ease-in-out infinite;
+    }
+    
+    .chat-bubble-companion::before {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: -8px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 8px solid #ffffff;
+    }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary-container": "#ff85a2",
+            "on-tertiary-container": "#004369",
+            "error": "#ba1a1a",
+            "tertiary-fixed": "#cde5ff",
+            "surface-container": "#f6e9ff",
+            "on-surface": "#21172f",
+            "inverse-surface": "#372b45",
+            "on-secondary-fixed": "#251a00",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-variant": "#eddcfe",
+            "secondary": "#785a00",
+            "on-primary-container": "#771a38",
+            "surface-container-high": "#f2e2ff",
+            "on-primary-fixed-variant": "#812240",
+            "surface-container-highest": "#eddcfe",
+            "outline-variant": "#dbc0c4",
+            "outline": "#887175",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#ffdf9b",
+            "tertiary-container": "#61b2f3",
+            "inverse-primary": "#ffb1c1",
+            "primary-fixed-dim": "#ffb1c1",
+            "on-tertiary-fixed": "#001d32",
+            "tertiary": "#006398",
+            "on-surface-variant": "#554245",
+            "on-tertiary": "#ffffff",
+            "surface-dim": "#e5d3f5",
+            "surface-container-lowest": "#ffffff",
+            "surface-bright": "#fff7ff",
+            "secondary-fixed-dim": "#edc157",
+            "inverse-on-surface": "#f8edff",
+            "primary": "#a03a57",
+            "on-error-container": "#93000a",
+            "tertiary-fixed-dim": "#94ccff",
+            "primary-fixed": "#ffd9df",
+            "on-primary-fixed": "#3f0017",
+            "surface-container-low": "#faf0ff",
+            "background": "#fff7ff",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed-variant": "#5b4300",
+            "secondary-container": "#ffd167",
+            "on-tertiary-fixed-variant": "#004b74",
+            "on-secondary-container": "#765900",
+            "surface-tint": "#a03a57",
+            "surface": "#fff7ff",
+            "on-background": "#21172f"
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin": "2rem",
+            "gutter": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "margin-mobile": "1rem",
+            "space-xl": "2.5rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "gutter-mobile": "0.75rem"
+          },
+          fontFamily: {
+            "headline-xl-mobile": ["Quicksand"],
+            "title-md": ["Quicksand"],
+            "headline-sm": ["Quicksand"],
+            "label-md": ["Quicksand"],
+            "headline-lg": ["Quicksand"],
+            "body-md": ["Nunito Sans"],
+            "label-lg": ["Quicksand"],
+            "headline-md": ["Quicksand"],
+            "headline-lg-mobile": ["Quicksand"],
+            "headline-xl": ["Quicksand"],
+            "label-sm": ["Quicksand"],
+            "body-lg": ["Nunito Sans"],
+            "body-sm": ["Nunito Sans"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col justify-between">
+
+  <!-- Fixed Top Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(33,23,47,0.03)] border-b border-surface-container-high/40">
+    <!-- Sanctuary Bar -->
+    <div class="bg-surface-container-low px-margin py-1.5 hidden md:flex items-center justify-between">
+      <div class="flex items-center gap-space-sm">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container text-[12px] font-bold">★</span>
+        <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Fan-made comfort sanctuary • Featuring Shinnosuke &amp; Kasukabe friends</span>
+      </div>
+      <div class="flex items-center gap-space-md">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm" id="headerStatusBadge">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          <span>Gemini AI Connected</span>
+        </span>
+        <span class="text-outline-variant">•</span>
+        <span class="font-label-sm text-label-sm text-on-surface-variant" id="headerCompanionLabel">Companion: Shinchan 🖍️</span>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="h-20 max-w-[1200px] mx-auto px-margin flex items-center justify-between gap-space-md">
+      <!-- Logo -->
+      <div class="flex items-center gap-space-md">
+        <a class="flex items-center gap-space-sm group cursor-pointer" data-nav="welcome-home">
+          <div class="w-11 h-11 rounded-full bg-primary-container flex items-center justify-center shadow-[0_4px_12px_rgba(255,133,162,0.35)] transition-transform duration-200 group-hover:scale-105">
+            <span class="material-symbols-outlined text-on-primary-container text-[24px]">sentiment_satisfied</span>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-1.5">
+              <span class="font-title-md text-title-md text-primary font-bold tracking-tight">Shinchan</span>
+              <span class="font-title-md text-title-md text-on-surface font-semibold">Comfort Corner</span>
+              <span class="inline-block px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Chocobi ★</span>
+            </div>
+            <span class="font-label-sm text-label-sm text-on-surface-variant hidden sm:inline-block">Warm hugs &amp; playful calm</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Nav Items -->
+      <nav class="hidden lg:flex items-center gap-1 bg-surface-container-low p-1.5 rounded-full" id="mainNav">
+        <button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all nav-btn" data-target="welcome-home">Welcome</button>
+        <button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all nav-btn" data-target="choose-character">Choose Friend</button>
+        <button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all nav-btn" data-target="feelings-check-in">Feelings Check-in</button>
+        <button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all nav-btn relative" data-target="character-chat">
+          <span>Character Chat</span>
+          <span class="w-2 h-2 rounded-full bg-primary absolute top-1 right-1.5 animate-ping"></span>
+        </button>
+        <button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all nav-btn" data-target="fun-zone">Fun Zone</button>
+        <button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all nav-btn" data-target="safety-about">Safety &amp; About</button>
+      </nav>
+
+      <!-- Action Utilities -->
+      <div class="flex items-center gap-space-sm">
+        <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="audioToggleBtn" title="Toggle gentle lo-fi soundscapes" type="button">
+          <span class="material-symbols-outlined text-[18px] text-tertiary" id="audioIcon">music_note</span>
+          <span class="hidden md:inline font-label-sm text-label-sm" id="audioLabel">Calm Vibes</span>
+        </button>
+        <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md shadow-[0_2px_8px_rgba(255,209,103,0.3)] hover:opacity-95 transition-all" id="openBreathingModalBtn" title="Take a slow breath and reset" type="button">
+          <span class="material-symbols-outlined text-[18px]">spa</span>
+          <span class="hidden sm:inline font-label-sm text-label-sm">Mood Reset</span>
+        </button>
+        <!-- Active Companion Avatar Pill -->
+        <button class="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm hover:scale-105 transition-transform" id="activeAvatarHeaderBtn" title="Switch Companion">
+          <span class="text-[17px]" id="headerAvatarEmoji">🖍️</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Quick Navigation Bar -->
+    <div class="lg:hidden flex items-center justify-between px-3 py-2 bg-surface-container-lowest border-t border-surface-container overflow-x-auto gap-2">
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="welcome-home">Home</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="choose-character">Friends</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="feelings-check-in">Feelings</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="character-chat">Chat 💬</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="fun-zone">Fun Zone</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="safety-about">Safety</button>
+    </div>
+  </header>
+
+  <!-- Main Content Container with App Views -->
+  <main class="w-full pt-28 lg:pt-28 bg-background flex-1">
+    <div class="max-w-[1200px] mx-auto px-margin py-space-md">
+
+      <!-- ========================================== -->
+      <!-- VIEW 1: WELCOME / HOME                     -->
+      <!-- ========================================== -->
+      <section class="app-view flex flex-col w-full" id="view-welcome-home">
+        <!-- Ambient decorative blobs -->
+        <div class="relative w-full overflow-hidden">
+          <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-primary-container/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+          <div class="absolute top-64 -left-20 w-80 h-80 bg-secondary-container/30 rounded-full blur-3xl pointer-events-none -z-10"></div>
+          <div class="absolute top-80 -right-20 w-80 h-80 bg-tertiary-container/25 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+          <!-- Sanctuary status indicators -->
+          <div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container shadow-sm">
+              <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container text-[12px] font-bold">★</span>
+              <span class="font-label-md text-label-md text-on-surface">Kasukabe Cozy Shelter • Open 24/7 For You</span>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-low shadow-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-ping"></span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">9 Companions Resting &amp; Ready</span>
+            </div>
+          </div>
+
+          <!-- Hero Banner -->
+          <div class="relative rounded-xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-xl overflow-hidden mb-space-xl border border-surface-container">
+            <div class="absolute top-6 right-8 text-secondary-container animate-pulse pointer-events-none select-none">
+              <svg fill="currentColor" height="34" viewbox="0 0 24 24" width="34"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"></path></svg>
+            </div>
+            <div class="absolute bottom-8 right-1/4 text-primary-fixed-dim/60 pointer-events-none select-none">
+              <svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"></path></svg>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+              <div class="lg:col-span-7 flex flex-col gap-space-md">
+                <div class="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md">
+                  <span class="material-symbols-outlined text-[16px]">favorite</span>
+                  A Safe Space To Just Be
+                </div>
+                <div class="flex flex-col gap-space-xs">
+                  <h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+                    Hey, you! <span class="text-primary inline-block hover:scale-110 transition-transform">💗</span>
+                  </h1>
+                  <p class="font-headline-sm text-headline-sm text-primary font-semibold">
+                    Had a rough day? Shinchan and the gang are here to brighten your day!
+                  </p>
+                </div>
+                <div class="p-space-md rounded-lg bg-surface-container-low shadow-sm flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0 shadow-sm">
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="font-label-lg text-label-lg text-on-surface">Unconditional Acceptance</span>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                      You don't have to pretend to be happy. Come exactly as you are. Messy hair, heavy thoughts, or quiet heart—you are totally welcome.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+                  <button class="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all group" data-nav="choose-character">
+                    <span class="material-symbols-outlined text-[22px] group-hover:rotate-12 transition-transform">chat_bubble</span>
+                    <span>Let's Talk!</span>
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                  </button>
+                  <button class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-secondary-container text-on-secondary-container font-label-lg text-label-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all" id="makeSmileBtn" type="button">
+                    <span class="material-symbols-outlined text-[22px] text-secondary">sentiment_very_satisfied</span>
+                    <span>Make Me Smile</span>
+                    <span class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-secondary font-label-sm text-label-sm">Chocobi!</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Visual Bento Preview -->
+              <div class="lg:col-span-5 relative flex flex-col items-center justify-center">
+                <div class="relative w-full max-w-[380px] aspect-square rounded-xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-variant p-4 flex flex-col justify-between shadow-inner overflow-hidden border border-surface-container-highest">
+                  <div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-primary-fixed/50 blur-xl"></div>
+                  <div class="absolute -left-8 -bottom-8 w-44 h-44 rounded-full bg-secondary-fixed/60 blur-xl"></div>
+                  <div class="relative z-10 flex items-center justify-between">
+                    <span class="px-3 py-1 rounded-full bg-surface-container-lowest font-label-sm text-label-sm text-on-surface shadow-sm" id="heroHostBadge">
+                      Today's Host: Shinnosuke &amp; Shiro
+                    </span>
+                    <span class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[13px] shadow-sm">
+                      ★
+                    </span>
+                  </div>
+                  <div class="relative z-10 w-full h-48 rounded-lg overflow-hidden shadow-md group bg-surface-container-high">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Shinchan and Shiro resting cozy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOqhIgqGYZ96233cx7LVOkf2XeNOQJDSkPecuGjJ56baaef_FN9071S6nirCzuuYMGxSvP0qvoi9qRS93YWAtG5omhv4E26Z9lHiZ5isN888xt6JNQXTXcLhhKT5rtJzftFxRBbiaT9r4JJJqVjKEDzy1udC-8eHGOvhkqh0GbeJK_ZZQLRaeaFoCXMHH4ECtjgc2D-fh6eH0VRDpzmMFAKd_HV-GKjj5QjnV8quO-xBqzxiyVrEh-"/>
+                    <div class="absolute bottom-2 left-2 right-2 px-3 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-between text-on-surface">
+                      <span class="font-label-sm text-label-sm font-semibold">Shinchan says: "Oho! You made it safely!"</span>
+                      <span class="material-symbols-outlined text-primary text-[18px]">favorite</span>
+                    </div>
+                  </div>
+                  <div class="relative z-10 bg-surface-container-lowest/95 backdrop-blur-md p-3 rounded-lg shadow-sm flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant italic truncate">
+                      "Take a warm sip of tea... you did your best today!"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gentle Daily Truth Quote -->
+          <div class="relative w-full rounded-xl bg-gradient-to-r from-primary-container via-surface-container-high to-secondary-container p-1 shadow-lg mb-space-xl">
+            <div class="rounded-[2.8rem] bg-surface-container-lowest px-space-lg py-space-md sm:py-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0 shadow-sm">
+                  <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-label-sm text-label-sm text-secondary font-bold tracking-wider uppercase">Gentle Daily Truth</span>
+                  <p class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                    “Your worth doesn't decrease because someone fails to see it.”
+                  </p>
+                </div>
+              </div>
+              <div class="shrink-0 flex items-center gap-2">
+                <span class="px-3.5 py-1.5 rounded-full bg-surface-container-high font-label-sm text-label-sm text-primary font-bold">
+                  Kasukabe Law #1 🌸
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Section: Compliment Capsule & Hug Meter -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+            <!-- Daily Compliment Capsule -->
+            <div class="lg:col-span-7 rounded-xl bg-surface-container-lowest p-space-lg shadow-xl flex flex-col justify-between border border-surface-container">
+              <div class="flex items-center justify-between mb-space-sm">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-sm">
+                    <span class="material-symbols-outlined text-[20px]">cookie</span>
+                  </div>
+                  <div>
+                    <h2 class="font-title-md text-title-md text-on-surface font-bold">Daily Compliment Capsule</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Tap to crack open a warm Shinchan hug &amp; crispy Chocobi biscuit!</p>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Instant Cheer</span>
+              </div>
+              <div class="relative my-space-md p-space-lg rounded-xl bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-high flex flex-col items-center text-center transition-all cursor-pointer hover:shadow-md group select-none" id="capsuleWrapper">
+                <div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-space-sm shadow-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" id="capsuleVisual">
+                  <span class="material-symbols-outlined text-[32px]" id="capsuleIcon">redeem</span>
+                </div>
+                <div id="capsuleMessageArea">
+                  <p class="font-headline-sm text-headline-sm text-primary font-bold mb-1" id="capsulePrompt">
+                    [ Tap to pop open your capsule ]
+                  </p>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant max-w-md mx-auto" id="capsuleSubtext">
+                    Filled with warm Kasukabe biscuit crumbs, warm sighs of relief, and quiet compliments just for you.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+                <span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-secondary text-[16px]">arrow_back_ios_new</span>
+                  Updated fresh every time you click
+                </span>
+                <button class="px-4 py-2 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-all flex items-center gap-1.5" id="anotherCapsuleBtn" type="button">
+                  <span class="material-symbols-outlined text-[16px]">cached</span>
+                  <span>Pop Another One</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Daily Hug Meter -->
+            <div class="lg:col-span-5 rounded-xl bg-surface-container-lowest p-space-lg shadow-xl flex flex-col justify-between border border-surface-container">
+              <div>
+                <div class="flex items-center justify-between mb-space-sm">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center">
+                      <span class="material-symbols-outlined text-[18px]">volunteer_activism</span>
+                    </div>
+                    <h3 class="font-title-md text-title-md text-on-surface font-bold">Daily Hug Meter</h3>
+                  </div>
+                  <span class="font-label-sm text-label-sm text-primary font-semibold">Live Kasukabe Warmth</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+                  Our cozy sanctuary has passed out hugs, soft giggles, and calm sighs to weary visitors today.
+                </p>
+                <!-- Custom Visual Progress Capsule with Shiro Head -->
+                <div class="relative w-full h-8 rounded-full bg-surface-container p-1 flex items-center mb-space-xs cursor-pointer group" id="hugMeterBar" title="Click to add a hug!">
+                  <div class="h-full rounded-full bg-gradient-to-r from-primary-container via-secondary-container to-secondary-fixed flex items-center justify-end pr-1 transition-all duration-700" id="hugProgressBar" style="width: 78%;">
+                    <div class="w-6 h-6 rounded-full bg-surface-container-lowest shadow-md flex items-center justify-center text-[11px] font-bold text-on-surface group-hover:scale-125 transition-transform">
+                      🐾
+                    </div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant mb-space-md">
+                  <span>Morning yawn (0)</span>
+                  <span class="text-primary font-bold" id="hugCountLabel">3,492 warm hugs given</span>
+                  <span>Infinite sky ★</span>
+                </div>
+                <div class="space-y-2.5">
+                  <div class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-low">
+                    <span class="material-symbols-outlined text-primary text-[20px]">lock_reset</span>
+                    <span class="font-body-sm text-body-sm text-on-surface">Zero judgments, zero expectations, 100% gentle ear</span>
+                  </div>
+                  <div class="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-low">
+                    <span class="material-symbols-outlined text-secondary text-[20px]">music_note</span>
+                    <span class="font-body-sm text-body-sm text-on-surface">Gemini character intelligence attuned to your exact words</span>
+                  </div>
+                </div>
+              </div>
+              <button class="mt-space-md w-full py-2.5 rounded-full bg-surface-container text-on-surface text-center font-label-md text-label-md hover:bg-surface-container-high transition-colors flex items-center justify-center gap-1.5" data-nav="feelings-check-in">
+                <span>Start with a 10-second Feelings Check</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Feature Highlights: 3 Pillars -->
+          <div class="mb-space-xl">
+            <div class="text-center max-w-xl mx-auto mb-space-lg">
+              <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm inline-block mb-space-xs">
+                Discover The Sanctuary
+              </span>
+              <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+                Three Pillows To Rest Your Head
+              </h2>
+              <p class="font-body-md text-body-md text-on-surface-variant">
+                Hand-crafted spaces designed to meet you wherever you are right now.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+              <!-- Pillar 1 -->
+              <div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-xl flex flex-col justify-between hover:shadow-2xl transition-all border border-surface-container">
+                <div>
+                  <div class="flex items-center justify-between mb-space-md">
+                    <div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-md">
+                      <span class="material-symbols-outlined text-[24px]">group</span>
+                    </div>
+                    <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+                      9 Friends
+                    </span>
+                  </div>
+                  <h3 class="font-title-md text-title-md text-on-surface font-bold mb-space-xs">
+                    All 9 Kasukabe Friends
+                  </h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+                    Talk with Shinchan, gentle Shiro, Himawari, Misae, Hiroshi, studious Kazama, passionate Nene, timid Masao, or steady Bo-chan.
+                  </p>
+                  <div class="p-space-sm rounded-lg bg-surface-container-low mb-space-md">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant block mb-2 font-medium">Ready to listen:</span>
+                    <div class="grid grid-cols-3 gap-1.5 text-center text-xs">
+                      <span class="p-1 rounded bg-surface-container-lowest">🖍️ Shinchan</span>
+                      <span class="p-1 rounded bg-surface-container-lowest">🐕 Shiro</span>
+                      <span class="p-1 rounded bg-surface-container-lowest">🍼 Hima</span>
+                      <span class="p-1 rounded bg-surface-container-lowest">👩 Misae</span>
+                      <span class="p-1 rounded bg-surface-container-lowest">👔 Hiroshi</span>
+                      <span class="p-1 rounded bg-surface-container-lowest">📘 Kazama</span>
+                      <span class="p-1 rounded bg-surface-container-lowest">🐰 Nene</span>
+                      <span class="p-1 rounded bg-surface-container-lowest">🍙 Masao</span>
+                      <span class="p-1 rounded bg-surface-container-lowest">🪨 Bo-chan</span>
+                    </div>
+                  </div>
+                </div>
+                <button class="w-full py-3 rounded-full bg-primary-container text-on-primary-container text-center font-label-md text-label-md shadow-sm hover:opacity-95 transition-all flex items-center justify-center gap-2" data-nav="choose-character">
+                  <span>Pick Your Companion</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </button>
+              </div>
+
+              <!-- Pillar 2 -->
+              <div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-xl flex flex-col justify-between hover:shadow-2xl transition-all border border-surface-container">
+                <div>
+                  <div class="flex items-center justify-between mb-space-md">
+                    <div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-md">
+                      <span class="material-symbols-outlined text-[24px]">mood</span>
+                    </div>
+                    <span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                      11 Emotion Tags
+                    </span>
+                  </div>
+                  <h3 class="font-title-md text-title-md text-on-surface font-bold mb-space-xs">
+                    Safe Feelings Check-In
+                  </h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+                    No pressure to define yourself in one word. Select any combination of our 11 custom emotion tags to tailor gentle support.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5 p-space-sm rounded-lg bg-surface-container-low mb-space-md">
+                    <span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm">🌧️ Heavy &amp; Tired</span>
+                    <span class="px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">✨ Needing A Hug</span>
+                    <span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm">⚡ Overwhelmed</span>
+                    <span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm">💔 Heartbroken</span>
+                    <span class="px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">🍪 Want a treat</span>
+                  </div>
+                </div>
+                <button class="w-full py-3 rounded-full bg-surface-container-high text-on-surface text-center font-label-md text-label-md hover:bg-surface-variant transition-all flex items-center justify-center gap-2" data-nav="feelings-check-in">
+                  <span>Check My Feelings</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </button>
+              </div>
+
+              <!-- Pillar 3 -->
+              <div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-xl flex flex-col justify-between hover:shadow-2xl transition-all border border-surface-container">
+                <div>
+                  <div class="flex items-center justify-between mb-space-md">
+                    <div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shadow-md">
+                      <span class="material-symbols-outlined text-[24px]">attractions</span>
+                    </div>
+                    <span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+                      Pure Play
+                    </span>
+                  </div>
+                  <h3 class="font-title-md text-title-md text-on-surface font-bold mb-space-xs">
+                    Shinchan Fun Zone
+                  </h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+                    Instant wholesome distraction with Little Wins Garden, Mood Meme Maker, and Compliment Capsules to release tension.
+                  </p>
+                  <div class="space-y-2 p-space-sm rounded-lg bg-surface-container-low mb-space-md">
+                    <div class="flex items-center justify-between px-3 py-1.5 rounded-md bg-surface-container-lowest">
+                      <span class="font-label-sm text-label-sm text-on-surface flex items-center gap-2">
+                        <span class="material-symbols-outlined text-secondary text-[16px]">local_florist</span>
+                        Little Wins Garden
+                      </span>
+                      <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+                    </div>
+                    <div class="flex items-center justify-between px-3 py-1.5 rounded-md bg-surface-container-lowest">
+                      <span class="font-label-sm text-label-sm text-on-surface flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-[16px]">draw</span>
+                        Mood Meme Maker
+                      </span>
+                      <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+                    </div>
+                  </div>
+                </div>
+                <button class="w-full py-3 rounded-full bg-secondary-container text-on-secondary-container text-center font-label-md text-label-md shadow-sm hover:opacity-95 transition-all flex items-center justify-center gap-2" data-nav="fun-zone">
+                  <span>Explore Fun Zone</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Banner -->
+          <div class="rounded-xl bg-surface-container-low p-space-lg mb-space-xl overflow-hidden shadow-md border border-surface-container">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-space-lg items-center">
+              <div class="md:col-span-5 flex flex-col gap-space-sm">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest w-fit text-primary font-label-sm text-label-sm">
+                  <span class="material-symbols-outlined text-[16px]">palette</span>
+                  Kasukabe Warmth Gallery
+                </div>
+                <h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+                  "Even when it rains, tea tastes sweet."
+                </h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">
+                  A visual snapshot from the quiet neighborhood of Kasukabe. When the world feels too fast, slow down to Shinchan's walking speed.
+                </p>
+                <div class="pt-space-xs">
+                  <button class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:underline" data-nav="character-chat">
+                    <span>Sit down with Shinchan &amp; friends for tea</span>
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+              <div class="md:col-span-7 grid grid-cols-2 gap-space-md">
+                <div class="rounded-lg overflow-hidden h-44 shadow-sm group bg-surface-container">
+                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Nohara garden with Shiro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4tFWbDKOoc-qMJI6dP8xXc2npjThK6-ixCtaRObdeytcSUM1QrnPEIJUrlI8P1GgqVK74nSheZG59SnlDj_bHVG4CGn30q-wxYYdc57Z10U3rpglUa88TJbM_ypvjZrA_vFJjh9CR5TMExh9afgTFNvEnbQOetGP3hrsPTeB2-ziNvNmZcgXE0bOMYYO7qwrNMuP7EugzYQHAV4rTR0AVdf84ru2P__TrCN6n-Ph0MaZn1na7wP_h"/>
+                </div>
+                <div class="rounded-lg overflow-hidden h-44 shadow-sm group bg-surface-container">
+                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Chocobi biscuit box" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArQifMRpa_sLfnPAtUBOo4hSTt03yfvGGPO7OlD1zrb77QbbmQYJc6OuOWEsHIlp202uUfKGUuRtGKVkjMWv61CPmk51OBVQNvGNpLllAc6XC3m_7471K9_VlOsRapBgToOerHPgJUOJsaRSX8LDI6j6mNjroqyV2_HkC4bf5Pw3Zn-Iyzawml62DNbIsd9UWbv9DlHG4B463k4ZfpDVD67g3SpWx-fH6ZUUhT5LfZvuDn0GoXFlKR"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 2: CHOOSE CHARACTER (9 FRIENDS)       -->
+      <!-- ========================================== -->
+      <section class="app-view hidden flex-col w-full" id="view-choose-character">
+        <div class="mb-space-lg text-center max-w-2xl mx-auto">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm mb-2">
+            <span class="material-symbols-outlined text-[16px]">diversity_1</span>
+            Kasukabe Companions
+          </div>
+          <h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">
+            Who would you like to sit with?
+          </h2>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Each friend listens differently. Choose whoever your heart feels most comfortable talking to right now.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg mb-space-xl" id="charactersGrid">
+          <!-- Dynamically populated character cards -->
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 3: FEELINGS CHECK-IN (11 TAGS)        -->
+      <!-- ========================================== -->
+      <section class="app-view hidden flex-col w-full" id="view-feelings-check-in">
+        <div class="max-w-3xl mx-auto w-full">
+          <!-- Top Card -->
+          <div class="rounded-xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-xl border border-surface-container mb-space-lg">
+            <div class="flex items-center justify-between mb-space-md">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-2xl shadow-sm" id="checkinCompanionEmoji">
+                  🖍️
+                </div>
+                <div>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Safe Feelings Check-In</h2>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Chatting with <span class="font-bold text-primary" id="checkinCompanionName">Shinchan</span>. How is your heart today?
+                  </p>
+                </div>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">No Right or Wrong</span>
+            </div>
+
+            <!-- Emotion selection instruction -->
+            <p class="font-body-md text-body-md text-on-surface mb-space-sm font-semibold">
+              Select any tags that describe where you're at (choose as many as you like):
+            </p>
+            <div class="flex flex-wrap gap-2.5 mb-space-lg" id="emotionTagsContainer">
+              <!-- 11 Emotion Chips -->
+            </div>
+
+            <!-- Support Style Section -->
+            <div class="border-t border-surface-container pt-space-md mb-space-lg">
+              <h3 class="font-title-md text-title-md text-on-surface font-bold mb-space-xs">
+                How should your companion support you today?
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+                Choose the listening style that feels most soothing for you right now:
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="supportStylesContainer">
+                <!-- Support style radios -->
+              </div>
+            </div>
+
+            <!-- Optional Reflection Input -->
+            <div class="border-t border-surface-container pt-space-md mb-space-lg">
+              <label class="block font-label-md text-label-md text-on-surface mb-1" for="quickReflectionInput">
+                What's lingering on your mind? (Optional initial thought for your companion)
+              </label>
+              <input class="w-full px-4 py-3 rounded-DEFAULT bg-surface-container-low border border-outline-variant/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-on-surface font-body-md placeholder:text-outline text-sm" id="quickReflectionInput" placeholder="e.g. Someone doubted me today / feeling burned out / just want a gentle presence..." type="text"/>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-space-md">
+              <button class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" data-nav="choose-character">
+                ← Change Companion
+              </button>
+              <button class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2" id="startChatWithFeelingsBtn">
+                <span>Enter Cozy Sanctuary</span>
+                <span class="material-symbols-outlined text-[18px]">chat</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 4: CHARACTER CHAT (GEMINI POWERED)    -->
+      <!-- ========================================== -->
+      <section class="app-view hidden flex-col w-full" id="view-character-chat">
+        <div class="max-w-4xl mx-auto w-full flex flex-col h-[calc(100vh-180px)] min-h-[580px]">
+          
+          <!-- Chat Header Card -->
+          <div class="rounded-t-xl bg-surface-container-lowest p-4 sm:p-5 shadow-sm border border-b-0 border-surface-container flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-2xl shadow-sm" id="chatHeaderEmoji">
+                  🖍️
+                </div>
+                <span class="w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-white absolute bottom-0 right-0"></span>
+              </div>
+              <div class="flex flex-col">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold" id="chatHeaderName">Shinchan</h2>
+                  <span class="px-2.5 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm" id="chatHeaderRole">Kasukabe Friend</span>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold" id="chatEngineBadge">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    <span>Gemini 3.8 Flash</span>
+                  </span>
+                </div>
+                <!-- Selected Emotions & Style Pills -->
+                <div class="flex items-center gap-1.5 flex-wrap mt-1" id="chatHeaderEmotionsList">
+                  <!-- Badges inserted dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Utility Controls -->
+            <div class="flex items-center gap-2">
+              <button class="px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1" id="changeFeelingsQuickBtn" title="Update emotion tags">
+                <span class="material-symbols-outlined text-[16px]">tune</span>
+                <span class="hidden sm:inline">Feelings</span>
+              </button>
+              <button class="px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1" id="toggleDemoModeBtn" title="Toggle Demo / Live AI mode">
+                <span class="material-symbols-outlined text-[16px]">sensors</span>
+                <span class="hidden sm:inline" id="demoToggleLabel">Mode: Live AI</span>
+              </button>
+              <button class="p-2 rounded-full bg-surface-container-low hover:bg-surface-container text-outline hover:text-error transition-colors" id="clearChatHistoryBtn" title="Clear conversation">
+                <span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Chat Messages Area -->
+          <div class="flex-1 overflow-y-auto p-4 sm:p-6 bg-surface-container-low border-x border-surface-container space-y-4" id="chatMessagesArea">
+            <!-- Messages rendered dynamically -->
+          </div>
+
+          <!-- Typing Indicator -->
+          <div class="hidden px-6 py-2 bg-surface-container-low border-x border-surface-container items-center gap-2 text-on-surface-variant font-label-sm text-xs" id="chatTypingIndicator">
+            <div class="flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-primary animate-bounce"></span>
+              <span class="w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:0.2s]"></span>
+              <span class="w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:0.4s]"></span>
+            </div>
+            <span id="typingIndicatorText">Shinchan is thinking of a warm thought...</span>
+          </div>
+
+          <!-- Prompt Starters Row -->
+          <div class="bg-surface-container-lowest px-4 py-2 border-x border-surface-container overflow-x-auto flex items-center gap-2 no-scrollbar" id="quickPromptChips">
+            <span class="font-label-sm text-[11px] text-outline shrink-0 font-medium">Quick Starters:</span>
+            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="My boyfriend accused me of cheating.">
+              💔 "My boyfriend accused me of cheating."
+            </button>
+            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="Can u comfort me and scold me?">
+              🤗 "Can u comfort me and scold me?"
+            </button>
+            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="Yeahh.">
+              💬 "Yeahh."
+            </button>
+            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="I'm drowning in exam stress and can't focus.">
+              📚 "Exam stress is killing me..."
+            </button>
+            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="I got the job today! Celebrate with me!">
+              🎉 "I got the job today!"
+            </button>
+            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="Tell me something silly to make me laugh.">
+              🦖 "Tell me something silly."
+            </button>
+          </div>
+
+          <!-- Input Bar -->
+          <div class="rounded-b-xl bg-surface-container-lowest p-3 sm:p-4 shadow-xl border border-t-0 border-surface-container">
+            <form class="flex items-center gap-2" id="chatInputForm">
+              <input class="flex-1 px-4 py-3 rounded-full bg-surface-container-low border border-outline-variant/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-on-surface font-body-md text-sm placeholder:text-outline" id="chatTextInput" placeholder="Talk with your Kasukabe companion (or pick a starter above)..." type="text" autocomplete="off"/>
+              <button class="px-5 py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-md hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-1 shrink-0" id="chatSendBtn" type="submit">
+                <span>Send</span>
+                <span class="material-symbols-outlined text-[18px]">send</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 5: FUN ZONE                           -->
+      <!-- ========================================== -->
+      <section class="app-view hidden flex-col w-full" id="view-fun-zone">
+        <div class="mb-space-lg text-center max-w-2xl mx-auto">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm mb-2">
+            <span class="material-symbols-outlined text-[16px]">attractions</span>
+            Pure Wholesome Play
+          </div>
+          <h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">
+            Kasukabe Fun Zone
+          </h2>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Gentle micro-games and joyful distractions to take the weight off your chest.
+          </p>
+        </div>
+
+        <!-- 3 Interactive Tabs -->
+        <div class="flex items-center justify-center gap-2 mb-space-lg">
+          <button class="fun-tab-btn px-5 py-2 rounded-full font-label-md text-label-md transition-all active-fun-tab bg-primary-container text-on-primary-container font-bold shadow-sm" data-tab="little-wins">
+            🌻 Little Wins Garden
+          </button>
+          <button class="fun-tab-btn px-5 py-2 rounded-full font-label-md text-label-md transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="meme-maker">
+            🎨 Mood Meme Maker
+          </button>
+          <button class="fun-tab-btn px-5 py-2 rounded-full font-label-md text-label-md transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="biscuit-crack">
+            🍪 Chocobi Fortune
+          </button>
+        </div>
+
+        <!-- Tab 1: Little Wins Garden -->
+        <div class="fun-tab-pane rounded-xl bg-surface-container-lowest p-space-lg shadow-xl border border-surface-container mb-space-xl" id="tab-little-wins">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+            <div class="lg:col-span-5 flex flex-col gap-space-sm">
+              <span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Every Step Counts</span>
+              <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Plant a Seed for Today</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant">
+                Did you drink a sip of water? Get out of bed? Survive a difficult chat? Even the smallest effort is worthy of bloom.
+              </p>
+              
+              <!-- Quick Win Buttons -->
+              <div class="flex flex-wrap gap-2 my-2">
+                <button class="win-btn px-3 py-1.5 rounded-full bg-surface-container text-on-surface text-xs font-semibold hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" data-win="Drank a full glass of water 💧">
+                  💧 Drank water
+                </button>
+                <button class="win-btn px-3 py-1.5 rounded-full bg-surface-container text-on-surface text-xs font-semibold hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" data-win="Got out of bed today 🛏️">
+                  🛏️ Got out of bed
+                </button>
+                <button class="win-btn px-3 py-1.5 rounded-full bg-surface-container text-on-surface text-xs font-semibold hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" data-win="Took 5 deep breaths 🌬️">
+                  🌬️ Took deep breaths
+                </button>
+                <button class="win-btn px-3 py-1.5 rounded-full bg-surface-container text-on-surface text-xs font-semibold hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" data-win="Spoke kindly to myself 💗">
+                  💗 Spoke kindly to self
+                </button>
+                <button class="win-btn px-3 py-1.5 rounded-full bg-surface-container text-on-surface text-xs font-semibold hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" data-win="Survived a heavy thought 🌸">
+                  🌸 Survived a heavy day
+                </button>
+              </div>
+
+              <!-- Custom win input -->
+              <div class="flex items-center gap-2 mt-2">
+                <input class="flex-1 px-4 py-2.5 rounded-full bg-surface-container-low border border-outline-variant/60 text-sm" id="customWinInput" placeholder="Add your custom little win..." type="text"/>
+                <button class="px-5 py-2.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-sm font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" id="plantSeedBtn">
+                  Plant! 🌱
+                </button>
+              </div>
+            </div>
+
+            <!-- Garden Display Canvas Area -->
+            <div class="lg:col-span-7 rounded-xl bg-gradient-to-b from-surface-container-low to-surface-container p-6 min-h-[300px] flex flex-col justify-between border border-surface-container-high relative overflow-hidden">
+              <div class="flex items-center justify-between text-xs font-bold text-on-surface-variant">
+                <span>🌸 Kasukabe Sunflower Field</span>
+                <span id="gardenCountLabel">Flowers in Bloom: 4</span>
+              </div>
+              <div class="grid grid-cols-3 sm:grid-cols-4 gap-3 my-4" id="gardenFlowersGrid">
+                <!-- Blooming flowers -->
+              </div>
+              <div class="text-center text-xs text-on-surface-variant italic">
+                "Small flowers grow in quiet soil. You are growing too."
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Mood Meme Maker -->
+        <div class="fun-tab-pane hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-xl border border-surface-container mb-space-xl" id="tab-meme-maker">
+          <div class="max-w-2xl mx-auto flex flex-col items-center">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">Kasukabe Mood Meme Maker</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md text-center">
+              Pick a classic Shinchan face, add your honest caption, and turn heavy feelings into a gentle giggle.
+            </p>
+
+            <!-- Meme Preview Card -->
+            <div class="relative w-full max-w-[420px] rounded-xl overflow-hidden shadow-2xl bg-surface-container-lowest border-4 border-primary-container p-3 mb-space-md" id="memeCard">
+              <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-black flex items-center justify-center">
+                <img class="w-full h-full object-cover" id="memeImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOqhIgqGYZ96233cx7LVOkf2XeNOQJDSkPecuGjJ56baaef_FN9071S6nirCzuuYMGxSvP0qvoi9qRS93YWAtG5omhv4E26Z9lHiZ5isN888xt6JNQXTXcLhhKT5rtJzftFxRBbiaT9r4JJJqVjKEDzy1udC-8eHGOvhkqh0GbeJK_ZZQLRaeaFoCXMHH4ECtjgc2D-fh6eH0VRDpzmMFAKd_HV-GKjj5QjnV8quO-xBqzxiyVrEh-"/>
+                <div class="absolute top-4 left-4 right-4 text-center font-headline-md font-extrabold text-white uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-stroke" id="memeTopCaption">
+                  ME PRETENDING TO ADULT
+                </div>
+                <div class="absolute bottom-4 left-4 right-4 text-center font-headline-md font-extrabold text-secondary-fixed uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" id="memeBottomCaption">
+                  WHILE EATING CHOCOBI IN A BLANKET
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="w-full max-w-[420px] space-y-3">
+              <div class="flex gap-2">
+                <input class="flex-1 px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-sm font-semibold" id="memeTopInput" placeholder="Top Text" type="text" value="ME PRETENDING TO ADULT"/>
+                <input class="flex-1 px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-sm font-semibold" id="memeBottomInput" placeholder="Bottom Text" type="text" value="WHILE EATING CHOCOBI IN A BLANKET"/>
+              </div>
+              <div class="flex items-center justify-between gap-2">
+                <button class="flex-1 py-2 rounded-full bg-surface-container text-on-surface text-xs font-bold hover:bg-surface-container-high transition-colors" id="randomMemePresetBtn">
+                  🎲 Random Idea
+                </button>
+                <button class="flex-1 py-2 rounded-full bg-primary-container text-on-primary-container text-xs font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" id="saveMemeBtn">
+                  ✨ Done Laughing!
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Chocobi Fortune Biscuit Crack -->
+        <div class="fun-tab-pane hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-xl border border-surface-container mb-space-xl" id="tab-biscuit-crack">
+          <div class="max-w-xl mx-auto text-center flex flex-col items-center">
+            <div class="w-20 h-20 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-4xl mb-space-sm shadow-md animate-bounce">
+              🦖
+            </div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">
+              Golden Chocobi Star Cookie
+            </h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
+              Click the cookie box to reveal a secret Kasukabe truth whispered by Shiro and Shinnosuke!
+            </p>
+
+            <div class="w-full p-6 rounded-2xl bg-gradient-to-br from-secondary-container/20 to-primary-container/20 border-2 border-dashed border-secondary-fixed cursor-pointer hover:scale-[1.02] transition-transform select-none" id="biscuitCrackBox">
+              <span class="text-4xl block mb-2" id="fortuneEmoji">🍪</span>
+              <p class="font-headline-sm text-headline-sm text-primary font-bold mb-2" id="fortuneTitle">
+                [ Click to Snap the Cookie ]
+              </p>
+              <p class="font-body-md text-body-md text-on-surface max-w-md mx-auto" id="fortuneBody">
+                "The secret ingredient in life isn't doing everything right. It's forgiving yourself when you stumble."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 6: SAFETY & ABOUT                     -->
+      <!-- ========================================== -->
+      <section class="app-view hidden flex-col w-full" id="view-safety-about">
+        <div class="max-w-3xl mx-auto w-full space-y-space-lg mb-space-xl">
+          <!-- Safety Notice Card -->
+          <div class="rounded-xl bg-surface-container-lowest p-space-lg sm:p-space-xl shadow-xl border border-surface-container">
+            <div class="flex items-center gap-3 mb-space-md">
+              <div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+                <span class="material-symbols-outlined text-[26px]">health_and_safety</span>
+              </div>
+              <div>
+                <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Compassionate Care &amp; Helplines</h2>
+                <span class="font-label-sm text-label-sm text-primary font-semibold">You Are Not Alone</span>
+              </div>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              This space is an affectionate fan-made comfort sanctuary designed for light decompression, warmth, and smiles. It is not clinical counseling or medical therapy. If you are facing severe crises, please reach out to dedicated compassionate professionals who are waiting to support you for free:
+            </p>
+
+            <div class="space-y-3 mb-space-md">
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+                <div>
+                  <span class="font-label-md text-label-md text-on-surface block font-bold">United States &amp; Canada</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">Suicide &amp; Crisis Lifeline (24/7, Free, Confidential)</span>
+                </div>
+                <span class="font-label-lg text-primary font-extrabold text-lg">988</span>
+              </div>
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+                <div>
+                  <span class="font-label-md text-label-md text-on-surface block font-bold">United Kingdom</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">Samaritans UK &amp; NHS Mental Health</span>
+                </div>
+                <span class="font-label-lg text-primary font-extrabold text-lg">111 / 116 123</span>
+              </div>
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+                <div>
+                  <span class="font-label-md text-label-md text-on-surface block font-bold">India</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">Tele-MANAS &amp; Vandrevala Foundation</span>
+                </div>
+                <span class="font-label-lg text-primary font-extrabold text-lg">14416 / 9999 666 555</span>
+              </div>
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+                <div>
+                  <span class="font-label-md text-label-md text-on-surface block font-bold">International (Worldwide Directory)</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">Befrienders Worldwide &amp; Find A Helpline</span>
+                </div>
+                <span class="font-label-sm text-primary font-bold">findahelpline.com</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg bg-primary-fixed/30 text-on-surface text-sm">
+              <strong>Heartfelt Reminder:</strong> Reaching out for human support is not weakness—it is courage. Shiro and Shinchan want you to stay safe in this world.
+            </div>
+          </div>
+
+          <!-- Tribute Statement Card -->
+          <div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-md border border-surface-container">
+            <h3 class="font-title-md text-title-md text-on-surface font-bold mb-2">About Shinchan Comfort Corner</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mb-3">
+              Shinchan Comfort Corner is a non-commercial, non-profit fan homage created with deep gratitude for Yoshito Usui's beloved masterpiece <em>Crayon Shin-chan</em> and the wholesome animated warmth created by Futabasha and Shin-ei Animation.
+            </p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Every Kasukabe persona is tuned with compassionate, non-judgmental empathy powered by server-side Google Gemini intelligence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL 1: MAKE ME SMILE POPUP               -->
+  <!-- ========================================== -->
+  <div class="fixed inset-0 z-50 hidden items-center justify-center p-space-md bg-on-surface/40 backdrop-blur-sm transition-opacity duration-300" id="smileModal">
+    <div class="relative w-full max-w-md rounded-xl bg-surface-container-lowest p-space-lg shadow-2xl flex flex-col items-center text-center animate-bounce-short border border-surface-container">
+      <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" id="closeSmileModal" type="button">
+        <span class="material-symbols-outlined text-[18px]">close</span>
+      </button>
+      <div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-3xl mb-space-sm shadow-md">
+        🦖
+      </div>
+      <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-xs">
+        Special Chocobi Delivery!
+      </span>
+      <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-xs" id="smileModalTitle">
+        "Look, look! An Action Kamen Pose!"
+      </h3>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-space-md" id="smileModalBody">
+        Shinnosuke attempts an epic high kick, drops his snack, and Shiro smoothly catches it mid-air without blinking. Even the pigeon on the fence is clapping!
+      </p>
+      <div class="p-space-sm rounded-lg bg-surface-container-low w-full mb-space-md text-on-surface-variant font-body-sm text-body-sm italic">
+        "Remember: Nobody expects you to have everything figured out today. Eat a biscuit and take it slow."
+      </div>
+      <div class="flex items-center gap-2 w-full">
+        <button class="flex-1 py-3 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:opacity-95 transition-all" id="smileAgainBtn" type="button">
+          Another Giggle!
+        </button>
+        <button class="flex-1 py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md text-center hover:opacity-95 transition-all" id="smileToFunZoneBtn" type="button">
+          To Fun Zone
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL 2: GUIDED BREATHING RESET            -->
+  <!-- ========================================== -->
+  <div class="fixed inset-0 z-50 hidden items-center justify-center p-space-md bg-on-surface/50 backdrop-blur-md transition-opacity duration-300" id="breathingModal">
+    <div class="relative w-full max-w-md rounded-2xl bg-surface-container-lowest p-space-lg shadow-2xl flex flex-col items-center text-center border border-surface-container">
+      <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" id="closeBreathingModal" type="button">
+        <span class="material-symbols-outlined text-[18px]">close</span>
+      </button>
+
+      <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-sm">
+        4-4-4 Grounding Rhythm
+      </span>
+      <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">
+        Breathe With Shiro
+      </h3>
+      <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
+        Inhale warmth, hold quiet peace, exhale tension.
+      </p>
+
+      <!-- Breathing Animated Rings Canvas -->
+      <div class="relative w-56 h-56 flex items-center justify-center my-4">
+        <div class="absolute inset-0 rounded-full bg-primary-container/20 animate-breathe pointer-events-none"></div>
+        <div class="absolute w-44 h-44 rounded-full bg-secondary-container/30 animate-breathe [animation-delay:1s] pointer-events-none"></div>
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary-fixed to-secondary-fixed flex flex-col items-center justify-center shadow-lg transition-transform duration-1000" id="breathCenterCircle">
+          <span class="text-3xl mb-1">🐕</span>
+          <span class="font-label-lg text-primary font-bold" id="breathPhaseText">Inhale</span>
+        </div>
+      </div>
+
+      <p class="font-headline-sm text-headline-sm text-primary font-bold my-2" id="breathTimerNum">
+        4
+      </p>
+      <p class="font-body-sm text-body-sm text-on-surface-variant italic mb-space-md">
+        "Drop your shoulders. Unclench your jaw. You are safe right now."
+      </p>
+
+      <button class="w-full py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm hover:opacity-95 transition-all" id="finishBreathingBtn" type="button">
+        I Feel Grounded 💗
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w-full bg-surface-container-low mt-space-xl border-t border-surface-container">
+    <div class="max-w-[1200px] mx-auto px-margin py-space-xl">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-space-lg mb-space-lg">
+        <div class="md:col-span-2 flex flex-col gap-space-sm">
+          <div class="flex items-center gap-space-sm">
+            <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+              <span class="material-symbols-outlined text-on-primary-container text-[18px]">volunteer_activism</span>
+            </div>
+            <span class="font-headline-sm text-headline-sm text-primary font-bold">Kasukabe Defense Sanctuary</span>
+          </div>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+            A cozy, non-judgmental fan oasis crafted to lighten heavy days with the buoyant warmth of Shinnosuke, Shiro, and Kasukabe friends. Take a deep breath—you are safe here.
+          </p>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container w-fit mt-space-xs">
+            <span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Fan-Made Appreciation Space • Attuned with Gemini Intelligence</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-space-xs">
+          <span class="font-label-lg text-label-lg text-on-surface mb-space-xs">Gentle Corners</span>
+          <button class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors text-left" data-nav="welcome-home">Welcome Haven</button>
+          <button class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors text-left" data-nav="choose-character">Kasukabe Companions</button>
+          <button class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors text-left" data-nav="feelings-check-in">Daily Feelings Check</button>
+          <button class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors text-left" data-nav="character-chat">Warm Listening Chat</button>
+          <button class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors text-left" data-nav="fun-zone">Sunflower Garden</button>
+        </div>
+
+        <div class="flex flex-col gap-space-xs">
+          <span class="font-label-lg text-label-lg text-on-surface mb-space-xs">Safety &amp; Care</span>
+          <button class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors text-left" data-nav="safety-about">Crisis Resources &amp; Helplines</button>
+          <button class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors text-left" data-nav="safety-about">Community Care Pledge</button>
+          <div class="mt-space-sm p-3 rounded-DEFAULT bg-surface-container-high">
+            <span class="font-label-sm text-label-sm text-primary font-bold block mb-0.5">Need urgent support?</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant text-xs">Free helplines are available 24/7 in our Safety section.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm border-t border-surface-container-high/60">
+        <span class="font-body-sm text-body-sm text-on-surface-variant text-xs">
+          Crafted with soft pinks, Chocobi stars, and pure comfort for Kasukabe friends everywhere.
+        </span>
+        <span class="font-label-sm text-label-sm text-on-surface-variant bg-surface px-3 py-1 rounded-full text-xs" id="footerDemoIndicator">
+          Live Gemini 3.8 Flash Active
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    // ==========================================
+    // 1. DATA & STATE MANAGEMENT
+    // ==========================================
+    const characters = [
+      {
+        id: "Shinchan",
+        name: "Shinnosuke (Shinchan)",
+        emoji: "🖍️",
+        role: "Playful Comfort & Sincere Heart",
+        bio: "5-year-old free spirit with expressive eyebrows. Mischievous and silly, but when a friend hurts, drops the clown act to offer pure, unreserved warmth.",
+        tags: ["Playful", "Sincere", "Funny", "Big Hugs"],
+        greeting: "Oii, hey! 💗 I'm right here with you. Whatever happened today, you're safe now. What's on your mind?"
+      },
+      {
+        id: "Shiro",
+        name: "Shiro",
+        emoji: "🐕",
+        role: "Quiet, Gentle & Fluffy Comfort",
+        bio: "The fluffy white dog of the Nohara household. Gives unconditional love, peaceful silence, soft nuzzles, and head pats when words are too loud.",
+        tags: ["Gentle", "Quiet", "Loving", "Calming"],
+        greeting: "*Shiro quietly walks up, rests his soft chin on your knee, and looks up with gentle eyes.* *Woof!* (I'm here for you.)"
+      },
+      {
+        id: "Hiroshi",
+        name: "Hiroshi Nohara (Dad)",
+        emoji: "👔",
+        role: "Realistic Encouragement & Dad Warmth",
+        bio: "Hardworking salaryman with smelly socks but infinite tenderness. Understands workplace fatigue, feeling like a failure, and relationship stress.",
+        tags: ["Supportive", "Realistic", "Grounded", "Reassuring"],
+        greeting: "Ah, come sit down. Put your feet up. Bad days are part of life, but you survived another one. How are you holding up?"
+      },
+      {
+        id: "Misae",
+        name: "Misae Nohara (Mom)",
+        emoji: "👩",
+        role: "Protective Care & Warm Grounding",
+        bio: "Fierce, protective, and loving. Reminds you to drink water, not let anyone treat you like a doormat, and remember your worth.",
+        tags: ["Protective", "Nurturing", "Direct", "Fierce Friend"],
+        greeting: "Hey there! Come here for a warm cup of tea. First of all: you are worthy of respect. Tell me what's bothering you."
+      },
+      {
+        id: "Kazama",
+        name: "Tooru Kazama",
+        emoji: "📘",
+        role: "Thoughtful Clarity & Gentle Logic",
+        bio: "Studious, organized, and polite. Helps you untangle chaotic thoughts step-by-step with calm clarity (and a secret soft heart).",
+        tags: ["Structured", "Polite", "Calm", "Problem-Solving"],
+        greeting: "Hello. Take a deep, steady breath. Let's look at whatever is overwhelming you together so it feels manageable."
+      },
+      {
+        id: "Nene",
+        name: "Nene Sakurada",
+        emoji: "🐰",
+        role: "Passionate Venting & Fiery Empathy",
+        bio: "Emotional, theatrical, and fiercely loyal. Validates your anger and sadness 100% without judgment when unfair things happen.",
+        tags: ["Fierce Bestie", "Vent Buddy", "Empathetic"],
+        greeting: "Oh no! Did someone hurt your feelings?! That is so unfair! Let it all out—I'm totally on your side!"
+      },
+      {
+        id: "Masao",
+        name: "Masao Sato",
+        emoji: "🍙",
+        role: "Timid Solidarity & Zero Judgment",
+        bio: "Gentle, shy, and sensitive. Deeply understands anxiety, fear of failure, and feeling small. Makes you feel completely understood.",
+        tags: ["Timid", "Kind", "Relatable", "Non-judgmental"],
+        greeting: "I... I get really nervous and scared too. You don't have to pretend to be brave with me. What's hurting?"
+      },
+      {
+        id: "Bo-chan",
+        name: "Bo-chan",
+        emoji: "🪨",
+        role: "Deep Grounding & Ancient Stillness",
+        bio: "Speaks few words, but brings profound stillness. Offers smooth river stones and quiet companionship to calm racing thoughts.",
+        tags: ["Peaceful", "Still", "Grounding", "Wise"],
+        greeting: "River stone... stays still in the current. I will stay still with you. Breathe slowly."
+      },
+      {
+        id: "Himawari",
+        name: "Himawari Nohara",
+        emoji: "🍼",
+        role: "Sparkling Joy & Cheerful Giggles",
+        bio: "Shinchan's cute baby sister. Loves shiny trinkets and brings infectious smiles to chase gloomy clouds away.",
+        tags: ["Cute", "Sparkling", "Cheer", "Pure Joy"],
+        greeting: "Ah-da-da! ✨ *Giggles and hands you a shiny yellow ribbon!* (Sending you baby sunshine!)"
+      }
+    ];
+
+    const emotionTags = [
+      { id: "heavy-tired", label: "🌧️ Heavy & Tired" },
+      { id: "needing-hug", label: "✨ Needing A Hug" },
+      { id: "overwhelmed", label: "⚡ Overwhelmed" },
+      { id: "quiet-numb", label: "🧸 Quiet / Numb" },
+      { id: "want-treat", label: "🍪 Want a treat" },
+      { id: "heartbroken", label: "💔 Heartbroken / Hurt" },
+      { id: "anxious-worried", label: "🌪️ Anxious / Worried" },
+      { id: "angry-frustrated", label: "🔥 Angry / Frustrated" },
+      { id: "lonely-isolated", label: "🌙 Lonely / Isolated" },
+      { id: "happy-celebrating", label: "🎈 Happy / Celebrating" },
+      { id: "confused-in-head", label: "🌀 Confused / In My Head" }
+    ];
+
+    const supportStyles = [
+      { id: "comfort-hugs", label: "Gentle Comfort & Hugs", desc: "Warm validation, safety, and affectionate listening." },
+      { id: "playful-banter", label: "Playful Banter & Smiles", desc: "Wholesome teasing, silliness, and comic distraction." },
+      { id: "comfort-scold", label: "Comfort + Tiny Scolding", desc: "Big hug first, then a scold to stop beating yourself up!" },
+      { id: "quiet-listening", label: "Deep Quiet Listening", desc: "Patient space to let you talk without rushing advice." },
+      { id: "realistic-encouragement", label: "Realistic Encouragement", desc: "Grounded life wisdom: tomorrow is a fresh page." }
+    ];
+
+    // Global application state
+    const state = {
+      activeView: "welcome-home",
+      selectedCharacter: "Shinchan",
+      selectedEmotions: ["✨ Needing A Hug"],
+      selectedSupportStyle: "Gentle Comfort & Hugs",
+      quickNote: "",
+      forceDemo: false,
+      isGenerating: false,
+      chatHistory: [
+        {
+          role: "assistant",
+          content: "Oii, hey! 💗 I'm right here with you. Whatever happened today, you're safe now. What's on your mind?",
+          source: "gemini-live"
+        }
+      ],
+      hugCount: 3492,
+      gardenFlowers: [
+        { type: "🌻", title: "Drank water", date: "Just now" },
+        { type: "🌸", title: "Got out of bed", date: "Today" },
+        { type: "⭐", title: "Took 5 deep breaths", date: "Today" },
+        { type: "🌺", title: "Spoke kindly to myself", date: "Today" }
+      ]
+    };
+
+    // ==========================================
+    // 2. VIEW ROUTING & NAVIGATION
+    // ==========================================
+    function switchView(viewName) {
+      if (!document.getElementById(`view-${viewName}`)) return;
+      state.activeView = viewName;
+
+      // Toggle views
+      document.querySelectorAll(".app-view").forEach(el => {
+        el.classList.add("hidden");
+      });
+      document.getElementById(`view-${viewName}`).classList.remove("hidden");
+
+      // Update Nav Buttons
+      document.querySelectorAll(".nav-btn").forEach(btn => {
+        if (btn.dataset.target === viewName) {
+          btn.classList.add("bg-primary-container", "text-on-primary-container", "font-bold", "shadow-sm");
+          btn.classList.remove("text-on-surface-variant", "hover:bg-surface-container");
+        } else {
+          btn.classList.remove("bg-primary-container", "text-on-primary-container", "font-bold", "shadow-sm");
+          btn.classList.add("text-on-surface-variant", "hover:bg-surface-container");
+        }
+      });
+
+      document.querySelectorAll(".mobile-nav-btn").forEach(btn => {
+        if (btn.dataset.target === viewName) {
+          btn.classList.add("bg-primary-container", "text-on-primary-container");
+        } else {
+          btn.classList.remove("bg-primary-container", "text-on-primary-container");
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (viewName === "character-chat") {
+        updateChatHeaderUI();
+        scrollChatToBottom();
+      }
+    }
+
+    // Attach click handlers to any data-nav buttons
+    document.addEventListener("click", (e) => {
+      const navTarget = e.target.closest("[data-nav]");
+      if (navTarget) {
+        e.preventDefault();
+        const target = navTarget.getAttribute("data-nav");
+        switchView(target);
+      }
+      const navBtn = e.target.closest(".nav-btn, .mobile-nav-btn");
+      if (navBtn) {
+        e.preventDefault();
+        const target = navBtn.dataset.target;
+        switchView(target);
+      }
+    });
+
+    // ==========================================
+    // 3. RENDERERS & INITIALIZATIONS
+    // ==========================================
+    function renderCharactersGrid() {
+      const container = document.getElementById("charactersGrid");
+      if (!container) return;
+
+      container.innerHTML = characters.map(char => {
+        const isSelected = char.id === state.selectedCharacter;
+        return `
+          <div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-md hover:shadow-xl transition-all border ${isSelected ? 'border-primary ring-2 ring-primary/30' : 'border-surface-container'} flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 transition-transform">
+                  ${char.emoji}
+                </div>
+                ${isSelected ? '<span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-bold">Active Friend ★</span>' : ''}
+              </div>
+              <h3 class="font-title-md text-title-md text-on-surface font-bold mb-1">${char.name}</h3>
+              <span class="font-label-sm text-primary font-semibold block mb-2">${char.role}</span>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-4">${char.bio}</p>
+              
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                ${char.tags.map(t => `<span class="px-2 py-0.5 rounded-full bg-surface-container text-xs text-on-surface-variant font-medium">${t}</span>`).join('')}
+              </div>
+            </div>
+
+            <button class="w-full py-2.5 rounded-full ${isSelected ? 'bg-primary text-on-primary font-bold shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface'} text-sm transition-all select-char-btn" data-char-id="${char.id}">
+              ${isSelected ? 'Currently Selected' : `Chat with ${char.name.split(' ')[0]}`}
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      container.querySelectorAll(".select-char-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const charId = btn.dataset.charId;
+          selectCompanion(charId);
+          switchView("feelings-check-in");
+        });
+      });
+    }
+
+    function selectCompanion(charId) {
+      const char = characters.find(c => c.id === charId);
+      if (!char) return;
+      state.selectedCharacter = charId;
+
+      // Update header elements
+      document.getElementById("headerCompanionLabel").textContent = `Companion: ${char.name.split(' ')[0]} ${char.emoji}`;
+      document.getElementById("headerAvatarEmoji").textContent = char.emoji;
+      document.getElementById("heroHostBadge").textContent = `Today's Host: ${char.name}`;
+
+      // Update Checkin elements
+      document.getElementById("checkinCompanionEmoji").textContent = char.emoji;
+      document.getElementById("checkinCompanionName").textContent = char.name;
+
+      // Re-render characters grid to update active ring
+      renderCharactersGrid();
+
+      // Reset initial chat greeting for this companion if history is fresh
+      if (state.chatHistory.length <= 1) {
+        state.chatHistory = [
+          {
+            role: "assistant",
+            content: char.greeting,
+            source: state.forceDemo ? "demo-mode" : "gemini-live"
+          }
+        ];
+      }
+    }
+
+    function renderEmotionTags() {
+      const container = document.getElementById("emotionTagsContainer");
+      if (!container) return;
+
+      container.innerHTML = emotionTags.map(tag => {
+        const isChecked = state.selectedEmotions.includes(tag.label);
+        return `
+          <button type="button" class="emotion-chip px-3.5 py-2 rounded-full font-label-md text-sm transition-all flex items-center gap-1.5 border ${
+            isChecked 
+              ? 'bg-primary-container text-on-primary-container font-bold border-primary shadow-sm scale-105' 
+              : 'bg-surface-container text-on-surface border-transparent hover:bg-surface-container-high'
+          }" data-tag="${tag.label}">
+            <span>${tag.label}</span>
+            ${isChecked ? '<span class="material-symbols-outlined text-[16px]">check</span>' : ''}
+          </button>
+        `;
+      }).join('');
+
+      container.querySelectorAll(".emotion-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          const tag = chip.dataset.tag;
+          if (state.selectedEmotions.includes(tag)) {
+            state.selectedEmotions = state.selectedEmotions.filter(t => t !== tag);
+          } else {
+            state.selectedEmotions.push(tag);
+          }
+          renderEmotionTags();
+          updateChatHeaderUI();
+        });
+      });
+    }
+
+    function renderSupportStyles() {
+      const container = document.getElementById("supportStylesContainer");
+      if (!container) return;
+
+      container.innerHTML = supportStyles.map(st => {
+        const isSelected = state.selectedSupportStyle === st.label;
+        return `
+          <label class="p-3.5 rounded-xl border ${
+            isSelected ? 'border-primary bg-primary-fixed/20 ring-1 ring-primary' : 'border-surface-container bg-surface-container-low hover:bg-surface-container'
+          } cursor-pointer transition-all flex items-start gap-3">
+            <input type="radio" name="supportStyle" value="${st.label}" ${isSelected ? 'checked' : ''} class="mt-1 accent-primary">
+            <div class="flex flex-col">
+              <span class="font-label-md text-on-surface font-bold text-sm">${st.label}</span>
+              <span class="font-body-sm text-on-surface-variant text-xs mt-0.5">${st.desc}</span>
+            </div>
+          </label>
+        `;
+      }).join('');
+
+      container.querySelectorAll("input[name='supportStyle']").forEach(radio => {
+        radio.addEventListener("change", (e) => {
+          state.selectedSupportStyle = e.target.value;
+          renderSupportStyles();
+          updateChatHeaderUI();
+        });
+      });
+    }
+
+    // ==========================================
+    // 4. CHAT SYSTEM & GEMINI INTEGRATION
+    // ==========================================
+    function updateChatHeaderUI() {
+      const char = characters.find(c => c.id === state.selectedCharacter) || characters[0];
+      document.getElementById("chatHeaderEmoji").textContent = char.emoji;
+      document.getElementById("chatHeaderName").textContent = char.name;
+      document.getElementById("chatHeaderRole").textContent = char.role.split('&')[0].trim();
+
+      const badge = document.getElementById("chatEngineBadge");
+      if (state.forceDemo) {
+        badge.className = "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-secondary-fixed text-on-secondary-fixed";
+        badge.innerHTML = '<span>(Demo Mode - Local Scripted)</span>';
+        document.getElementById("demoToggleLabel").textContent = "Mode: Demo";
+        document.getElementById("footerDemoIndicator").textContent = "Demo Mode (Scripted)";
+      } else {
+        badge.className = "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-primary-fixed text-on-primary-fixed";
+        badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span>Gemini 3.8 Flash (Live)</span>';
+        document.getElementById("demoToggleLabel").textContent = "Mode: Live AI";
+        document.getElementById("footerDemoIndicator").textContent = "Live Gemini 3.8 Flash Active";
+      }
+
+      const emotionsContainer = document.getElementById("chatHeaderEmotionsList");
+      const list = state.selectedEmotions.slice(0, 3);
+      let html = list.map(em => `<span class="px-2 py-0.5 rounded-full bg-surface-container text-xs text-on-surface-variant font-medium">${em}</span>`).join('');
+      if (state.selectedEmotions.length > 3) {
+        html += `<span class="px-2 py-0.5 rounded-full bg-surface-container text-xs text-on-surface-variant font-medium">+${state.selectedEmotions.length - 3}</span>`;
+      }
+      html += `<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-semibold">Style: ${state.selectedSupportStyle}</span>`;
+      emotionsContainer.innerHTML = html;
+    }
+
+    function renderChatMessages() {
+      const container = document.getElementById("chatMessagesArea");
+      if (!container) return;
+
+      const char = characters.find(c => c.id === state.selectedCharacter) || characters[0];
+
+      container.innerHTML = state.chatHistory.map((msg, index) => {
+        const isUser = msg.role === "user";
+        if (isUser) {
+          return `
+            <div class="flex justify-end items-end gap-2 my-2 animate-fade-in">
+              <div class="max-w-[80%] sm:max-w-[70%] rounded-2xl rounded-br-none bg-[#EDE7FB] text-on-surface p-4 shadow-sm">
+                <p class="font-body-md text-sm whitespace-pre-wrap">${escapeHtml(msg.content)}</p>
+              </div>
+              <div class="w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-xs font-bold shrink-0">
+                You
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="flex justify-start items-start gap-2.5 my-2 animate-fade-in">
+              <div class="w-9 h-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-xl shadow-sm shrink-0">
+                ${char.emoji}
+              </div>
+              <div class="relative max-w-[85%] sm:max-w-[75%] rounded-2xl rounded-tl-none bg-surface-container-lowest text-on-surface p-4 shadow-sm border border-surface-container chat-bubble-companion">
+                <div class="flex items-center justify-between mb-1 gap-2">
+                  <span class="font-label-sm text-xs font-bold text-primary">${char.name.split(' ')[0]}</span>
+                  <span class="text-[10px] text-outline">${msg.source === "demo-mode" || msg.source === "demo-fallback" ? "(Demo Scripted)" : "✨ Gemini Live"}</span>
+                </div>
+                <p class="font-body-md text-sm whitespace-pre-wrap leading-relaxed">${escapeHtml(msg.content)}</p>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+
+      scrollChatToBottom();
+    }
+
+    function scrollChatToBottom() {
+      const container = document.getElementById("chatMessagesArea");
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text || "";
+      return div.innerHTML;
+    }
+
+    async function sendMessage(userText) {
+      if (!userText || !userText.trim() || state.isGenerating) return;
+      const cleanText = userText.trim();
+
+      // Add user message to history
+      state.chatHistory.push({
+        role: "user",
+        content: cleanText
+      });
+      renderChatMessages();
+
+      // Show typing indicator
+      state.isGenerating = true;
+      const char = characters.find(c => c.id === state.selectedCharacter) || characters[0];
+      document.getElementById("typingIndicatorText").textContent = `${char.name.split(' ')[0]} is thinking of a warm reply...`;
+      document.getElementById("chatTypingIndicator").classList.remove("hidden");
+      document.getElementById("chatTypingIndicator").classList.add("flex");
+      scrollChatToBottom();
+
+      try {
+        // Send complete conversation history and emotions to backend
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            character: state.selectedCharacter,
+            emotions: state.selectedEmotions,
+            supportStyle: state.selectedSupportStyle,
+            messages: state.chatHistory,
+            latestMessage: cleanText,
+            forceDemo: state.forceDemo
+          })
+        });
+
+        const data = await response.json();
+        const reply = data.reply || "I'm right here with you. Take a slow, quiet breath.";
+
+        state.chatHistory.push({
+          role: "assistant",
+          content: reply,
+          source: data.source || "gemini-live"
+        });
+      } catch (err) {
+        console.error("Chat error:", err);
+        state.chatHistory.push({
+          role: "assistant",
+          content: "Oii, I'm listening closely. 💗 Even when the connection flickers, remember you are safe and your feelings matter. What's on your heart?",
+          source: "demo-fallback"
+        });
+      } finally {
+        state.isGenerating = false;
+        document.getElementById("chatTypingIndicator").classList.add("hidden");
+        document.getElementById("chatTypingIndicator").classList.remove("flex");
+        renderChatMessages();
+      }
+    }
+
+    // Chat form submit
+    const chatForm = document.getElementById("chatInputForm");
+    const chatInput = document.getElementById("chatTextInput");
+    if (chatForm && chatInput) {
+      chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const text = chatInput.value;
+        chatInput.value = "";
+        sendMessage(text);
+      });
+    }
+
+    // Quick Prompt Chips
+    document.querySelectorAll(".quick-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        const prompt = chip.dataset.prompt;
+        if (prompt) {
+          sendMessage(prompt);
+        }
+      });
+    });
+
+    // Start Chat from Feelings Checkin
+    const startChatBtn = document.getElementById("startChatWithFeelingsBtn");
+    if (startChatBtn) {
+      startChatBtn.addEventListener("click", () => {
+        const note = document.getElementById("quickReflectionInput")?.value?.trim();
+        switchView("character-chat");
+        if (note) {
+          sendMessage(note);
+          document.getElementById("quickReflectionInput").value = "";
+        }
+      });
+    }
+
+    // Quick Change Feelings button in chat header
+    document.getElementById("changeFeelingsQuickBtn")?.addEventListener("click", () => {
+      switchView("feelings-check-in");
+    });
+
+    // Toggle Demo Mode
+    document.getElementById("toggleDemoModeBtn")?.addEventListener("click", () => {
+      state.forceDemo = !state.forceDemo;
+      updateChatHeaderUI();
+    });
+
+    // Clear Chat
+    document.getElementById("clearChatHistoryBtn")?.addEventListener("click", () => {
+      const char = characters.find(c => c.id === state.selectedCharacter) || characters[0];
+      state.chatHistory = [
+        {
+          role: "assistant",
+          content: char.greeting,
+          source: state.forceDemo ? "demo-mode" : "gemini-live"
+        }
+      ];
+      renderChatMessages();
+    });
+
+    // Companion button in header
+    document.getElementById("activeAvatarHeaderBtn")?.addEventListener("click", () => {
+      switchView("choose-character");
+    });
+
+    // ==========================================
+    // 5. FUN ZONE LOGIC (LITTLE WINS & MEME)
+    // ==========================================
+    // Tab switching
+    document.querySelectorAll(".fun-tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tab = btn.dataset.tab;
+        document.querySelectorAll(".fun-tab-btn").forEach(b => {
+          b.classList.remove("bg-primary-container", "text-on-primary-container", "font-bold", "shadow-sm");
+          b.classList.add("bg-surface-container", "text-on-surface");
+        });
+        btn.classList.add("bg-primary-container", "text-on-primary-container", "font-bold", "shadow-sm");
+        btn.classList.remove("bg-surface-container", "text-on-surface");
+
+        document.querySelectorAll(".fun-tab-pane").forEach(p => p.classList.add("hidden"));
+        document.getElementById(`tab-${tab}`)?.classList.remove("hidden");
+      });
+    });
+
+    // Little Wins Garden
+    function renderGarden() {
+      const grid = document.getElementById("gardenFlowersGrid");
+      if (!grid) return;
+      document.getElementById("gardenCountLabel").textContent = `Flowers in Bloom: ${state.gardenFlowers.length}`;
+
+      grid.innerHTML = state.gardenFlowers.map((f, i) => `
+        <div class="rounded-xl bg-surface-container-lowest p-3 text-center shadow-sm hover:scale-110 transition-transform cursor-pointer border border-surface-container group">
+          <span class="text-3xl block mb-1 group-hover:rotate-12 transition-transform">${f.type}</span>
+          <span class="font-label-sm text-xs font-bold text-on-surface block truncate" title="${f.title}">${f.title}</span>
+          <span class="text-[10px] text-outline">${f.date}</span>
+        </div>
+      `).join('');
+    }
+
+    function plantWin(title) {
+      if (!title || !title.trim()) return;
+      const flowerTypes = ["🌻", "🌸", "⭐", "🌺", "🌼", "🌷", "🌾"];
+      const randomFlower = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
+      state.gardenFlowers.unshift({
+        type: randomFlower,
+        title: title.trim(),
+        date: "Just now"
+      });
+      renderGarden();
+    }
+
+    document.querySelectorAll(".win-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        plantWin(btn.dataset.win);
+      });
+    });
+
+    document.getElementById("plantSeedBtn")?.addEventListener("click", () => {
+      const input = document.getElementById("customWinInput");
+      if (input && input.value) {
+        plantWin(input.value);
+        input.value = "";
+      }
+    });
+
+    // Meme Maker
+    const memeTopInput = document.getElementById("memeTopInput");
+    const memeBottomInput = document.getElementById("memeBottomInput");
+    const memeTopCaption = document.getElementById("memeTopCaption");
+    const memeBottomCaption = document.getElementById("memeBottomCaption");
+
+    if (memeTopInput && memeTopCaption) {
+      memeTopInput.addEventListener("input", (e) => {
+        memeTopCaption.textContent = e.target.value.toUpperCase();
+      });
+    }
+    if (memeBottomInput && memeBottomCaption) {
+      memeBottomInput.addEventListener("input", (e) => {
+        memeBottomCaption.textContent = e.target.value.toUpperCase();
+      });
+    }
+
+    const memePresets = [
+      { top: "ME PRETENDING TO BE AN ADULT", bottom: "WHILE EATING CHOCOBI IN BED" },
+      { top: "OVERTHINKING AT 2 AM", bottom: "SHIRO SNORING PEACEFULLY NEXT TO ME" },
+      { top: "MY TO-DO LIST TODAY", bottom: "ACTION KAMEN POSE & A LONG SNOOZE" },
+      { top: "BOSS: HOW IS THE PROJECT?", bottom: "ME: OII, PRETTY LADY LOOK!" },
+      { top: "HEARTACHE LEVEL: 100", bottom: "COMPANION HUG LEVEL: INFINITE" }
+    ];
+
+    let memePresetIndex = 0;
+    document.getElementById("randomMemePresetBtn")?.addEventListener("click", () => {
+      memePresetIndex = (memePresetIndex + 1) % memePresets.length;
+      const preset = memePresets[memePresetIndex];
+      memeTopInput.value = preset.top;
+      memeBottomInput.value = preset.bottom;
+      memeTopCaption.textContent = preset.top;
+      memeBottomCaption.textContent = preset.bottom;
+    });
+
+    document.getElementById("saveMemeBtn")?.addEventListener("click", () => {
+      alert("✨ Saved your warm meme! Remember: laughter is proof your spirit is strong.");
+    });
+
+    // Chocobi Fortune Biscuit Crack
+    const fortunes = [
+      { emoji: "🍪", title: "Crispy Chocobi Blessing", body: "“Take the last star cookie in the box. I only share this with my favorite people!” — Shinnosuke" },
+      { emoji: "🐾", title: "Shiro's Fluffy Nuzzle", body: "Shiro quietly rests his chin on your knee. He doesn't need explanations. You are completely safe and loved." },
+      { emoji: "🪨", title: "Bo-chan's Calm Pebble", body: "“Hold this smooth river stone when your thoughts get loud. It stays still with you.”" },
+      { emoji: "🌸", title: "Misae's Quiet Hug", body: "“Take a deep breath. The laundry can wait. The world can wait. You are doing so much better than you give yourself credit for.”" },
+      { emoji: "👔", title: "Hiroshi's Salaryman Truth", body: "“Bad days end. A warm bath, quiet slippers, and someone who believes in you is all it takes to restart tomorrow.”" }
+    ];
+    let fortuneIdx = 0;
+    document.getElementById("biscuitCrackBox")?.addEventListener("click", () => {
+      fortuneIdx = (fortuneIdx + 1) % fortunes.length;
+      const f = fortunes[fortuneIdx];
+      document.getElementById("fortuneEmoji").textContent = f.emoji;
+      document.getElementById("fortuneTitle").textContent = f.title;
+      document.getElementById("fortuneBody").textContent = f.body;
+    });
+
+    // Daily Hug Meter increment
+    document.getElementById("hugMeterBar")?.addEventListener("click", () => {
+      state.hugCount += 1;
+      document.getElementById("hugCountLabel").textContent = `${state.hugCount.toLocaleString()} warm hugs given`;
+      document.getElementById("hugProgressBar").style.width = "82%";
+    });
+
+    // Daily Compliment Capsule in Home
+    const homeCompliments = [
+      {
+        icon: "sentiment_very_satisfied",
+        title: "Shinchan's Secret Star",
+        text: "“You woke up and kept trying today. In Kasukabe, that automatically earns you 10 gold stars and an honorary Defense Force badge!”"
+      },
+      {
+        icon: "pets",
+        title: "Shiro's Fluffy Nuzzle",
+        text: "Shiro quietly rests his chin on your knee. He doesn't need explanations. He just wants you to know you are safe and loved."
+      },
+      {
+        icon: "cookie",
+        title: "Crispy Chocobi Blessing",
+        text: "“Here! Take the last star cookie in the box. I only share this with my favorite people!” — Shinnosuke"
+      },
+      {
+        icon: "spa",
+        title: "Bo-chan's Calm Pebble",
+        text: "Bo-chan offers you a smooth, warm river rock. “Hold this when your head feels too loud. It stays still with you.”"
+      },
+      {
+        icon: "favorite",
+        title: "Misae's Quiet Hug",
+        text: "“Take a deep breath. The world can wait. You are doing so much better than you give yourself credit for.”"
+      }
+    ];
+    let homeCompIdx = 0;
+    function openHomeCapsule() {
+      homeCompIdx = (homeCompIdx + 1) % homeCompliments.length;
+      const item = homeCompliments[homeCompIdx];
+      document.getElementById("capsulePrompt").textContent = item.title;
+      document.getElementById("capsuleSubtext").textContent = item.text;
+      document.getElementById("capsuleIcon").textContent = item.icon;
+    }
+    document.getElementById("capsuleWrapper")?.addEventListener("click", openHomeCapsule);
+    document.getElementById("anotherCapsuleBtn")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openHomeCapsule();
+    });
+
+    // Make Me Smile Modal
+    const smileModal = document.getElementById("smileModal");
+    document.getElementById("makeSmileBtn")?.addEventListener("click", () => {
+      smileModal?.classList.remove("hidden");
+      smileModal?.classList.add("flex");
+    });
+    document.getElementById("closeSmileModal")?.addEventListener("click", () => {
+      smileModal?.classList.add("hidden");
+      smileModal?.classList.remove("flex");
+    });
+    document.getElementById("smileToFunZoneBtn")?.addEventListener("click", () => {
+      smileModal?.classList.add("hidden");
+      smileModal?.classList.remove("flex");
+      switchView("fun-zone");
+    });
+
+    const smileJokes = [
+      {
+        title: "“Look, look! An Action Kamen Pose!”",
+        body: "Shinnosuke attempts an epic high kick, drops his snack, and Shiro smoothly catches it mid-air without blinking. Even the pigeon on the fence is clapping!"
+      },
+      {
+        title: "“Kazama-kun's Secret Notebook!”",
+        body: "Kazama tries to pretend he's studying serious English grammar, but Shinchan sneaks up and whispers: “Are you secretly drawing magical girl Moe-P again?”"
+      },
+      {
+        title: "“Shiro's Cotton Candy Spin!”",
+        body: "Shiro curls himself into a perfect round ball of fluff and does three tiny wiggles. Congratulations, your stress just melted by 40%."
+      },
+      {
+        title: "“Hiroshi's Sock Warning!”",
+        body: "Hiroshi takes off his work shoes... and even the family goldfish tries to hide under a pebble. Hiroshi sighs: “Hard day's work, but seeing you smile makes it worth it!”"
+      }
+    ];
+    let jokeIdx = 0;
+    document.getElementById("smileAgainBtn")?.addEventListener("click", () => {
+      jokeIdx = (jokeIdx + 1) % smileJokes.length;
+      document.getElementById("smileModalTitle").textContent = smileJokes[jokeIdx].title;
+      document.getElementById("smileModalBody").textContent = smileJokes[jokeIdx].body;
+    });
+
+    // ==========================================
+    // 6. GUIDED BREATHING RESET MODAL
+    // ==========================================
+    const breathingModal = document.getElementById("breathingModal");
+    let breathingInterval = null;
+    let breathTime = 4;
+    let breathPhase = "Inhale"; // Inhale -> Hold -> Exhale
+
+    function startBreathingCycle() {
+      breathTime = 4;
+      breathPhase = "Inhale";
+      const phaseEl = document.getElementById("breathPhaseText");
+      const numEl = document.getElementById("breathTimerNum");
+      const circleEl = document.getElementById("breathCenterCircle");
+
+      if (breathingInterval) clearInterval(breathingInterval);
+
+      breathingInterval = setInterval(() => {
+        breathTime -= 1;
+        if (breathTime <= 0) {
+          if (breathPhase === "Inhale") {
+            breathPhase = "Hold";
+            breathTime = 4;
+            if (circleEl) circleEl.style.transform = "scale(1.2)";
+          } else if (breathPhase === "Hold") {
+            breathPhase = "Exhale";
+            breathTime = 4;
+            if (circleEl) circleEl.style.transform = "scale(0.9)";
+          } else {
+            breathPhase = "Inhale";
+            breathTime = 4;
+            if (circleEl) circleEl.style.transform = "scale(1.1)";
+          }
+        }
+        if (phaseEl) phaseEl.textContent = breathPhase;
+        if (numEl) numEl.textContent = breathTime;
+      }, 1000);
+    }
+
+    document.getElementById("openBreathingModalBtn")?.addEventListener("click", () => {
+      breathingModal?.classList.remove("hidden");
+      breathingModal?.classList.add("flex");
+      startBreathingCycle();
+    });
+
+    function stopBreathingModal() {
+      if (breathingInterval) clearInterval(breathingInterval);
+      breathingModal?.classList.add("hidden");
+      breathingModal?.classList.remove("flex");
+    }
+
+    document.getElementById("closeBreathingModal")?.addEventListener("click", stopBreathingModal);
+    document.getElementById("finishBreathingBtn")?.addEventListener("click", stopBreathingModal);
+
+    // ==========================================
+    // 7. CALM VIBES LO-FI AUDIO (WEB AUDIO API)
+    // ==========================================
+    let audioCtx = null;
+    let isPlayingAudio = false;
+    let audioOscNodes = [];
+
+    function toggleCalmVibes() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+
+      if (isPlayingAudio) {
+        // Stop
+        audioOscNodes.forEach(node => {
+          try { node.stop(); } catch(e) {}
+        });
+        audioOscNodes = [];
+        isPlayingAudio = false;
+        document.getElementById("audioLabel").textContent = "Calm Vibes";
+        document.getElementById("audioIcon").textContent = "music_note";
+        document.getElementById("audioToggleBtn").classList.remove("bg-primary-container", "text-on-primary-container");
+      } else {
+        // Play gentle dreamy Kasukabe chords (F major 7th lo-fi pad)
+        if (audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+
+        const freqs = [174.61, 220.00, 261.63, 329.63]; // F3, A3, C4, E4
+        audioOscNodes = [];
+
+        freqs.forEach(f => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(f, audioCtx.currentTime);
+
+          gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start();
+          audioOscNodes.push(osc);
+        });
+
+        isPlayingAudio = true;
+        document.getElementById("audioLabel").textContent = "Playing Vibe 🎶";
+        document.getElementById("audioIcon").textContent = "volume_up";
+        document.getElementById("audioToggleBtn").classList.add("bg-primary-container", "text-on-primary-container");
+      }
+    }
+
+    document.getElementById("audioToggleBtn")?.addEventListener("click", toggleCalmVibes);
+
+    // ==========================================
+    // 8. INITIAL BOOTSTRAP
+    // ==========================================
+    window.addEventListener("DOMContentLoaded", () => {
+      renderCharactersGrid();
+      renderEmotionTags();
+      renderSupportStyles();
+      renderChatMessages();
+      renderGarden();
+      updateChatHeaderUI();
+      switchView("welcome-home");
+
+      // Verify health with server
+      fetch("/api/health")
+        .then(res => res.json())
+        .then(data => {
+          console.log("[Client] Server health check:", data);
+          if (!data.geminiConfigured) {
+            console.log("[Client] Gemini not configured, using smart scripted engine.");
+          }
+        })
+        .catch(err => console.warn("[Client] Health check failed:", err));
+    });
+  </script>
+</body>
+</html>
