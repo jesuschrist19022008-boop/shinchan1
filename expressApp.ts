@@ -26,13 +26,15 @@ app.use(express.json({ limit: "4mb" }));
 
 // Helper to get GoogleGenAI client with active server-side key
 function getAIClient(): GoogleGenAI | null {
-  const key = process.env.GEMINI_API_KEY || "";
-  if (!key) return null;
+  const key = (process.env.GEMINI_API_KEY || "").trim();
+  if (!key || key === "TODO" || key === "your_api_key_here" || key === "undefined" || key.length < 8) {
+    return null;
+  }
   return new GoogleGenAI({
     apiKey: key,
     httpOptions: {
       headers: {
-        "User-Agent": process.env.VERCEL ? "shinchan-info-detective/1.0" : "aistudio-build",
+        "User-Agent": "aistudio-build",
       },
     },
   });
@@ -856,6 +858,19 @@ export function runHeuristicEvidenceAnalysis(
       });
     }
   });
+
+  if (unverifiedClaims.length > 0 && verificationChecklist.length === 0) {
+    unverifiedClaims.slice(0, 3).forEach((u) => {
+      verificationChecklist.push({
+        id: `vc-${verCount++}`,
+        priority: "Medium",
+        actionItem: `Corroborate single-source statement: "${u.claim.slice(0, 80)}"`,
+        rationale: u.reason || "Statement appears in only one document without independent corroboration.",
+        linkedSourceIds: [u.sourceId],
+        status: "pending",
+      });
+    });
+  }
 
   const totalWordCount = combinedContent.split(/\s+/).length;
   let evidenceSufficiency: "Sufficient" | "Partial" | "Insufficient evidence" = "Sufficient";
