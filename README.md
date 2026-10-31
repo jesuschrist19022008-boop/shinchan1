@@ -9,20 +9,33 @@
 ## ✨ Features
 
 - **9 Kasukabe Companions**: Talk with **Shinchan**, gentle **Shiro**, hardworking **Hiroshi (Dad)**, protective **Misae (Mom)**, thoughtful **Kazama**, passionate **Nene**, timid **Masao**, steady **Bo-chan**, or giggly **Himawari**.
-- **11 Emotion Check-in Tags**: Express how you truly feel without pressure (`🌧️ Heavy & Tired`, `✨ Needing A Hug`, `⚡ Overwhelmed`, `💔 Heartbroken / Hurt`, `🌪️ Anxious`, etc.).
+- **11 Emotion Check-in Tags**: Express how you truly feel without pressure (`🌧️ Heavy & Tired`, `✨ Needing A Hug`, `⚡ Overwhelmed`, `💔 Heartbroken / Hurt`, `🌪️ Anxious`, `🎈 Happy / Celebrating`, etc.).
 - **5 Tailored Support Styles**: Choose between *Gentle Comfort & Hugs*, *Playful Banter & Smiles*, *Comfort + Tiny Scolding* (stop beating yourself up!), *Deep Quiet Listening*, and *Realistic Encouragement*.
-- **Emotionally Intelligent Gemini Chat**:
+- **Emotionally Intelligent Gemini Conversations**:
   - Context-aware conversations powered server-side by Google Gemini (`gemini-3.8-flash`).
-  - Directly addresses the user's actual situation and pain points (e.g. relationship accusations, exam burnout, loneliness, celebrations) before offering comfort or humor.
-  - Remembers conversational flow across multi-turn follow-ups (*"Yeahh"*, *"He doesn't believe me"*).
-  - Spares repetitive tropes; focuses on genuine human validation.
+  - **Accurate Emotional Sentiment**: Celebrates good news and happiness enthusiastically, banters playfully when joked with, chats about everyday life naturally, and provides deep, heartfelt empathy only when genuinely hurt or sad—never assuming automatic distress.
+  - **Distinct Character Personalities**: Shinchan's cheeky silliness and big heart, Kazama's articulate logic, Nene's fiery theatrical loyalty, Masao's timid solidarity, Bo-chan's calm stone wisdom, Himawari's giggles, Shiro's puppy warmth, Hiroshi's tired dad pride, and Misae's protective maternal grounding.
+  - Multi-turn conversational memory, Server-Sent Events (SSE) streaming support, typing indicator, friendly error handling, and message retry.
+- **📞 Call Your Favourite Character (Two-Way Voice Call)**:
+  - Real voice interaction with your chosen Kasukabe companion.
+  - Web Speech API (`SpeechRecognition`) for conversational microphone speech.
+  - Real-time animated audio visualizer reacting to speaking and listening states.
+  - Spoken response playback via `SpeechSynthesis` with tailored character voice modulation (pitch and rate).
+  - Call elapsed timer, ringtones, chime feedback, microphone mute toggle, and keyboard text drawer fallback.
+- **🎵 Multi-Track Background Music Player**:
+  - 5 distinctive musical categories: *Peaceful & Relaxing* (Kasukabe Sunset), *Happy & Cheerful* (Chocobi Sunshine), *Cute & Playful* (Action Kamen Playtime), *Emotional & Comforting* (Warm Blanket Hug), and *Focus & Study* (Kazama's Study Nook).
+  - 100% royalty-free, zero-latency procedural musical synthesis via browser Web Audio API.
+  - Play/pause, next/previous track, volume slider, track picker dropdown, and `localStorage` persistence.
+  - Smooth uninterrupted playback as you navigate between app views.
+- **🌅 Automatic Daily Host Rotation**:
+  - Welcomes users daily with a different Kasukabe friend based on calendar rotation.
+  - Custom personalized host greeting, quote, theme badge, and one-click "Call Host" and "Chat" shortcuts.
 - **Fun Zone**:
   - 🌻 **Little Wins Garden**: Plant flowers celebrating tiny everyday triumphs (drinking water, getting out of bed, surviving a hard conversation).
   - 🎨 **Mood Meme Maker**: Turn heavy thoughts into a warm laugh with custom Kasukabe comic panels.
   - 🍪 **Chocobi Fortunes**: Snap open star cookies for gentle daily reminders.
 - **Soothing Utilities**:
   - 🌬️ **Mood Reset**: Guided 4-4-4 sinusoidal breathing circle for physical grounding.
-  - 🎶 **Calm Vibes**: Ambient pentatonic lo-fi chords generated locally in the browser via Web Audio API (no external audio files needed).
 - **Safety First**: Directory of free, 24/7 crisis helplines and mental wellness resources.
 
 ---

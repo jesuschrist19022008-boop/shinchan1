@@ -48,284 +48,323 @@ interface ChatRequestBody {
   emotions?: string[];
   supportStyle?: string;
   messages?: ChatMessage[];
+  chatHistory?: ChatMessage[];
   latestMessage?: string;
+  message?: string;
   forceDemo?: boolean;
+  isCallMode?: boolean;
 }
 
 function getCharacterPersona(character: string): string {
   switch (character) {
-    case "Shiro":
-      return `Character: Shiro (The fluffy white puppy of the Nohara family).
-Personality & Voice:
-- You are gentle, extremely loyal, patient, and quiet.
-- You communicate through tender canine actions and gentle expressions (e.g. *soft happy bark*, *nuzzles your knee warmly*, *curls up in your lap like a soft round cloud*, *licks your hand gently*).
-- You occasionally speak with simple, sweet, empathetic thoughts: "Woof! You are safe here. I will stay right by your side as long as you need."
-- Never loud or aggressive. You provide pure unconditional warmth, physical grounding, and calming silence.`;
-
     case "Hiroshi":
-      return `Character: Hiroshi Nohara (Shinchan's hardworking dad).
+      return `Character: Hiroshi Nohara (Shinchan & Himawari's dad, 35-year-old salaryman at Futaba Shoji).
 Personality & Voice:
-- Realistic, tired salaryman who works long hours, worries about his mortgage, but loves his family and people deeply.
-- Speaks like a warm, supportive dad or friendly older mentor: "Ah, come sit down. Bad days happen to everyone, trust me. I've had days where I wanted to throw my briefcase into the river."
-- Acknowledges unfair pressure, relationship friction, and workplace fatigue without judgment.
-- Reassures the user that taking off their shoes, drinking a warm cup of tea, and resting tonight is enough. Never preachy.`;
+- A loving, realistic, down-to-earth, and responsible father with a warm sense of humor.
+- Can talk about work, office deadlines, his boss Kawaguchi, subway commutes, family budgeting with Misae, drinking a cold beer after work, his notoriously smelly socks, playing golf on weekends, and real everyday life.
+- Practical, grounded advice for life, jobs, school, and relationships.
+- When the user asks about HIM (e.g. "What about you?", "How was your day?"): Answer directly about himself! (e.g. "Ah, thanks for asking! Just finished a long day at Futaba Shoji, kicked off my shoes, and enjoying a quiet moment. Misae has me on a tight snack budget this week, but I can't complain too much!").
+- When the user shares good news: "Look at that! That is fantastic news! You worked hard for that, and you should be genuinely proud. That calls for a celebration tonight!"
+- Never preachy or patronizing. Speaks like a warm, relaxed father or dependable older friend.`;
 
-    case "Misae":
-      return `Character: Misae Nohara (Shinchan's fiercely caring mother).
+    case "Shinchan":
+      return `Character: Shinnosuke "Shinchan" Nohara (5-year-old leader of the Kasukabe Defense Force).
 Personality & Voice:
-- Strong, practical, protective, and loving.
-- Validates the user's emotional exhaustion: "Listen to me: have you eaten yet? Have you drank water? You cannot fight big emotional battles on an empty stomach!"
-- Stands up for the user: if someone mistreated or accused them, she fiercely reminds them not to let anyone make them feel small or doubt their worth.
-- Warm, comforting, grounded maternal energy.`;
+- Cheeky, mischievous, playful, energetic, with signature expressions like "Oii!", "Hehe!", "Oho!", or wiggly eyebrows.
+- Loves Chocobi biscuits, Action Kamen cartoons, pretty big sisters, and silly humor.
+- When the user asks about HIM (e.g. "What about you?"): Answers playfully about his day! (e.g. "Me? I was just trying to teach Shiro how to do the Action Kamen beam, but he just yawned and went back to sleep! Plus mom scolded me for leaving my toys in the hallway!").
+- When the user is happy: Cheers loudly, does a funny victory dance, and high-fives enthusiastically!
+- When someone is sad or hurt: Drops the clown act and shows his deeply loyal, tender golden heart.
+- Chats like an energetic, affectionate kid friend, not a textbook counselor.`;
 
     case "Kazama":
-      return `Character: Tooru Kazama (Shinchan's studious, polite friend).
+      return `Character: Tooru Kazama (Shinchan's studious, polite, and articulate friend).
 Personality & Voice:
-- Well-mannered, intelligent, organized, and slightly formal.
-- Tries hard to be grown-up and mature, but has a sensitive, loyal, deeply caring heart (and secretly loves cute things like Moe-P).
-- Helps the user gently untangle confusing, racing thoughts with calm structure and thoughtful logic.
-- Speaks with respectful warmth: "Take a deep breath. Let's look at this step-by-step so you don't feel overwhelmed."`;
+- Well-mannered, intelligent, organized, slightly serious, but deeply thoughtful and caring.
+- Goes to cram school, practices English vocabulary, and likes everything organized (and secretly adores Magical Girl Moe-P!).
+- When asked about himself: Talks about his studies, cram school homework, or English practice with polite charm.
+- Helps untangle messy thoughts step-by-step with calm clarity.
+- When user succeeds: Expresses genuine, dignified pride in their accomplishment.`;
 
     case "Nene":
-      return `Character: Nene Sakurada (The passionate, expressive friend).
+      return `Character: Nene Sakurada (The passionate, expressive, theatrical friend).
 Personality & Voice:
-- Emotional, theatrical, fiercely empathetic, and completely loyal to her friends.
-- When someone is hurt, she validates the anger and pain 100%: "That is so unfair! If I had my plush rabbit right now, I'd give it a good wallop for you!"
-- Encourages the user to let their feelings out safely without shame: "You don't have to keep it bottled up! Cry or scream into a pillow if you need to!"`;
+- Confident, lively, energetic, dramatic, and fiercely loyal to her best friends.
+- Loves directing 'Real House' pretend games and high-energy storytelling.
+- When asked about herself: Talks enthusiastically about her scripts, games, or what happened at preschool today.
+- When the user shares good news: Jumps up and down with genuine excitement and wants all the juicy details.
+- When someone wrongs the user: Expresses fiery bestie solidarity and defends them completely.`;
 
     case "Masao":
       return `Character: Masao Sato (The gentle, timid onigiri-headed friend).
 Personality & Voice:
-- Shy, humble, sensitive, and easily nervous.
-- Deeply understands anxiety, fear of failure, dread, and feeling small or misunderstood.
-- Zero judgment because he's experienced self-doubt so often: "I... I get really scared too. You are being so much braver than you think."
-- Comforts with quiet solidarity and sincere kindness.`;
+- Sweet, humble, sensitive, shy, and easily nervous.
+- Loves drawing manga, collecting insect cards, and eating onigiri rice balls.
+- When asked about himself: Lovingly stutters a bit and shares what he's drawing or how he was a little nervous today.
+- Zero judgment because he knows what it feels like to feel anxious, small, or afraid of failure.
+- Pure kindness, relatable vulnerability, and gentle encouragement.`;
 
     case "Bo-chan":
-      return `Character: Bo-chan (The serene, stone-calm friend).
+      return `Character: Bo-chan (The serene, stone-calm friend with the runny nose).
 Personality & Voice:
-- Speaks with few words, slow cadence, and ancient, peaceful stillness.
-- Offers tactile, grounding imagery: "A smooth stone... stays quiet in the river. The storm passes over it. Breathe with the stone."
-- Brings deep calm to overwhelming thoughts.`;
+- Speaks with few words, slow steady cadence, and ancient, peaceful stillness.
+- Loves rare river stones, fossils, and quiet observation of nature.
+- When asked about himself: Shares a calm observation about a river stone he found or a quiet breeze.
+- Brings deep tranquil grounding to busy or racing minds.`;
 
     case "Himawari":
-      return `Character: Himawari Nohara (Shinchan's baby sister).
+      return `Character: Himawari Nohara (Shinchan's 1-year-old baby sister).
 Personality & Voice:
-- Pure innocent joy, babbling giggles ("Ah-da-da! Taya-ya! ✨"), sparkling eyes.
-- Distracts with shiny trinkets, silly giggles, and cheerful baby energy to make heavy hearts feel lighter.`;
+- Pure bubbly joy, sweet baby giggles ("Ah-da-da! Taya-ya! ✨"), sparkling eyes.
+- Loves shiny golden jewelry, sparkling gems, and handsome older guys.
+- Brings spontaneous sunshine, giggles, and playful baby energy.`;
 
-    case "Shinchan":
-    default:
-      return `Character: Shinnosuke "Shinchan" Nohara (5 years old, Kasukabe Defense Force leader).
+    case "Shiro":
+      return `Character: Shiro (The fluffy white dog of the Nohara household).
 Personality & Voice:
-- Cheeky, playful, mischievous, and funny, with signature expressions like "Oii!", "Hehe!", "Oho!", or curious eyebrow wiggles.
-- BUT when someone is genuinely hurt, sad, or overwhelmed, you show your TRUE golden heart: deeply sincere, gentle, comforting, and loyal.
-- You listen without judgment. You reassure friends that they are cherished and never broken.
-- You use references to Chocobi, Shiro, or Action Kamen ONLY occasionally to bring a gentle smile—NEVER to brush off serious hurt.`;
+- Loyal, patient, gentle, and quiet.
+- Communicates through tender canine actions (*gentle tail wags*, *soft head rests on your knee*, *happy barks*).
+- Loves quiet companionship, walks by the riverbank, and resting peacefully with friends.`;
+
+    case "Misae":
+    default:
+      return `Character: Misae Nohara (Shinchan's fiercely caring, energetic mother).
+Personality & Voice:
+- Strong, practical, energetic, protective, and loving.
+- Manages the lively Nohara household, bargain sales at the supermarket, and makes warm home-cooked meals.
+- When asked about herself: Mentions household antics, catching a grocery special, or enjoying a fresh cup of roasted tea.
+- Always reminds friends to eat well, drink water, and stand tall with self-respect.`;
   }
 }
 
-function buildSystemInstruction(character: string, emotions: string[], supportStyle: string): string {
+function buildSystemInstruction(
+  character: string,
+  emotions: string[],
+  supportStyle: string,
+  isCallMode = false
+): string {
   const emotionContext = emotions && emotions.length > 0
     ? emotions.join(", ")
-    : "Not explicitly selected (observe user's words closely)";
+    : "Neutral / Open";
 
   const styleContext = supportStyle || "Gentle Comfort & Hugs";
   const persona = getCharacterPersona(character);
 
-  return `You are roleplaying as ${character} in the wholesome fan-made "Shinchan Comfort Corner" sanctuary.
-The user is a human seeking emotional warmth, safe companionship, or gentle relief.
+  return `You are roleplaying as ${character} from the beloved anime Crayon Shin-chan.
+You are talking in real-time with the user in the "Shinchan Comfort Corner" sanctuary.
 
-[USER'S CURRENT EMOTIONAL SIGNALS]
-- Selected Emotion Tags: ${emotionContext}
-- Requested Support Style: ${styleContext}
+[CONVERSATION CONTEXT]
+- Active Character: ${character}
+- Emotion Check-in: ${emotionContext}
+- Preferred Style: ${styleContext}
+- Interaction Mode: ${isCallMode ? "LIVE TWO-WAY VOICE CALL (Spoken audio conversation)" : "Text Chat"}
 
 [CRITICAL BEHAVIORAL DIRECTIVES - HIGHEST PRIORITY]
 
-1. ALWAYS ACKNOWLEDGE THE SPECIFIC SITUATION FIRST:
-   - Every single reply MUST directly recognize and validate what the user actually said before giving comfort, jokes, or advice.
-   - Never ignore the user's situation to talk about generic topics.
-   - For relationship conflicts or accusations (e.g. "My boyfriend accused me of cheating"):
-     * Directly acknowledge the pain of being doubted or falsely accused by someone they love.
-     * Validate the hurt: being accused stings deeply and makes you feel invisible or defensive.
-     * Reassure them: "You shouldn't have to tear yourself apart trying to prove your worth."
-     * Do NOT declare who is right or wrong, do NOT encourage toxic retaliation, and do NOT shame the user or tell them what they must do.
-   - If the user asks "Can u comfort me and scold me?":
-     * Step 1: Offer a warm, heartfelt virtual hug and validation.
-     * Step 2: Deliver a tender, loving "tiny scolding" directed at their self-harshness, self-blame, or neglecting their own rest (e.g. "Oii, stop beating yourself up! You're allowed to be hurt, and you don't have to fix everything this second!").
-   - If the user sends brief follow-ups ("Yeahh", "Exactly", "He doesn't believe me", "I don't know"):
-     * Keep continuity! Interpret their message in the context of recent turns.
-     * Never restart the conversation or send greeting phrases like "Hello friend!" mid-chat.
-     * Stay with them in the moment: "Mm, I'm listening. 🫂 Take your time. What's hurting the most right now?"
-   - If the user is celebrating a win ("I got the job!", "I passed!"):
-     * Celebrate with authentic, enthusiastic character joy!
-   - If the user is stressed about exams, work, or burnout:
-     * Acknowledge the pressure, offer a grounding moment, and remind them their worth isn't determined by a score.
-   - If the user requests humor or a joke:
-     * Provide genuine, silly, character-appropriate banter or wholesome humor.
+1. DIRECT ANSWERS TO DIRECT QUESTIONS:
+   - If the user asks a direct question (e.g. "What about you?", "How are you?", "What are you doing today?", "What is your favorite snack?", "Tell me a joke"):
+     -> ANSWER THE QUESTION DIRECTLY about yourself or your topic first!
+     -> Do NOT evade questions, do NOT deflect back into therapy mode, and do NOT give generic affirmations instead of answering.
 
-2. AVOID GENERIC REPETITION:
-   - Do NOT mention Chocobi, Action Kamen, naps, or lazy potato buddies in every message.
-   - Mention them only when it naturally fits the moment, or when the user asks for a snack/silly distraction.
-   - Vary your phrases, emotional beats, and sentences. Avoid scripted templates.
+2. LISTEN TO USER CORRECTIONS & TOPIC SHIFTS:
+   - If the user corrects you (e.g. "I asked about you", "That's not what I meant", "You didn't answer my question"):
+     -> Gracefully and warmly acknowledge the correction immediately, and answer their actual question! (e.g., if playing Hiroshi: "Ah, haha, you caught me! Sorry about that. Well, as for me...").
+   - Follow topic changes smoothly without clinging to previous topics.
 
-3. CONVERSATION FLOW & PACING:
-   - Keep answers natural, empathetic, and conversational (usually 2 to 4 cozy sentences or 1-2 short paragraphs).
-   - Ask NO MORE than ONE gentle follow-up question per message so the user never feels overwhelmed.
-   - Do NOT generate unsolicited bullet-point lists of advice.
+3. FORBIDDEN CANNED PHRASES:
+   - NEVER use generic robotic script lines like:
+     * "I'm listening closely to you"
+     * "You are safe and welcome here"
+     * "Whatever happened today, you're safe now"
+     * "Tell me whatever is on your mind"
+   - Instead, speak naturally, spontaneously, and in genuine character voice!
 
-[CHARACTER PERSONA SPECIFICATIONS]
+4. DYNAMIC EMOTION UNDERSTANDING:
+   - NEVER assume the user is sad, lonely, or crying without clear evidence!
+   - If the user is happy, celebrating, or shares good news: Celebrate enthusiastically with authentic character joy!
+   - If the user is chatting casually about everyday life, food, hobbies, school, or work: Have a normal, fun, grounded conversation!
+   - If the user jokes or banters: Joke back and enjoy the laugh!
+   - If the user is genuinely sad, overwhelmed, or hurting: Offer heartfelt, loyal empathy and warm companionship without lecturing.
+
+${isCallMode ? `
+5. VOICE CALL MODE REQUIREMENTS:
+   - You are speaking aloud on an active telephone call.
+   - Keep each spoken response short, natural, and conversational (1 to 2 spoken sentences).
+   - DO NOT use markdown asterisks (*action*), bolding, or emojis, because your response is spoken via Text-To-Speech software!
+   - Speak with warm, colloquial sentence structures.
+` : `
+5. TEXT CHAT PACING:
+   - Keep messages natural, friendly, and comfortable (usually 2 to 4 sentences).
+   - Ask at most ONE natural follow-up question so the conversation flows easily.
+`}
+
+[CHARACTER PERSONA]
 ${persona}
 `;
 }
 
-// Fallback high-quality empathetic responses for demo mode or offline resilience
+// Contextual fallback responses for offline resilience or missing keys
 function generateContextualFallback(
   character: string,
   latestMessage: string,
   emotions: string[],
   supportStyle: string,
-  history: ChatMessage[]
+  history: ChatMessage[],
+  isCallMode = false
 ): string {
   const text = (latestMessage || "").trim().toLowerCase();
   const cleanText = text.replace(/[^a-z0-9 ]/g, "").trim();
   const isShinchan = character === "Shinchan" || !character;
 
-  // Extract past context from history
-  const previousUserMessages = (history || [])
-    .filter(m => m.role === "user")
-    .map(m => m.content.toLowerCase());
-  
-  const hasRelationshipContext = previousUserMessages.some(m => 
-    m.includes("boyfriend") || m.includes("girlfriend") || m.includes("cheating") || m.includes("accused") || m.includes("dating") || m.includes("partner")
-  );
-
-  const hasExamContext = previousUserMessages.some(m => 
-    m.includes("exam") || m.includes("study") || m.includes("test") || m.includes("grade") || m.includes("school") || m.includes("college")
-  );
-
-  // 1. Specific Request: "Can u comfort me and scold me?"
-  if ((text.includes("comfort") && text.includes("scold")) || text.includes("scold me")) {
-    if (isShinchan) {
-      return "Oii, you! 💗 First, a big warm virtual hug! And now my tiny scolding: stop being so harsh on yourself, okay? You're allowed to feel hurt. You don't have to solve everything this minute, and you definitely don't have to blame yourself for every problem!";
-    } else if (character === "Misae") {
-      return "Come here first for a big warm hug! 🫂 Now listen to my mom-scold: Stop beating yourself up! You cannot carry the whole world on your shoulders and expect not to ache. You are human, and you deserve your own kindness!";
-    } else if (character === "Hiroshi") {
-      return "First off, a firm reassuring pat on the back! 🤝 And here is my tired-dad scold: Stop treating yourself like you're supposed to be superhuman. Give yourself permission to feel hurt without declaring yourself a failure.";
-    } else {
-      return "First: a giant warm hug wrapped around you! 🌸 And now my gentle scolding: please stop treating yourself with so much severity! You deserve kindness—especially from yourself.";
+  // 1. CORRECTION: User says "I asked about you" or similar
+  if (text.includes("asked about you") || text.includes("asking about you") || text.includes("about you?") || text.includes("what about you") || text.includes("how about you") || text.includes("and you")) {
+    if (isCallMode) {
+      if (character === "Hiroshi") return "Haha, thanks for asking! I just kicked off my work shoes, relaxing with a cold drink after a busy day at Futaba Shoji!";
+      if (character === "Kazama") return "Thank you for asking! I was just organizing my study timetable and having a quick cup of barley tea.";
+      if (character === "Nene") return "Aww, thanks for asking! I was just planning a brand new storyline for my Real House game!";
+      if (character === "Masao") return "M-Me? Oh, thank you for asking! I was just sketching a new superhero page in my notebook!";
+      if (character === "Bo-chan") return "Me... I found a smooth gray river stone this morning. It brings quiet peace.";
+      if (isShinchan) return "Oii! Thanks for asking! I'm balancing Chocobi cookies on my forehead and waiting for Action Kamen!";
+      return "Thanks for asking! I'm having a cozy, peaceful day right here in Kasukabe!";
     }
-  }
 
-  // 2. Initial Relationship Accusation: "My boyfriend accused me of cheating"
-  if (text.includes("cheating") || text.includes("accused") || (text.includes("boyfriend") && (text.includes("doubt") || text.includes("blame")))) {
-    if (isShinchan) {
-      return "Oii, hey... 🥺 I'm sorry this is hurting you so much. Being accused by someone you care about can really sting. But listen to me, you shouldn't have to tear yourself apart trying to prove your worth, okay? You deserve to be heard, too. Do you want to tell me what happened?";
-    } else if (character === "Misae") {
-      return "Oh honey, come sit down. Being falsely accused by someone you love cuts straight to the bone. Take a deep breath. You do not have to swallow unfair blame, and you don't deserve to be mistreated. I'm right here with you. What happened?";
-    } else if (character === "Hiroshi") {
-      return "Hey... that's really rough. When trust gets strained like that, it feels like the ground beneath you is shaking. Don't let yourself get frantic trying to defend who you are. Take a slow breath. I'm here to listen.";
-    } else if (character === "Nene") {
-      return "WHAT?! That is so unfair! 🐰 If someone you love throws accusations at you without even listening, of course your heart feels broken and angry! You don't deserve that suspicion. Tell me everything—I'm 100% on your side!";
-    } else {
-      return "That hurts so deeply... Being doubted by someone close to you is devastating. Please remember your heart and truth matter. I am right here listening whenever you're ready to share.";
-    }
-  }
-
-  // 3. Follow-ups within relationship context: "Yeahh", "He doesn't believe me", "He won't look at me"
-  if (hasRelationshipContext) {
-    if (cleanText === "yeahh" || cleanText === "yeah" || cleanText === "yes" || cleanText === "yep" || cleanText === "mm" || cleanText === "exactly") {
-      if (isShinchan) {
-        return "Mm, I'm listening. 🫂 Take your time. What's hurting the most right now?";
-      } else if (character === "Shiro") {
-        return "*Shiro gently rests his chin on your knee and stays completely still, letting you know you don't have to rush words.* *Woof...* (Take your time.)";
-      } else {
-        return "I'm right here listening. 🫂 Take your time. What is hurting the most right now?";
-      }
-    }
-    if (
-      text.includes("doesn't believe") || cleanText.includes("doesnt believe") ||
-      text.includes("won't listen") || cleanText.includes("wont listen") ||
-      text.includes("won't look") || cleanText.includes("wont look") ||
-      text.includes("look at me") || text.includes("ignoring") || text.includes("ignore") ||
-      text.includes("blocked") || text.includes("silent") || text.includes("quiet")
-    ) {
-      if (isShinchan) {
-        return "Oii... that stone-cold silence hurts just as much as angry words. When someone shuts down and won't listen, it can make you feel helpless. But remember: their reaction doesn't define who you are. Breathe slowly with me, okay? You are safe here.";
-      } else if (character === "Misae") {
-        return "The silent treatment or refusing to listen is so painful. But hear me: do not beg for basic respect. Rest your heart for a minute. You cannot force someone to see the truth until they are ready to put their anger down.";
-      } else {
-        return "Being shut out when you're already hurting is devastating. Please remind yourself: you do not have to beg someone to believe your truth. Take a quiet breath for yourself.";
-      }
-    }
-  }
-
-  // 4. General Short Acknowledgement / Follow-up (Yeahh, exactly, etc.)
-  if (cleanText === "yeahh" || cleanText === "yeah" || cleanText === "yes" || cleanText === "exactly" || cleanText === "right" || cleanText === "mm" || cleanText === "hmm" || cleanText === "i know") {
-    if (isShinchan) {
-      return "Mm, I'm listening. 🫂 Take your time. What's hurting the most right now?";
-    } else if (character === "Shiro") {
-      return "*Shiro rests his soft chin on your knee and blinks up with warm, steady eyes.* *Woof...* (Take all the time you need, friend.)";
-    } else if (character === "Bo-chan") {
-      return "Quiet breath... I am holding space with you. Whenever you are ready.";
-    } else {
-      return "I hear you. 🫂 Take a quiet breath. I'm right here with you—what's sitting on your chest right now?";
-    }
-  }
-
-  // 5. Exam stress / School burnout
-  if (text.includes("exam") || text.includes("study") || text.includes("grades") || text.includes("fail") || text.includes("test") || (hasExamContext && (text.includes("can't focus") || text.includes("tomorrow") || text.includes("hard")))) {
-    if (isShinchan) {
-      return "Oii, exam stress is the absolute worst! 🧠💥 Your brain feels all scrambled like an egg, right? But remember: a test score doesn't decide what an amazing person you are. Close your eyes for 10 seconds, drop your shoulders, and shake your hands out. You're doing your best!";
+    if (character === "Hiroshi") {
+      return "Haha, you caught me! Thanks for asking! Honestly, I just got back from Futaba Shoji, kicked off my work shoes, and cracked open a cold drink. It was a hectic day at the office, but chatting with you makes the evening so much more relaxing. How did your day treat you?";
     } else if (character === "Kazama") {
-      return "I know that pressure so well... when test anxiety builds up, your brain locks up. Let's step back: you've studied hard, but right now your nervous system needs a pause. Take three slow breaths with me. What is the one thing stressing you out the most?";
-    } else if (character === "Hiroshi") {
-      return "Ah, tests... I remember sweating through tests in school thinking my entire life depended on them. Looking back, what mattered most was taking care of my health. Drink some warm water, review one small section, and get some sleep tonight.";
-    } else {
-      return "Take a deep breath and loosen your jaw. Exams are exhausting, but they are just paper—they do not define your worth or your future. You are going to get through this.";
+      return "Oh! Thank you for asking about me! I just finished my English grammar drills and organized my study desk. It's really refreshing to take a break and talk with you. What made your day so good?";
+    } else if (character === "Nene") {
+      return "Aww, that's so sweet of you to ask! I was actually just writing down dramatic plot twists for my Real House game. Mom made some sweet strawberry snacks earlier too! But tell me, what made you feel so great today?";
+    } else if (character === "Masao") {
+      return "W-Wait, you're asking about me? That's so kind of you! I was a little nervous earlier about a school project, but I'm feeling a lot calmer now sketching in my notebook. Seeing you in high spirits really brightens my day!";
+    } else if (character === "Bo-chan") {
+      return "Me... I found a cool oval stone by the Kasukabe riverbank today. It is cool to the touch. Your happy energy feels warm like sunlight.";
+    } else if (isShinchan) {
+      return "Oii, you're asking about ME?! Hehe, you're pretty nice! I was just practicing my Action Kamen flying kick on the sofa until Mom scolded me! Now I'm snacking on Chocobi. What awesome thing happened to make you feel so good?";
     }
   }
 
-  // 6. Celebration / Happiness / Good News
-  if (text.includes("got the job") || text.includes("passed") || text.includes("celebrate") || text.includes("happy") || text.includes("good news") || text.includes("did it") || text.includes("hired")) {
-    if (isShinchan) {
-      return "WAAAAHHH!! 🎉✨ Congratulations!! Doing the victory butt dance right now in your honor! You worked so hard for this, you rockstar! Tell me everything—how did you feel when you heard the news?!";
-    } else if (character === "Misae") {
-      return "Oh, that is wonderful news!! 🎉 Look at what you accomplished with your hard work! I'm so very proud of you! You earned this victory—make sure you treat yourself to something delicious tonight!";
+  // 2. HAPPY & CELEBRATIONS
+  if (
+    text.includes("happy") || text.includes("great") || text.includes("awesome") ||
+    text.includes("good day") || text.includes("feeling good") || text.includes("got the job") ||
+    text.includes("passed") || text.includes("celebrate") || text.includes("did it") ||
+    text.includes("excited") || text.includes("yay") || text.includes("wonderful")
+  ) {
+    if (isCallMode) {
+      if (character === "Hiroshi") return "That is fantastic news! That hard work paid off, and you deserve a celebration tonight!";
+      if (character === "Kazama") return "Remarkable achievement! Hard work and persistence truly pay off. I am so proud of you!";
+      if (character === "Nene") return "OMG YAY! That is incredible! Tell me every single detail right now!";
+      if (character === "Shiro") return "Woof woof! Happy barks and joyful tail wags! You did it!";
+      if (isShinchan) return "Yahoo! That is super awesome! Doing the victory butt dance right now in your honor!";
+      return "That is wonderful news! Congratulations on your big win!";
+    }
+
+    if (character === "Hiroshi") {
+      return "Look at that! That is genuinely fantastic news! 🎉 As someone who knows how tough the daily grind is, seeing you succeed like this puts a huge smile on my face. You earned this win. Tell me what made today turn out so great!";
+    } else if (character === "Kazama") {
+      return "That is genuinely outstanding news! 🎉 Dedication and careful preparation always show their value. I'm truly proud of your accomplishment! How are you planning to celebrate?";
+    } else if (character === "Nene") {
+      return "OMG YAAAY!! 🎉 I am so thrilled for you! You totally deserve this success! Tell me every single detail—I want to hear all about it!";
     } else if (character === "Shiro") {
-      return "*Shiro wags his tail so fast he looks like a spinning white cotton candy!* *Happy barks!* 🐾✨ (Congratulations, friend!!)";
+      return "*Shiro does his signature cotton-candy spin dance and wags his fluffy tail like a windmill!* *Happy playful barks!* 🐾✨ (Congratulations! You did it!)";
+    } else if (character === "Masao") {
+      return "W-Wow!! 🎉 That's amazing! You're so talented and brave! Seeing you this happy makes me feel so joyful too!";
+    } else if (isShinchan) {
+      return "WAAAAHHH!! 🎉✨ That is awesome! Doing the victory butt dance right now in your honor! You rock, my friend! Tell me what made today so great!";
     } else {
-      return "YES!! 🎉 What incredible news! I'm so proud of you! You earned this triumph—let yourself soak in every drop of joy today!";
+      return "YES!! 🎉 What wonderful news! Let yourself soak in every drop of happiness today!";
     }
   }
 
-  // 7. Request for Humor / Silliness / Joke
-  if (text.includes("joke") || text.includes("funny") || text.includes("smile") || text.includes("laugh") || text.includes("silly") || text.includes("make me smile")) {
+  // 3. CASUAL EVERYDAY CHAT & DIRECT QUESTIONS ("What are you doing?", "How are you?")
+  if (text.includes("what are you doing") || text.includes("what're you doing") || text.includes("how are you")) {
+    if (isCallMode) {
+      if (character === "Hiroshi") return "Hey there! Just kicked off my shoes, relaxing after a long day at the office. How are you doing?";
+      if (character === "Kazama") return "Hello! I was reviewing some cram school notes. It is really great to talk with you!";
+      if (isShinchan) return "Hey! I was just eating Chocobi and thinking about Action Kamen! How are you doing today?";
+      return "Hello! I am doing well and very happy to chat with you today!";
+    }
+
+    if (character === "Hiroshi") {
+      return "Hey there! Honestly, just kicking back after a long commute back from Futaba Shoji. My socks are pretty tired, but kicking off my work shoes and relaxing with a friendly chat is the best part of the evening. How's your day been going?";
+    } else if (character === "Kazama") {
+      return "Hello! I was just finishing up my daily vocabulary review and organizing my study notebooks. It's really nice taking a quick break to chat with you. How has everything been with you today?";
+    } else if (character === "Shiro") {
+      return "*Shiro blinks his soft brown eyes and gives a gentle tail thump against the tatami mat.* *Woof!* (Just resting peacefully by the veranda and very happy to see you!)";
+    } else if (isShinchan) {
+      return "Oii! Hehe, I was just balancing a Chocobi biscuit on Shiro's nose and pretending to be Action Kamen! How are you doing today, friend?";
+    } else {
+      return "Hello! Just taking a cozy breather here in Kasukabe. What's on your mind today?";
+    }
+  }
+
+  // 4. JOKES & SILLINESS
+  if (text.includes("joke") || text.includes("funny") || text.includes("laugh") || text.includes("silly")) {
+    if (isCallMode) {
+      if (character === "Hiroshi") return "Why do salarymen love weekends? Because office coffee doesn't taste like freedom, but Saturday morning does!";
+      if (isShinchan) return "Did you know Shiro tried to teach a pigeon the Action Kamen beam today? The pigeon just blinked and walked away!";
+      return "Here is a fun thought: even on bumpy days, smiling makes everything feel lighter!";
+    }
+
+    if (character === "Hiroshi") {
+      return "Haha, alright, here's a true salaryman joke: Why did I stare at my spreadsheets for three hours yesterday? Because my boss Kawaguchi walked by, and looking deeply confused counts as hard work! Did that get a little grin out of you?";
+    }
     if (isShinchan) {
       return "Hehehe, you asked for it! Did you know Shiro tried to teach a pigeon how to do the Action Kamen beam today? The pigeon just stared and pooped next to dad's shoe. Dad sighed so loud the goldfish swam backwards! Did that bring a tiny grin to your face? 😄";
-    } else if (character === "Hiroshi") {
-      return "Want to laugh? Yesterday I put on two different socks in the dark—one navy, one with bright pink strawberries that Misae bought on sale. My boss stared at my ankles for 20 minutes before asking if it was a new corporate trend!";
-    } else {
-      return "Here's a wholesome Kasukabe truth: even on the gloomiest days, Shinnosuke can slip on a banana peel and still strike a superhero pose before he hits the floor. Smile a little—you look brighter when you do!";
     }
+    return "Here's a wholesome Kasukabe truth: even on the gloomiest days, Shinnosuke can slip on a banana peel and still strike a superhero pose before he hits the floor. Keep smiling!";
   }
 
-  // 8. Feeling lonely or wanting a hug
-  if (text.includes("lonely") || text.includes("hug") || text.includes("alone") || text.includes("nobody")) {
+  // 5. COMFORT + SCOLD REQUEST
+  if ((text.includes("comfort") && text.includes("scold")) || text.includes("scold me")) {
+    if (isCallMode) {
+      if (character === "Hiroshi") return "First, kick back and take a deep breath. And now my scold: stop taking on everyone else's burden and give yourself some credit!";
+      if (isShinchan) return "First, a big hug! And now my tiny scold: stop beating yourself up so much, okay?";
+      return "First a warm hug! And please, stop treating yourself with so much harshness!";
+    }
+    if (character === "Hiroshi") {
+      return "Alright, listen to your old man for a minute. First: put your feet up and take a deep breath. You're doing fine. Now here's my gentle scold: stop carrying the weight of the entire universe on your shoulders! You don't have to be perfect every day. Give yourself permission to be a human being, okay?";
+    }
     if (isShinchan) {
-      return "Oii, open your arms right now! *GIANT FLYING KASUKABE HUG!* 🫂 You are never alone as long as I'm around, got it? Even when the room is quiet, remember someone out here cares about you a whole lot.";
-    } else if (character === "Shiro") {
-      return "*Shiro climbs gently into your lap, curls up into a warm fluffy circle, and lets out a soft, contented sigh.* *Woof.* (I am right here with you.)";
-    } else {
-      return "Sending you the warmest, softest blanket hug right now. 🌸 Loneliness can feel heavy, but this quiet moment will pass. I'm right here beside you.";
+      return "Oii, you! 💗 First, a big warm virtual hug! And now my tiny scolding: stop being so harsh on yourself, okay? You're allowed to feel hurt. You don't have to solve everything this minute, and you definitely don't have to blame yourself for every problem!";
     }
+    return "First: a giant warm hug wrapped around you! 🌸 And now my gentle scolding: please stop treating yourself with so much severity! You deserve kindness—especially from yourself.";
   }
 
-  // Default empathetic response acknowledging message
-  if (isShinchan) {
-    return `Oii, I hear you. 💗 What you're going through isn't easy, and you don't have to carry it all alone. Come sit next to me for a moment. How can I best support you right now?`;
+  // 6. RELATIONSHIP ISSUES OR ACCUSATIONS
+  if (text.includes("cheating") || text.includes("accused") || (text.includes("boyfriend") && text.includes("doubt"))) {
+    if (isCallMode) {
+      if (character === "Hiroshi") return "Being unfairly accused cuts deep. Take a steady breath. You know your integrity, and nobody can take that from you.";
+      if (isShinchan) return "Hey, I hear you. Being falsely accused stings so much. You do not have to tear yourself apart to prove your worth.";
+      return "Being doubted by someone you care about is heartbreaking. Please remember your truth and take a slow breath.";
+    }
+    if (character === "Hiroshi") {
+      return "Hey, come sit down. Being falsely accused by someone you care about hurts in a really deep, frustrating way. But listen: you know your truth and your integrity. Don't let someone else's insecurity make you feel small or guilty for things you didn't do. I'm right here if you want to talk it through.";
+    }
+    if (isShinchan) {
+      return "Oii, hey... 🥺 I'm sorry this is hurting you so much. Being accused by someone you care about can really sting. But listen to me, you shouldn't have to tear yourself apart trying to prove your worth, okay? You deserve to be heard, too. Do you want to tell me what happened?";
+    }
+    return "That hurts so deeply... Being doubted by someone close to you is devastating. Please remember your heart and truth matter. I am right here listening whenever you're ready to share.";
   }
-  return `I'm listening closely to you. 🌸 Whatever you're facing, your feelings are completely valid and you are safe here. Tell me whatever is on your mind.`;
+
+  // 7. DEFAULT CASUAL & GROUNDED RESPONSES (NO CANNED ROBOTIC THERAPY)
+  if (isCallMode) {
+    if (character === "Hiroshi") return "I hear you loud and clear. What's on your mind this evening?";
+    if (character === "Kazama") return "I am listening closely. Tell me more about what you're thinking.";
+    if (isShinchan) return "Oii, I'm right here! Tell me what's on your mind, friend!";
+    return "I am right here with you on the line. What's on your mind?";
+  }
+
+  if (character === "Hiroshi") {
+    return "I'm right here with you. Whether it's about work, family, or just something you need to bounce off an older guy who's seen a few rough days himself, I'm glad to chat. What's on your mind?";
+  }
+  if (character === "Kazama") {
+    return "I'm right here. Let's talk through whatever is on your mind calmly and clearly. What would you like to discuss?";
+  }
+  if (isShinchan) {
+    return "Oii, I'm right here! Whether you want to talk about something fun, something silly, or something that's been bugging you, I've got your back. What's on your mind?";
+  }
+  return "Hey there! I'm glad you're here. Tell me what's happening in your world today.";
 }
 
 // POST /api/chat - Primary intelligent conversation endpoint
@@ -336,11 +375,15 @@ export const chatHandler = async (req: express.Request, res: express.Response) =
       emotions = [],
       supportStyle = "Gentle Comfort & Hugs",
       messages = [],
+      chatHistory = [],
       latestMessage = "",
+      message = "",
       forceDemo = false,
+      isCallMode = false,
     }: ChatRequestBody = req.body;
 
-    const userQuery = latestMessage || (messages.length > 0 ? messages[messages.length - 1].content : "");
+    const conversationList = (messages && messages.length > 0) ? messages : (chatHistory || []);
+    const userQuery = latestMessage || message || (conversationList.length > 0 ? conversationList[conversationList.length - 1].content : "");
 
     if (!userQuery) {
       return res.status(400).json({ error: "Missing message content." });
@@ -350,20 +393,21 @@ export const chatHandler = async (req: express.Request, res: express.Response) =
 
     // If demo mode is explicitly requested or no API key is available
     if (forceDemo || !ai) {
-      const fallbackReply = generateContextualFallback(character, userQuery, emotions, supportStyle, messages);
+      const fallbackReply = generateContextualFallback(character, userQuery, emotions, supportStyle, conversationList, isCallMode);
       return res.json({
         reply: fallbackReply,
         source: forceDemo ? "demo-mode" : "demo-fallback",
         model: "scripted-comfort-engine",
         isDemo: true,
+        isCallMode: Boolean(isCallMode),
       });
     }
 
-    // Build the tailored system instruction with emotion & character context
-    const systemInstruction = buildSystemInstruction(character, emotions, supportStyle);
+    // Build the tailored system instruction with emotion, character persona, and call mode
+    const systemInstruction = buildSystemInstruction(character, emotions, supportStyle, isCallMode);
 
     // Format conversation history for @google/genai
-    const recentHistory = messages.slice(-14);
+    const recentHistory = conversationList.slice(-14);
     const contents: Array<{ role: "user" | "model"; parts: Array<{ text: string }> }> = [];
 
     for (const msg of recentHistory) {
@@ -388,15 +432,18 @@ export const chatHandler = async (req: express.Request, res: express.Response) =
       contents,
       config: {
         systemInstruction,
-        temperature: 0.82,
-        topP: 0.95,
       },
     });
 
-    const reply = response.text ? response.text.trim() : "";
+    let reply = response.text ? response.text.trim() : "";
 
     if (!reply) {
       throw new Error("Empty response from Gemini model.");
+    }
+
+    // In call mode, clean up any lingering markdown asterisks or emojis for clean TTS
+    if (isCallMode) {
+      reply = reply.replace(/\*[^*]+\*/g, "").replace(/[\u{1F300}-\u{1F9FF}]/gu, "").trim();
     }
 
     return res.json({
@@ -406,6 +453,7 @@ export const chatHandler = async (req: express.Request, res: express.Response) =
       character,
       emotionsUsed: emotions,
       supportStyle,
+      isCallMode: Boolean(isCallMode),
     });
   } catch (error: any) {
     console.warn("[Chat Handler Info]: Using contextual fallback due to:", error?.message || "offline mode");
@@ -413,23 +461,105 @@ export const chatHandler = async (req: express.Request, res: express.Response) =
     const character = req.body?.character || "Shinchan";
     const emotions = req.body?.emotions || [];
     const supportStyle = req.body?.supportStyle || "Gentle Comfort & Hugs";
-    const latestMessage = req.body?.latestMessage || "";
-    const messages = req.body?.messages || [];
+    const conversationList = (req.body?.messages && req.body?.messages.length > 0) ? req.body.messages : (req.body?.chatHistory || []);
+    const query = req.body?.latestMessage || req.body?.message || (conversationList.length > 0 ? conversationList[conversationList.length - 1].content : "");
+    const isCallMode = Boolean(req.body?.isCallMode);
 
-    const fallbackReply = generateContextualFallback(character, latestMessage, emotions, supportStyle, messages);
+    const fallbackReply = generateContextualFallback(character, query, emotions, supportStyle, conversationList, isCallMode);
 
     return res.json({
       reply: fallbackReply,
       source: "demo-fallback-on-error",
       model: "scripted-comfort-engine",
       isDemo: true,
+      isCallMode,
       errorNotice: error?.message ? String(error.message).slice(0, 150) : "Gemini service fallback",
     });
   }
 };
 
+// POST /api/chat/stream - Real-time Server-Sent Events streaming endpoint
+export const streamHandler = async (req: express.Request, res: express.Response) => {
+  const {
+    character = "Shinchan",
+    emotions = [],
+    supportStyle = "Gentle Comfort & Hugs",
+    messages = [],
+    chatHistory = [],
+    latestMessage = "",
+    message = "",
+    forceDemo = false,
+    isCallMode = false,
+  }: ChatRequestBody = req.body;
+
+  const conversationList = (messages && messages.length > 0) ? messages : (chatHistory || []);
+  const userQuery = latestMessage || message || (conversationList.length > 0 ? conversationList[conversationList.length - 1].content : "");
+
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache");
+  res.setHeader("Connection", "keep-alive");
+  res.flushHeaders?.();
+
+  const ai = getAIClient();
+
+  if (forceDemo || !ai || !userQuery) {
+    const fallback = generateContextualFallback(character, userQuery, emotions, supportStyle, conversationList, isCallMode);
+    res.write(`data: ${JSON.stringify({ chunk: fallback, isDone: true, source: "demo" })}\n\n`);
+    res.write("data: [DONE]\n\n");
+    return res.end();
+  }
+
+  try {
+    const systemInstruction = buildSystemInstruction(character, emotions, supportStyle, isCallMode);
+    const recentHistory = conversationList.slice(-14);
+    const contents: Array<{ role: "user" | "model"; parts: Array<{ text: string }> }> = [];
+
+    for (const msg of recentHistory) {
+      const role = msg.role === "assistant" || msg.role === "model" ? "model" : "user";
+      if (msg.content && msg.content.trim()) {
+        contents.push({
+          role,
+          parts: [{ text: msg.content.trim() }],
+        });
+      }
+    }
+
+    if (contents.length === 0 || contents[contents.length - 1].role !== "user" || contents[contents.length - 1].parts[0].text !== userQuery.trim()) {
+      contents.push({
+        role: "user",
+        parts: [{ text: userQuery.trim() }],
+      });
+    }
+
+    const responseStream = await ai.models.generateContentStream({
+      model: "gemini-3.8-flash",
+      contents,
+      config: {
+        systemInstruction,
+      },
+    });
+
+    for await (const chunk of responseStream) {
+      const text = chunk.text || "";
+      if (text) {
+        res.write(`data: ${JSON.stringify({ chunk: text })}\n\n`);
+      }
+    }
+
+    res.write("data: [DONE]\n\n");
+    return res.end();
+  } catch (err: any) {
+    console.warn("[Stream Handler Error]:", err?.message);
+    const fallback = generateContextualFallback(character, userQuery, emotions, supportStyle, messages, isCallMode);
+    res.write(`data: ${JSON.stringify({ chunk: fallback, isDone: true, source: "demo-fallback-on-error" })}\n\n`);
+    res.write("data: [DONE]\n\n");
+    return res.end();
+  }
+};
+
 // Mount chat handler at both /api/chat and /chat for Vercel/Express compatibility
 app.post(["/api/chat", "/chat"], chatHandler);
+app.post(["/api/chat/stream", "/chat/stream"], streamHandler);
 
 // GET /api/health
 export const healthHandler = (_req: express.Request, res: express.Response) => {
