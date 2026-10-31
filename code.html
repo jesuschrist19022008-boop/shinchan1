@@ -8,7 +8,8 @@
   <meta name="description" content="A wholesome, emotionally intelligent comfort haven featuring Shinnosuke Nohara and Kasukabe friends, with personalized Gemini character chat, feelings check-in, and calming activities."/>
   <meta property="og:title" content="Shinchan Comfort Corner"/>
   <meta property="og:description" content="A wholesome, emotionally intelligent comfort haven featuring Shinnosuke Nohara and Kasukabe friends, with personalized Gemini character chat, feelings check-in, and calming activities."/>
-  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="alternate icon" href="/favicon.ico"/>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..800&amp;family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
@@ -16,10 +17,77 @@
 
   <style>
     @layer base {
-      html, body { margin: 0; padding: 0; }
-      body { overscroll-behavior: none; }
+      html { margin: 0; padding: 0; overflow-x: hidden; }
+      body { margin: 0; padding: 0; overflow-x: hidden; min-height: 100vh; min-height: 100dvh; overscroll-behavior: none; }
       main > :first-child { margin-top: 0 !important; }
       main > :last-child { margin-bottom: 0 !important; }
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    #breathingModal,
+    #smileModal,
+    #voiceCallModal {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100% !important;
+      width: 100vw !important;
+      height: 100% !important;
+      height: 100dvh !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+      z-index: 50 !important;
+    }
+    #breathingModal.hidden,
+    #smileModal.hidden,
+    #voiceCallModal.hidden {
+      display: none !important;
+    }
+    #breathingModal:not(.hidden),
+    #smileModal:not(.hidden),
+    #voiceCallModal:not(.hidden) {
+      display: block !important;
+    }
+    .breathing-modal-backdrop,
+    .smile-modal-backdrop,
+    .voice-call-modal-backdrop {
+      min-height: 100% !important;
+      min-height: 100dvh !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      padding-top: 1.5rem !important;
+      padding-bottom: 2.5rem !important;
+      padding-left: 0.75rem !important;
+      padding-right: 0.75rem !important;
+      box-sizing: border-box !important;
+    }
+    @media (min-width: 640px) {
+      .breathing-modal-backdrop,
+      .smile-modal-backdrop,
+      .voice-call-modal-backdrop {
+        padding-top: 2rem !important;
+        padding-bottom: 3rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+    }
+    .breathing-card,
+    .smile-card,
+    .voice-call-card {
+      margin-top: auto !important;
+      margin-bottom: auto !important;
+      min-height: fit-content !important;
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+      flex-shrink: 0 !important;
+      width: 100% !important;
+      max-width: 28rem !important;
+      box-sizing: border-box !important;
     }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #faf0ff; }
@@ -167,20 +235,20 @@
     </div>
 
     <!-- Main Navigation Bar -->
-    <div class="h-20 max-w-[1200px] mx-auto px-margin flex items-center justify-between gap-space-md">
+    <div class="h-20 max-w-[1200px] mx-auto px-3 sm:px-6 md:px-margin flex items-center justify-between gap-2 sm:gap-space-md">
       <!-- Logo -->
-      <div class="flex items-center gap-space-md">
-        <a class="flex items-center gap-space-sm group cursor-pointer" data-nav="welcome-home">
-          <div class="w-11 h-11 rounded-full bg-primary-container flex items-center justify-center shadow-[0_4px_12px_rgba(255,133,162,0.35)] transition-transform duration-200 group-hover:scale-105">
-            <span class="material-symbols-outlined text-on-primary-container text-[24px]">sentiment_satisfied</span>
+      <div class="flex items-center gap-space-md shrink-0">
+        <a class="flex items-center gap-2 sm:gap-space-sm group cursor-pointer" data-nav="welcome-home">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-primary-container flex items-center justify-center shadow-[0_4px_12px_rgba(255,133,162,0.35)] transition-transform duration-200 group-hover:scale-105 shrink-0">
+            <span class="material-symbols-outlined text-on-primary-container text-[22px] sm:text-[24px]">sentiment_satisfied</span>
           </div>
           <div class="flex flex-col">
             <div class="flex items-center gap-1.5">
-              <span class="font-title-md text-title-md text-primary font-bold tracking-tight">Shinchan</span>
-              <span class="font-title-md text-title-md text-on-surface font-semibold">Comfort Corner</span>
-              <span class="inline-block px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Chocobi ★</span>
+              <span class="font-title-md text-base sm:text-title-md text-primary font-bold tracking-tight">Shinchan</span>
+              <span class="font-title-md text-base sm:text-title-md text-on-surface font-semibold hidden xs:inline sm:inline">Comfort Corner</span>
+              <span class="inline-block px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[11px] sm:text-label-sm hidden md:inline-block">Chocobi ★</span>
             </div>
-            <span class="font-label-sm text-label-sm text-on-surface-variant hidden sm:inline-block">Warm hugs &amp; playful calm</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant hidden md:inline-block">Warm hugs &amp; playful calm</span>
           </div>
         </a>
       </div>
@@ -199,36 +267,101 @@
       </nav>
 
       <!-- Action Utilities -->
-      <div class="flex items-center gap-space-sm">
-        <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="audioToggleBtn" title="Toggle gentle lo-fi soundscapes" type="button">
-          <span class="material-symbols-outlined text-[18px] text-tertiary" id="audioIcon">music_note</span>
-          <span class="hidden md:inline font-label-sm text-label-sm" id="audioLabel">Calm Vibes</span>
+      <div class="flex items-center gap-1.5 sm:gap-space-sm shrink-0">
+        <!-- Background Music Player Widget -->
+        <div class="relative inline-flex items-center gap-1 bg-surface-container/90 px-2 sm:px-2.5 py-1 rounded-full shadow-sm border border-surface-container-high/60 shrink-0" id="musicPlayerWidget">
+          <!-- Play / Pause Button -->
+          <button class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition-transform shrink-0" id="musicPlayPauseBtn" title="Play / Pause Background Music" type="button">
+            <span class="material-symbols-outlined text-[16px] sm:text-[18px]" id="musicPlayPauseIcon">play_arrow</span>
+          </button>
+
+          <!-- Prev Track -->
+          <button class="w-6 h-6 rounded-full text-on-surface-variant hover:text-primary hidden sm:flex items-center justify-center transition-colors shrink-0" id="musicPrevBtn" title="Previous Track" type="button">
+            <span class="material-symbols-outlined text-[16px]">skip_previous</span>
+          </button>
+
+          <!-- Track Info / Picker Trigger -->
+          <button class="hidden md:flex flex-col text-left px-1.5 py-0.5 rounded-md hover:bg-surface-container-high transition-colors max-w-[110px] sm:max-w-[150px] md:max-w-[170px]" id="musicPickerTriggerBtn" title="Click to choose track or adjust volume" type="button">
+            <span class="text-[11px] font-bold text-on-surface truncate block" id="musicTrackTitle">Kasukabe Sunset</span>
+            <span class="text-[9px] text-primary font-semibold truncate block" id="musicTrackCategory">Peaceful &amp; Relaxing</span>
+          </button>
+
+          <!-- Next Track -->
+          <button class="w-6 h-6 rounded-full text-on-surface-variant hover:text-primary hidden sm:flex items-center justify-center transition-colors shrink-0" id="musicNextBtn" title="Next Track" type="button">
+            <span class="material-symbols-outlined text-[16px]">skip_next</span>
+          </button>
+
+          <!-- Settings Popover Toggle -->
+          <button class="w-6 h-6 sm:w-7 sm:h-7 rounded-full text-on-surface-variant hover:bg-surface-container-high flex items-center justify-center transition-colors shrink-0" id="musicSettingsToggleBtn" title="Tracks &amp; Volume" type="button">
+            <span class="material-symbols-outlined text-[15px] sm:text-[16px]">queue_music</span>
+          </button>
+
+          <!-- Music Settings Popover Dropdown -->
+          <div class="absolute right-0 top-12 z-50 hidden w-72 max-w-[calc(100vw-2rem)] rounded-2xl bg-surface-container-lowest p-4 shadow-2xl border border-surface-container flex-col gap-3 text-left" id="musicSettingsPopover">
+            <div class="flex items-center justify-between border-b border-surface-container pb-2">
+              <span class="font-label-sm text-xs font-bold text-on-surface flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-[16px]">queue_music</span>
+                Music Collection (5 Tracks)
+              </span>
+              <button class="text-xs text-outline hover:text-on-surface p-1" id="closeMusicPopoverBtn" type="button">✕</button>
+            </div>
+
+            <!-- Volume Control -->
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center justify-between text-[11px] font-medium text-on-surface-variant">
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">volume_up</span> Volume
+                </span>
+                <span id="musicVolumeLabel">45%</span>
+              </div>
+              <input type="range" min="0" max="100" value="45" class="w-full accent-primary h-1.5 bg-surface-container rounded-lg cursor-pointer" id="musicVolumeSlider"/>
+            </div>
+
+            <!-- Tracks List -->
+            <div class="flex flex-col gap-1.5 max-h-48 overflow-y-auto" id="musicTracksList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Call Character Header Action -->
+        <button class="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm hover:scale-105 active:scale-95 transition-all shrink-0" id="headerCallBtn" title="Call your favorite companion" type="button">
+          <span class="material-symbols-outlined text-[16px] sm:text-[18px]">call</span>
+          <span class="hidden sm:inline font-bold text-xs">Call 📞</span>
         </button>
-        <button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md shadow-[0_2px_8px_rgba(255,209,103,0.3)] hover:opacity-95 transition-all" id="openBreathingModalBtn" title="Take a slow breath and reset" type="button">
-          <span class="material-symbols-outlined text-[18px]">spa</span>
-          <span class="hidden sm:inline font-label-sm text-label-sm">Mood Reset</span>
+
+        <!-- Mood Reset Header Action -->
+        <button class="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md shadow-[0_2px_8px_rgba(255,209,103,0.3)] hover:opacity-95 transition-all shrink-0" id="openBreathingModalBtn" title="Take a slow breath and reset" type="button">
+          <span class="material-symbols-outlined text-[16px] sm:text-[18px]">spa</span>
+          <span class="hidden md:inline font-label-sm text-label-sm">Mood Reset</span>
         </button>
+
         <!-- Active Companion Avatar Pill -->
-        <button class="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm hover:scale-105 transition-transform" id="activeAvatarHeaderBtn" title="Switch Companion">
-          <span class="text-[17px]" id="headerAvatarEmoji">🖍️</span>
+        <button class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm hover:scale-105 transition-transform" id="activeAvatarHeaderBtn" title="Switch Companion">
+          <span class="text-[15px] sm:text-[17px]" id="headerAvatarEmoji">🖍️</span>
         </button>
       </div>
     </div>
 
     <!-- Mobile Quick Navigation Bar -->
-    <div class="lg:hidden flex items-center justify-between px-3 py-2 bg-surface-container-lowest border-t border-surface-container overflow-x-auto gap-2">
-      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="welcome-home">Home</button>
-      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="choose-character">Friends</button>
-      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="feelings-check-in">Feelings</button>
-      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="character-chat">Chat 💬</button>
-      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="fun-zone">Fun Zone</button>
-      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="safety-about">Safety</button>
+    <div class="lg:hidden flex items-center px-3 py-2 bg-surface-container-lowest border-t border-surface-container overflow-x-auto gap-2 no-scrollbar">
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn shrink-0" data-target="welcome-home">Home</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn shrink-0" data-target="choose-character">Friends</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn shrink-0" data-target="feelings-check-in">Feelings</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn shrink-0" data-target="character-chat">Chat 💬</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-secondary-container text-on-secondary-container hover:scale-105 active:scale-95 transition-all shadow-xs flex items-center gap-1 shrink-0" id="mobileBreathingBtn" type="button" title="Guided Mood Reset">
+        <span class="material-symbols-outlined text-[14px]">spa</span>
+        <span>Mood Reset</span>
+      </button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-primary-container text-on-primary-container hover:scale-105 active:scale-95 transition-all shadow-xs shrink-0" id="mobileCallBtn" type="button">Call 📞</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn shrink-0" data-target="fun-zone">Fun Zone</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn shrink-0" data-target="safety-about">Safety</button>
     </div>
   </header>
 
   <!-- Main Content Container with App Views -->
-  <main class="w-full pt-28 lg:pt-28 bg-background flex-1">
-    <div class="max-w-[1200px] mx-auto px-margin py-space-md">
+  <main class="w-full pt-36 sm:pt-32 lg:pt-28 bg-background flex-1">
+    <div class="max-w-[1200px] mx-auto px-3.5 sm:px-6 md:px-margin py-3 sm:py-space-md">
 
       <!-- ========================================== -->
       <!-- VIEW 1: WELCOME / HOME                     -->
@@ -300,31 +433,38 @@
                 </div>
               </div>
 
-              <!-- Visual Bento Preview -->
+              <!-- Visual Bento Preview: Today's Host -->
               <div class="lg:col-span-5 relative flex flex-col items-center justify-center">
                 <div class="relative w-full max-w-[380px] aspect-square rounded-xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-variant p-4 flex flex-col justify-between shadow-inner overflow-hidden border border-surface-container-highest">
                   <div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-primary-fixed/50 blur-xl"></div>
                   <div class="absolute -left-8 -bottom-8 w-44 h-44 rounded-full bg-secondary-fixed/60 blur-xl"></div>
                   <div class="relative z-10 flex items-center justify-between">
-                    <span class="px-3 py-1 rounded-full bg-surface-container-lowest font-label-sm text-label-sm text-on-surface shadow-sm" id="heroHostBadge">
+                    <span class="px-3 py-1 rounded-full bg-surface-container-lowest font-label-sm text-label-sm text-on-surface shadow-sm font-semibold" id="heroHostBadge">
                       Today's Host: Shinnosuke &amp; Shiro
                     </span>
-                    <span class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[13px] shadow-sm">
-                      ★
-                    </span>
+                    <button class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold shadow-sm hover:scale-105 transition-transform" id="heroHostCallBtn" title="Call Today's Host">
+                      <span class="material-symbols-outlined text-[14px]">call</span>
+                      <span>Call Host</span>
+                    </button>
                   </div>
                   <div class="relative z-10 w-full h-48 rounded-lg overflow-hidden shadow-md group bg-surface-container-high">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Shinchan and Shiro resting cozy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOqhIgqGYZ96233cx7LVOkf2XeNOQJDSkPecuGjJ56baaef_FN9071S6nirCzuuYMGxSvP0qvoi9qRS93YWAtG5omhv4E26Z9lHiZ5isN888xt6JNQXTXcLhhKT5rtJzftFxRBbiaT9r4JJJqVjKEDzy1udC-8eHGOvhkqh0GbeJK_ZZQLRaeaFoCXMHH4ECtjgc2D-fh6eH0VRDpzmMFAKd_HV-GKjj5QjnV8quO-xBqzxiyVrEh-"/>
+                    <img id="heroHostImage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Today's Host" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOqhIgqGYZ96233cx7LVOkf2XeNOQJDSkPecuGjJ56baaef_FN9071S6nirCzuuYMGxSvP0qvoi9qRS93YWAtG5omhv4E26Z9lHiZ5isN888xt6JNQXTXcLhhKT5rtJzftFxRBbiaT9r4JJJqVjKEDzy1udC-8eHGOvhkqh0GbeJK_ZZQLRaeaFoCXMHH4ECtjgc2D-fh6eH0VRDpzmMFAKd_HV-GKjj5QjnV8quO-xBqzxiyVrEh-"/>
                     <div class="absolute bottom-2 left-2 right-2 px-3 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-between text-on-surface">
-                      <span class="font-label-sm text-label-sm font-semibold">Shinchan says: "Oho! You made it safely!"</span>
-                      <span class="material-symbols-outlined text-primary text-[18px]">favorite</span>
+                      <span class="font-label-sm text-label-sm font-semibold truncate mr-2" id="heroHostGreeting">Shinchan says: "Oho! You made it safely!"</span>
+                      <span class="material-symbols-outlined text-primary text-[18px] shrink-0">favorite</span>
                     </div>
                   </div>
-                  <div class="relative z-10 bg-surface-container-lowest/95 backdrop-blur-md p-3 rounded-lg shadow-sm flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant italic truncate">
-                      "Take a warm sip of tea... you did your best today!"
-                    </p>
+                  <div class="relative z-10 bg-surface-container-lowest/95 backdrop-blur-md p-3 rounded-lg shadow-sm flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 overflow-hidden">
+                      <span class="w-2 h-2 rounded-full bg-secondary animate-pulse shrink-0"></span>
+                      <p class="font-body-sm text-body-sm text-on-surface-variant italic truncate" id="heroHostSubtext">
+                        "Take a warm sip of tea... you did your best today!"
+                      </p>
+                    </div>
+                    <button class="shrink-0 px-2.5 py-1 rounded-full bg-primary text-white text-xs font-bold hover:opacity-90 flex items-center gap-1 shadow-sm" id="heroHostChatBtn">
+                      <span>Chat</span>
+                      <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -691,7 +831,7 @@
       <!-- VIEW 4: CHARACTER CHAT (GEMINI POWERED)    -->
       <!-- ========================================== -->
       <section class="app-view hidden flex-col w-full" id="view-character-chat">
-        <div class="max-w-4xl mx-auto w-full flex flex-col h-[calc(100vh-180px)] min-h-[580px]">
+        <div class="max-w-4xl mx-auto w-full flex flex-col h-[calc(100dvh-200px)] sm:h-[calc(100vh-180px)] min-h-[460px] sm:min-h-[560px]">
           
           <!-- Chat Header Card -->
           <div class="rounded-t-xl bg-surface-container-lowest p-4 sm:p-5 shadow-sm border border-b-0 border-surface-container flex flex-wrap items-center justify-between gap-3">
@@ -720,6 +860,10 @@
 
             <!-- Utility Controls -->
             <div class="flex items-center gap-2">
+              <button class="px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 shadow-sm" id="chatCallCharacterBtn" title="Call companion with real two-way voice">
+                <span class="material-symbols-outlined text-[16px]">call</span>
+                <span class="font-bold text-xs">Call Voice 📞</span>
+              </button>
               <button class="px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1" id="changeFeelingsQuickBtn" title="Update emotion tags">
                 <span class="material-symbols-outlined text-[16px]">tune</span>
                 <span class="hidden sm:inline">Feelings</span>
@@ -749,26 +893,14 @@
             <span id="typingIndicatorText">Shinchan is thinking of a warm thought...</span>
           </div>
 
-          <!-- Prompt Starters Row -->
-          <div class="bg-surface-container-lowest px-4 py-2 border-x border-surface-container overflow-x-auto flex items-center gap-2 no-scrollbar" id="quickPromptChips">
-            <span class="font-label-sm text-[11px] text-outline shrink-0 font-medium">Quick Starters:</span>
-            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="My boyfriend accused me of cheating.">
-              💔 "My boyfriend accused me of cheating."
-            </button>
-            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="Can u comfort me and scold me?">
-              🤗 "Can u comfort me and scold me?"
-            </button>
-            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="Yeahh.">
-              💬 "Yeahh."
-            </button>
-            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="I'm drowning in exam stress and can't focus.">
-              📚 "Exam stress is killing me..."
-            </button>
-            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="I got the job today! Celebrate with me!">
-              🎉 "I got the job today!"
-            </button>
-            <button class="quick-chip px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-medium whitespace-nowrap transition-colors" data-prompt="Tell me something silly to make me laugh.">
-              🦖 "Tell me something silly."
+          <!-- Dynamic Prompt Starters Row -->
+          <div class="bg-surface-container-lowest px-3 sm:px-4 py-2 border-x border-surface-container flex items-center justify-between gap-2 border-b border-surface-container/60">
+            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 flex-1" id="quickPromptChips">
+              <!-- Rendered dynamically with character & diverse category suggestions -->
+            </div>
+            <button class="shrink-0 px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all flex items-center gap-1 text-[11px] font-bold shadow-xs active:scale-95" id="refreshSuggestionsBtn" type="button" title="Get fresh conversation starters">
+              <span class="material-symbols-outlined text-[15px]">autorenew</span>
+              <span class="hidden sm:inline">Refresh Starters</span>
             </button>
           </div>
 
@@ -803,14 +935,14 @@
         </div>
 
         <!-- 3 Interactive Tabs -->
-        <div class="flex items-center justify-center gap-2 mb-space-lg">
-          <button class="fun-tab-btn px-5 py-2 rounded-full font-label-md text-label-md transition-all active-fun-tab bg-primary-container text-on-primary-container font-bold shadow-sm" data-tab="little-wins">
+        <div class="flex items-center justify-center flex-wrap gap-2 mb-space-lg">
+          <button class="fun-tab-btn px-4 sm:px-5 py-2 rounded-full font-label-md text-xs sm:text-label-md transition-all active-fun-tab bg-primary-container text-on-primary-container font-bold shadow-sm" data-tab="little-wins">
             🌻 Little Wins Garden
           </button>
-          <button class="fun-tab-btn px-5 py-2 rounded-full font-label-md text-label-md transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="meme-maker">
+          <button class="fun-tab-btn px-4 sm:px-5 py-2 rounded-full font-label-md text-xs sm:text-label-md transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="meme-maker">
             🎨 Mood Meme Maker
           </button>
-          <button class="fun-tab-btn px-5 py-2 rounded-full font-label-md text-label-md transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="biscuit-crack">
+          <button class="fun-tab-btn px-4 sm:px-5 py-2 rounded-full font-label-md text-xs sm:text-label-md transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="biscuit-crack">
             🍪 Chocobi Fortune
           </button>
         </div>
@@ -955,33 +1087,57 @@
             </p>
 
             <div class="space-y-3 mb-space-md">
-              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span class="font-label-md text-label-md text-on-surface block font-bold">United States &amp; Canada</span>
                   <span class="font-body-sm text-body-sm text-on-surface-variant">Suicide &amp; Crisis Lifeline (24/7, Free, Confidential)</span>
                 </div>
-                <span class="font-label-lg text-primary font-extrabold text-lg">988</span>
+                <a href="tel:988" class="self-start sm:self-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-md text-xs font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" title="Call 988 Lifeline">
+                  <span class="material-symbols-outlined text-[16px]">call</span>
+                  <span>Call 988</span>
+                </a>
               </div>
-              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span class="font-label-md text-label-md text-on-surface block font-bold">United Kingdom</span>
                   <span class="font-body-sm text-body-sm text-on-surface-variant">Samaritans UK &amp; NHS Mental Health</span>
                 </div>
-                <span class="font-label-lg text-primary font-extrabold text-lg">111 / 116 123</span>
+                <div class="flex items-center gap-2 self-start sm:self-auto">
+                  <a href="tel:111" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-xs font-bold transition-all" title="Call 111 NHS">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span>111</span>
+                  </a>
+                  <a href="tel:116123" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-xs font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" title="Call 116 123 Samaritans">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span>116 123</span>
+                  </a>
+                </div>
               </div>
-              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span class="font-label-md text-label-md text-on-surface block font-bold">India</span>
                   <span class="font-body-sm text-body-sm text-on-surface-variant">Tele-MANAS &amp; Vandrevala Foundation</span>
                 </div>
-                <span class="font-label-lg text-primary font-extrabold text-lg">14416 / 9999 666 555</span>
+                <div class="flex items-center gap-2 self-start sm:self-auto">
+                  <a href="tel:14416" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-xs font-bold transition-all" title="Call Tele-MANAS 14416">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span>14416</span>
+                  </a>
+                  <a href="tel:9999666555" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-xs font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" title="Call Vandrevala Foundation">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span>9999 666 555</span>
+                  </a>
+                </div>
               </div>
-              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span class="font-label-md text-label-md text-on-surface block font-bold">International (Worldwide Directory)</span>
                   <span class="font-body-sm text-body-sm text-on-surface-variant">Befrienders Worldwide &amp; Find A Helpline</span>
                 </div>
-                <span class="font-label-sm text-primary font-bold">findahelpline.com</span>
+                <a href="https://findahelpline.com" target="_blank" rel="noopener noreferrer" class="self-start sm:self-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-white font-label-md text-xs font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" title="Open Find A Helpline Directory">
+                  <span>findahelpline.com</span>
+                  <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                </a>
               </div>
             </div>
 
@@ -1009,76 +1165,212 @@
   <!-- ========================================== -->
   <!-- MODAL 1: MAKE ME SMILE POPUP               -->
   <!-- ========================================== -->
-  <div class="fixed inset-0 z-50 hidden items-center justify-center p-space-md bg-on-surface/40 backdrop-blur-sm transition-opacity duration-300" id="smileModal">
-    <div class="relative w-full max-w-md rounded-xl bg-surface-container-lowest p-space-lg shadow-2xl flex flex-col items-center text-center animate-bounce-short border border-surface-container">
-      <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" id="closeSmileModal" type="button">
-        <span class="material-symbols-outlined text-[18px]">close</span>
-      </button>
-      <div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-3xl mb-space-sm shadow-md">
-        🦖
-      </div>
-      <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-xs">
-        Special Chocobi Delivery!
-      </span>
-      <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-xs" id="smileModalTitle">
-        "Look, look! An Action Kamen Pose!"
-      </h3>
-      <p class="font-body-md text-body-md text-on-surface-variant mb-space-md" id="smileModalBody">
-        Shinnosuke attempts an epic high kick, drops his snack, and Shiro smoothly catches it mid-air without blinking. Even the pigeon on the fence is clapping!
-      </p>
-      <div class="p-space-sm rounded-lg bg-surface-container-low w-full mb-space-md text-on-surface-variant font-body-sm text-body-sm italic">
-        "Remember: Nobody expects you to have everything figured out today. Eat a biscuit and take it slow."
-      </div>
-      <div class="flex items-center gap-2 w-full">
-        <button class="flex-1 py-3 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:opacity-95 transition-all" id="smileAgainBtn" type="button">
-          Another Giggle!
+  <div class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden bg-on-surface/40 backdrop-blur-sm transition-opacity duration-300" id="smileModal">
+    <div class="min-h-full min-h-[100dvh] w-full flex flex-col items-center justify-start py-6 sm:py-8 px-3 sm:px-4 md:px-space-md text-center smile-modal-backdrop" id="smileModalBackdrop">
+      <div class="relative w-full max-w-md my-auto h-auto min-h-fit rounded-xl bg-surface-container-lowest p-4 sm:p-6 md:p-space-lg shadow-2xl flex flex-col items-center text-center animate-bounce-short border border-surface-container overflow-visible shrink-0 smile-card">
+        <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer" id="closeSmileModal" type="button" title="Close">
+          <span class="material-symbols-outlined text-[18px]">close</span>
         </button>
-        <button class="flex-1 py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md text-center hover:opacity-95 transition-all" id="smileToFunZoneBtn" type="button">
-          To Fun Zone
+        <div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-3xl mb-space-sm shadow-md shrink-0">
+          🦖
+        </div>
+        <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-xs shrink-0">
+          Special Chocobi Delivery!
+        </span>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-xs shrink-0" id="smileModalTitle">
+          "Look, look! An Action Kamen Pose!"
+        </h3>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-space-md shrink-0" id="smileModalBody">
+          Shinnosuke attempts an epic high kick, drops his snack, and Shiro smoothly catches it mid-air without blinking. Even the pigeon on the fence is clapping!
+        </p>
+        <div class="p-space-sm rounded-lg bg-surface-container-low w-full mb-space-md text-on-surface-variant font-body-sm text-body-sm italic shrink-0">
+          "Remember: Nobody expects you to have everything figured out today. Eat a biscuit and take it slow."
+        </div>
+        <div class="flex items-center gap-2 w-full shrink-0">
+          <button class="flex-1 py-3 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:opacity-95 transition-all cursor-pointer" id="smileAgainBtn" type="button">
+            Another Giggle!
+          </button>
+          <button class="flex-1 py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md text-center hover:opacity-95 transition-all cursor-pointer" id="smileToFunZoneBtn" type="button">
+            To Fun Zone
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL 2: GUIDED BREATHING RESET (MOOD RESET) -->
+  <!-- ========================================== -->
+  <div class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden bg-on-surface/50 backdrop-blur-md transition-opacity duration-300" id="breathingModal">
+    <div class="min-h-full min-h-[100dvh] w-full flex flex-col items-center justify-start py-6 sm:py-8 px-3 sm:px-4 md:px-6 text-center breathing-modal-backdrop" id="breathingModalBackdrop">
+      <div class="relative w-full max-w-md my-auto h-auto min-h-fit rounded-2xl bg-surface-container-lowest p-5 sm:p-6 md:p-space-lg shadow-2xl flex flex-col items-center text-center border border-surface-container overflow-visible shrink-0 breathing-card">
+        <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer" id="closeBreathingModal" type="button" title="Close Mood Reset">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+
+        <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-sm shrink-0">
+          4-4-4 Grounding Rhythm
+        </span>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1 shrink-0">
+          Breathe With Shiro
+        </h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg shrink-0">
+          Inhale warmth, hold quiet peace, exhale tension.
+        </p>
+
+        <!-- Breathing Animated Rings Canvas -->
+        <div class="relative w-44 h-44 sm:w-56 sm:h-56 flex items-center justify-center my-2 sm:my-4 shrink-0 overflow-visible max-w-full">
+          <div class="absolute inset-0 rounded-full bg-primary-container/20 animate-breathe pointer-events-none"></div>
+          <div class="absolute w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-secondary-container/30 animate-breathe [animation-delay:1s] pointer-events-none"></div>
+          <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-primary-fixed to-secondary-fixed flex flex-col items-center justify-center shadow-lg transition-transform duration-1000 shrink-0" id="breathCenterCircle">
+            <span class="text-2xl sm:text-3xl mb-1 select-none">🐕</span>
+            <span class="font-label-lg text-primary font-bold text-sm sm:text-base" id="breathPhaseText">Inhale</span>
+          </div>
+        </div>
+
+        <p class="font-headline-sm text-headline-sm text-primary font-bold my-2 shrink-0" id="breathTimerNum">
+          4
+        </p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant italic mb-space-md max-w-sm shrink-0">
+          "Drop your shoulders. Unclench your jaw. You are safe right now."
+        </p>
+
+        <button class="w-full py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm hover:opacity-95 transition-all shrink-0 cursor-pointer" id="finishBreathingBtn" type="button">
+          I Feel Grounded 💗
         </button>
       </div>
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- MODAL 2: GUIDED BREATHING RESET            -->
+  <!-- MODAL 3: CALL YOUR FAVOURITE CHARACTER     -->
   <!-- ========================================== -->
-  <div class="fixed inset-0 z-50 hidden items-center justify-center p-space-md bg-on-surface/50 backdrop-blur-md transition-opacity duration-300" id="breathingModal">
-    <div class="relative w-full max-w-md rounded-2xl bg-surface-container-lowest p-space-lg shadow-2xl flex flex-col items-center text-center border border-surface-container">
-      <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" id="closeBreathingModal" type="button">
-        <span class="material-symbols-outlined text-[18px]">close</span>
-      </button>
+  <div class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden bg-on-surface/60 backdrop-blur-md transition-opacity duration-300" id="voiceCallModal">
+    <div class="min-h-full min-h-[100dvh] w-full flex flex-col items-center justify-start py-6 sm:py-8 px-3 sm:px-4 text-center voice-call-modal-backdrop" id="voiceCallModalBackdrop">
+      <div class="relative w-full max-w-md my-auto h-auto min-h-fit rounded-3xl bg-surface-container-lowest p-4 sm:p-6 md:p-7 shadow-2xl flex flex-col items-center text-center border-2 border-primary/20 overflow-visible shrink-0 voice-call-card">
+        <!-- Close Call Button -->
+        <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer" id="closeVoiceCallModal" type="button" title="Close Call">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
 
-      <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-sm">
-        4-4-4 Grounding Rhythm
-      </span>
-      <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">
-        Breathe With Shiro
-      </h3>
-      <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
-        Inhale warmth, hold quiet peace, exhale tension.
-      </p>
+        <!-- Decorative background blur circles -->
+        <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-primary-container/30 blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-secondary-container/40 blur-2xl pointer-events-none"></div>
 
-      <!-- Breathing Animated Rings Canvas -->
-      <div class="relative w-56 h-56 flex items-center justify-center my-4">
-        <div class="absolute inset-0 rounded-full bg-primary-container/20 animate-breathe pointer-events-none"></div>
-        <div class="absolute w-44 h-44 rounded-full bg-secondary-container/30 animate-breathe [animation-delay:1s] pointer-events-none"></div>
-        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary-fixed to-secondary-fixed flex flex-col items-center justify-center shadow-lg transition-transform duration-1000" id="breathCenterCircle">
-          <span class="text-3xl mb-1">🐕</span>
-          <span class="font-label-lg text-primary font-bold" id="breathPhaseText">Inhale</span>
+        <!-- Top Bar: Connection status & duration -->
+        <div class="relative z-10 w-full flex items-center justify-between mb-3 pr-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-xs font-semibold" id="callStatusBadge">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse" id="callStatusDot"></span>
+            <span id="callStatusText">Connecting...</span>
+          </div>
+          <div class="font-mono text-xs font-bold text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full" id="callTimer">
+            00:00
+          </div>
+        </div>
+
+        <!-- Character Calling Avatar with pulsing sound waves -->
+        <div class="relative z-10 my-2.5 sm:my-3 flex items-center justify-center">
+          <!-- Pulse ripple 1 -->
+          <div class="absolute w-44 h-44 rounded-full bg-primary-container/20 animate-ping [animation-duration:3s] pointer-events-none" id="callRipple1"></div>
+          <!-- Pulse ripple 2 -->
+          <div class="absolute w-36 h-36 rounded-full bg-secondary-container/30 animate-pulse pointer-events-none" id="callRipple2"></div>
+          <!-- Avatar circle -->
+          <div class="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary-fixed to-secondary-fixed flex items-center justify-center shadow-xl border-4 border-white transition-transform duration-300" id="callAvatarContainer">
+            <span class="text-4xl select-none" id="callAvatarEmoji">🖍️</span>
+          </div>
+        </div>
+
+        <!-- Character Info -->
+        <div class="relative z-10 my-1">
+          <h3 class="font-headline-sm text-xl text-on-surface font-extrabold" id="callCharacterName">
+            Shinnosuke (Shinchan)
+          </h3>
+          <p class="font-body-sm text-xs text-primary font-medium mt-0.5" id="callCharacterRole">
+            Playful Comfort &amp; Sincere Voice
+          </p>
+        </div>
+
+        <!-- Live Voice Subtitles / Speech Transcript Display -->
+        <div class="relative z-10 w-full min-h-[64px] max-h-36 overflow-y-auto my-2 p-3 rounded-2xl bg-surface-container-low/90 border border-surface-container text-center flex flex-col justify-center items-center shadow-inner">
+          <div class="flex items-center justify-between w-full px-1 mb-0.5">
+            <p class="text-[10px] uppercase tracking-wider font-bold text-outline" id="callSpeakerLabel">
+              Connecting call...
+            </p>
+            <button class="inline-flex items-center gap-0.5 text-[10px] font-bold text-primary hover:underline cursor-pointer" id="callReplayVoiceBtn" type="button" title="Replay voice audio">
+              <span class="material-symbols-outlined text-[13px]">volume_up</span>
+              <span>Replay Voice</span>
+            </button>
+          </div>
+          <p class="font-body-md text-xs sm:text-sm text-on-surface font-semibold leading-relaxed" id="callTranscriptText">
+            "Oii! Can you hear me? Press speak or talk naturally!"
+          </p>
+        </div>
+
+        <!-- Real-time Audio Visualizer Bars -->
+        <div class="relative z-10 w-full h-6 flex items-center justify-center gap-1.5 my-1" id="callAudioBars">
+          <div class="w-1.5 h-2 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-4 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-6 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-3 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-5 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-4 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-2 bg-primary rounded-full transition-all duration-150 bar"></div>
+        </div>
+
+        <!-- Push-to-Talk / Mic Status Message -->
+        <div class="relative z-10 text-[11px] text-on-surface-variant font-medium mb-2.5 flex items-center gap-1.5" id="callMicInstruction">
+          <span class="material-symbols-outlined text-[15px] text-primary animate-pulse" id="callMicIcon">mic</span>
+          <span id="callMicStateLabel">Listening to your voice... Speak anytime!</span>
+        </div>
+
+        <!-- Quick Voice Topic Suggestions -->
+        <div class="relative z-10 w-full flex items-center justify-center flex-wrap gap-1.5 mb-2" id="callTopicChips">
+          <button type="button" class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant transition-all call-topic-chip cursor-pointer" data-topic="I had such a happy day today!">
+            🎈 I'm happy today!
+          </button>
+          <button type="button" class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant transition-all call-topic-chip cursor-pointer" data-topic="Tell me a funny joke to make me smile!">
+            😂 Tell me a joke!
+          </button>
+          <button type="button" class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant transition-all call-topic-chip cursor-pointer" data-topic="I feel a bit overwhelmed right now. Can we talk?">
+            ✨ Need a warm hug
+          </button>
+        </div>
+
+        <!-- Optional In-Call Text Input Fallback (Collapsible) -->
+        <div class="relative z-10 w-full mb-2.5 hidden" id="callTextInputWrapper">
+          <form class="flex items-center gap-2" id="callTextForm">
+            <input class="flex-1 px-3.5 py-2 rounded-full bg-surface-container text-xs text-on-surface border border-outline-variant focus:outline-none focus:ring-1 focus:ring-primary" id="callTextInput" placeholder="Type here if mic is quiet..." type="text" autocomplete="off"/>
+            <button class="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold hover:opacity-95 cursor-pointer" type="submit">Say</button>
+          </form>
+        </div>
+
+        <!-- Bottom Call Controls Row -->
+        <div class="relative z-10 w-full flex items-center justify-around pt-3 border-t border-surface-container mt-1 shrink-0">
+          <!-- Mute/Unmute Mic -->
+          <button class="flex flex-col items-center gap-1 text-on-surface group cursor-pointer" id="callMuteMicBtn" type="button" title="Mute Microphone">
+            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-surface-container-high transition-colors shadow-sm" id="callMuteMicCircle">
+              <span class="material-symbols-outlined text-[20px]" id="callMuteMicIcon">mic</span>
+            </div>
+            <span class="text-[10px] font-medium" id="callMuteMicLabel">Mute</span>
+          </button>
+
+          <!-- End Call Button (Big Red Circle) -->
+          <button class="flex flex-col items-center gap-1 group cursor-pointer" id="callEndBtn" type="button" title="End Call">
+            <div class="w-12 h-12 rounded-full bg-red-500 hover:bg-red-600 active:scale-95 text-white flex items-center justify-center shadow-lg transition-all">
+              <span class="material-symbols-outlined text-[24px]">call_end</span>
+            </div>
+            <span class="text-[10px] font-bold text-red-600">End Call</span>
+          </button>
+
+          <!-- Speaker Mute / Keyboard Toggle -->
+          <button class="flex flex-col items-center gap-1 text-on-surface group cursor-pointer" id="callToggleTextBtn" type="button" title="Keyboard Text Input">
+            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-surface-container-high transition-colors shadow-sm" id="callTextCircle">
+              <span class="material-symbols-outlined text-[20px]">keyboard</span>
+            </div>
+            <span class="text-[10px] font-medium" id="callTextLabel">Keyboard</span>
+          </button>
         </div>
       </div>
-
-      <p class="font-headline-sm text-headline-sm text-primary font-bold my-2" id="breathTimerNum">
-        4
-      </p>
-      <p class="font-body-sm text-body-sm text-on-surface-variant italic mb-space-md">
-        "Drop your shoulders. Unclench your jaw. You are safe right now."
-      </p>
-
-      <button class="w-full py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm hover:opacity-95 transition-all" id="finishBreathingBtn" type="button">
-        I Feel Grounded 💗
-      </button>
     </div>
   </div>
 
@@ -1132,6 +1424,9 @@
       </div>
     </div>
   </footer>
+
+  <!-- Comfort Toast Container -->
+  <div id="comfortToastContainer" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none flex flex-col items-center gap-2 max-w-sm w-full px-4"></div>
 
   <!-- Application Logic -->
   <script>
@@ -1309,19 +1604,52 @@
       }
     }
 
-    // Attach click handlers to any data-nav buttons
+    // Safe LocalStorage wrapper for sandboxed iframes
+    const safeStorage = {
+      get(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+      },
+      set(key, val) {
+        try { localStorage.setItem(key, val); } catch (e) {}
+      }
+    };
+
+    // Comfort Toast Notification
+    function showComfortToast(message, icon = "favorite") {
+      const container = document.getElementById("comfortToastContainer");
+      if (!container) return;
+      const toast = document.createElement("div");
+      toast.className = "pointer-events-auto flex items-center gap-2 px-4 py-2.5 rounded-full bg-on-surface text-surface text-xs font-semibold shadow-xl transition-all duration-300 transform translate-y-4 opacity-0 border border-primary-container/40";
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-primary text-[18px] shrink-0">${icon}</span>
+        <span class="truncate">${escapeHtml(message)}</span>
+      `;
+      container.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.classList.remove("translate-y-4", "opacity-0");
+      });
+      setTimeout(() => {
+        toast.classList.add("translate-y-4", "opacity-0");
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Attach click handlers to any data-nav buttons or nav-btn
     document.addEventListener("click", (e) => {
       const navTarget = e.target.closest("[data-nav]");
       if (navTarget) {
         e.preventDefault();
         const target = navTarget.getAttribute("data-nav");
-        switchView(target);
+        if (target) {
+          switchView(target);
+          return;
+        }
       }
       const navBtn = e.target.closest(".nav-btn, .mobile-nav-btn");
-      if (navBtn) {
+      if (navBtn && navBtn.dataset.target) {
         e.preventDefault();
-        const target = navBtn.dataset.target;
-        switchView(target);
+        switchView(navBtn.dataset.target);
+        return;
       }
     });
 
@@ -1335,7 +1663,7 @@
       container.innerHTML = characters.map(char => {
         const isSelected = char.id === state.selectedCharacter;
         return `
-          <div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-md hover:shadow-xl transition-all border ${isSelected ? 'border-primary ring-2 ring-primary/30' : 'border-surface-container'} flex flex-col justify-between group">
+          <div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-md hover:shadow-xl transition-all border ${isSelected ? 'border-primary ring-2 ring-primary/30' : 'border-surface-container'} flex flex-col justify-between group cursor-pointer" data-char-card="${char.id}">
             <div>
               <div class="flex items-center justify-between mb-3">
                 <div class="w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 transition-transform">
@@ -1352,16 +1680,41 @@
               </div>
             </div>
 
-            <button class="w-full py-2.5 rounded-full ${isSelected ? 'bg-primary text-on-primary font-bold shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface'} text-sm transition-all select-char-btn" data-char-id="${char.id}">
-              ${isSelected ? 'Currently Selected' : `Chat with ${char.name.split(' ')[0]}`}
-            </button>
+            <div class="flex items-center gap-2 mt-2">
+              <button class="flex-1 py-2.5 rounded-full ${isSelected ? 'bg-primary text-on-primary font-bold shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface'} text-xs font-semibold transition-all select-char-btn" data-char-id="${char.id}" type="button">
+                ${isSelected ? 'Active Friend' : `Chat with ${char.name.split(' ')[0]}`}
+              </button>
+              <button class="px-3.5 py-2.5 rounded-full bg-secondary-container text-on-secondary-container hover:scale-105 active:scale-95 text-xs font-bold transition-all call-char-btn flex items-center justify-center gap-1 shadow-sm shrink-0" data-char-id="${char.id}" title="Call ${char.name.split(' ')[0]}" type="button">
+                <span class="material-symbols-outlined text-[15px]">call</span>
+                <span>Call 📞</span>
+              </button>
+            </div>
           </div>
         `;
       }).join('');
 
       container.querySelectorAll(".select-char-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
           const charId = btn.dataset.charId;
+          selectCompanion(charId);
+          switchView("feelings-check-in");
+        });
+      });
+
+      container.querySelectorAll(".call-char-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const charId = btn.dataset.charId;
+          selectCompanion(charId);
+          startVoiceCall(charId);
+        });
+      });
+
+      container.querySelectorAll("[data-char-card]").forEach(card => {
+        card.addEventListener("click", (e) => {
+          if (e.target.closest("button")) return;
+          const charId = card.dataset.charCard;
           selectCompanion(charId);
           switchView("feelings-check-in");
         });
@@ -1372,6 +1725,7 @@
       const char = characters.find(c => c.id === charId);
       if (!char) return;
       state.selectedCharacter = charId;
+      showComfortToast(`Joined with ${char.name.split(' ')[0]} ${char.emoji}!`, "sentiment_satisfied");
 
       // Update header elements
       document.getElementById("headerCompanionLabel").textContent = `Companion: ${char.name.split(' ')[0]} ${char.emoji}`;
@@ -1394,6 +1748,14 @@
             source: state.forceDemo ? "demo-mode" : "gemini-live"
           }
         ];
+      }
+
+      // Update dynamic prompt suggestions for this companion
+      if (typeof renderDynamicSuggestions === "function") {
+        renderDynamicSuggestions(charId);
+      }
+      if (typeof updateChatHeaderUI === "function") {
+        updateChatHeaderUI();
       }
     }
 
@@ -1514,17 +1876,30 @@
               <div class="w-9 h-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-xl shadow-sm shrink-0">
                 ${char.emoji}
               </div>
-              <div class="relative max-w-[85%] sm:max-w-[75%] rounded-2xl rounded-tl-none bg-surface-container-lowest text-on-surface p-4 shadow-sm border border-surface-container chat-bubble-companion">
+              <div class="relative max-w-[85%] sm:max-w-[75%] rounded-2xl rounded-tl-none bg-surface-container-lowest text-on-surface p-4 shadow-sm border ${msg.isError ? 'border-red-400 bg-red-50/40' : 'border-surface-container'} chat-bubble-companion">
                 <div class="flex items-center justify-between mb-1 gap-2">
                   <span class="font-label-sm text-xs font-bold text-primary">${char.name.split(' ')[0]}</span>
                   <span class="text-[10px] text-outline">${msg.source === "demo-mode" || msg.source === "demo-fallback" ? "(Demo Scripted)" : "✨ Gemini Live"}</span>
                 </div>
                 <p class="font-body-md text-sm whitespace-pre-wrap leading-relaxed">${escapeHtml(msg.content)}</p>
+                ${msg.isError && msg.failedQuery ? `
+                  <button class="mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary text-white text-xs font-bold hover:opacity-90 retry-msg-btn transition-all shadow-sm" data-retry="${escapeHtml(msg.failedQuery)}">
+                    <span class="material-symbols-outlined text-[14px]">refresh</span>
+                    <span>Retry Response</span>
+                  </button>
+                ` : ''}
               </div>
             </div>
           `;
         }
       }).join('');
+
+      container.querySelectorAll(".retry-msg-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const query = btn.dataset.retry;
+          if (query) sendMessage(query);
+        });
+      });
 
       scrollChatToBottom();
     }
@@ -1546,6 +1921,11 @@
       if (!userText || !userText.trim() || state.isGenerating) return;
       const cleanText = userText.trim();
 
+      const sendBtn = document.getElementById("chatSendBtn");
+      const textInput = document.getElementById("chatTextInput");
+      if (sendBtn) sendBtn.disabled = true;
+      if (textInput) textInput.disabled = true;
+
       // Add user message to history
       state.chatHistory.push({
         role: "user",
@@ -1556,45 +1936,128 @@
       // Show typing indicator
       state.isGenerating = true;
       const char = characters.find(c => c.id === state.selectedCharacter) || characters[0];
-      document.getElementById("typingIndicatorText").textContent = `${char.name.split(' ')[0]} is thinking of a warm reply...`;
+      document.getElementById("typingIndicatorText").textContent = `${char.name.split(' ')[0]} is thinking...`;
       document.getElementById("chatTypingIndicator").classList.remove("hidden");
       document.getElementById("chatTypingIndicator").classList.add("flex");
       scrollChatToBottom();
 
+      const assistantMsg = {
+        role: "assistant",
+        content: "",
+        source: state.forceDemo ? "demo-mode" : "gemini-live"
+      };
+
       try {
-        // Send complete conversation history and emotions to backend
-        const response = await fetch("/api/chat", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            character: state.selectedCharacter,
-            emotions: state.selectedEmotions,
-            supportStyle: state.selectedSupportStyle,
-            messages: state.chatHistory,
-            latestMessage: cleanText,
-            forceDemo: state.forceDemo
-          })
-        });
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 25000);
 
-        const data = await response.json();
-        const reply = data.reply || "I'm right here with you. Take a slow, quiet breath.";
+        // Try streaming first for instant character response
+        let usedStreaming = false;
+        try {
+          const streamResponse = await fetch("/api/chat/stream", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              character: state.selectedCharacter,
+              emotions: state.selectedEmotions,
+              supportStyle: state.selectedSupportStyle,
+              messages: state.chatHistory.slice(0, -1),
+              latestMessage: cleanText,
+              forceDemo: state.forceDemo
+            }),
+            signal: controller.signal
+          });
 
-        state.chatHistory.push({
-          role: "assistant",
-          content: reply,
-          source: data.source || "gemini-live"
-        });
+          if (streamResponse.ok && streamResponse.body) {
+            const reader = streamResponse.body.getReader();
+            const decoder = new TextDecoder();
+            state.chatHistory.push(assistantMsg);
+            document.getElementById("chatTypingIndicator").classList.add("hidden");
+            document.getElementById("chatTypingIndicator").classList.remove("flex");
+
+            let done = false;
+            let buffer = "";
+            while (!done) {
+              const { value, done: streamDone } = await reader.read();
+              done = streamDone;
+              if (value) {
+                buffer += decoder.decode(value, { stream: true });
+                const lines = buffer.split("\n\n");
+                buffer = lines.pop() || "";
+                for (const line of lines) {
+                  if (line.startsWith("data: ")) {
+                    const dataStr = line.slice(6).trim();
+                    if (dataStr === "[DONE]") {
+                      done = true;
+                      break;
+                    }
+                    try {
+                      const parsed = JSON.parse(dataStr);
+                      if (parsed.chunk) {
+                        assistantMsg.content += parsed.chunk;
+                        renderChatMessages();
+                      }
+                    } catch {}
+                  }
+                }
+              }
+            }
+            clearTimeout(timeoutId);
+            if (assistantMsg.content.trim()) {
+              usedStreaming = true;
+            }
+          }
+        } catch (streamErr) {
+          console.warn("[Chat Stream fallback to standard API]:", streamErr);
+        }
+
+        // Fallback to standard POST if streaming didn't produce content
+        if (!usedStreaming || !assistantMsg.content.trim()) {
+          const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              character: state.selectedCharacter,
+              emotions: state.selectedEmotions,
+              supportStyle: state.selectedSupportStyle,
+              messages: state.chatHistory.slice(0, -1),
+              latestMessage: cleanText,
+              forceDemo: state.forceDemo
+            })
+          });
+
+          const data = await response.json();
+          const reply = data.reply || "I'm right here with you! What else is on your mind?";
+
+          if (!state.chatHistory.includes(assistantMsg)) {
+            state.chatHistory.push({
+              role: "assistant",
+              content: reply,
+              source: data.source || "gemini-live"
+            });
+          } else {
+            assistantMsg.content = reply;
+            assistantMsg.source = data.source || "gemini-live";
+          }
+        }
       } catch (err) {
         console.error("Chat error:", err);
         state.chatHistory.push({
           role: "assistant",
-          content: "Oii, I'm listening closely. 💗 Even when the connection flickers, remember you are safe and your feelings matter. What's on your heart?",
-          source: "demo-fallback"
+          content: "I had a temporary hiccup connecting with the stars. Would you like to try again?",
+          source: "demo-fallback",
+          isError: true,
+          failedQuery: cleanText
         });
       } finally {
         state.isGenerating = false;
+        if (sendBtn) sendBtn.disabled = false;
+        if (textInput) {
+          textInput.disabled = false;
+          textInput.focus();
+        }
         document.getElementById("chatTypingIndicator").classList.add("hidden");
         document.getElementById("chatTypingIndicator").classList.remove("flex");
         renderChatMessages();
@@ -1613,14 +2076,196 @@
       });
     }
 
-    // Quick Prompt Chips
-    document.querySelectorAll(".quick-chip").forEach(chip => {
-      chip.addEventListener("click", () => {
-        const prompt = chip.dataset.prompt;
-        if (prompt) {
-          sendMessage(prompt);
+    // ==========================================
+    // 4B. DYNAMIC CHAT SUGGESTIONS SYSTEM
+    // ==========================================
+    const suggestionsBank = {
+      categories: [
+        { cat: "Day-to-day", icon: "wb_sunny", prompts: [
+          "How was your day in Kasukabe today?",
+          "I had a surprisingly busy day today, what about you?",
+          "What kind of funny mischief happened around the neighborhood today?",
+          "Tell me what you've been up to since this morning!"
+        ]},
+        { cat: "Fun & Jokes", icon: "mood", prompts: [
+          "Tell me your best Kasukabe joke to make me giggle!",
+          "Can you teach me your ultimate signature superhero pose?",
+          "What's the silliest thing you've ever seen Shiro do?",
+          "If we entered a comedy contest together, what would our act be?"
+        ]},
+        { cat: "Calming", icon: "spa", prompts: [
+          "My mind feels loud and buzzing right now, can we sit quietly together?",
+          "Tell me about a peaceful, warm afternoon in Kasukabe.",
+          "Can you share something gentle that helps you feel safe?",
+          "Let's take a slow, deep breath together right now."
+        ]},
+        { cat: "Deep Thoughts", icon: "psychology", prompts: [
+          "Why is it so hard to be honest about how we really feel sometimes?",
+          "Do you ever feel like you're trying too hard to meet expectations?",
+          "What makes someone a truly loyal friend when times get rough?",
+          "What does feeling peaceful mean to you?"
+        ]},
+        { cat: "Motivation", icon: "bolt", prompts: [
+          "I have a big hurdle coming up and feel nervous, give me a pep talk!",
+          "Can you remind me why trying my best is always enough?",
+          "How do you stay confident when someone doubts what you can do?",
+          "Help me shake off self-doubt before tomorrow starts!"
+        ]},
+        { cat: "Kasukabe Stories", icon: "menu_book", prompts: [
+          "What is the Kasukabe Defense Force's top secret mission this week?",
+          "Tell me about Action Kamen's latest battle against Baron Nostradamus!",
+          "What funny thing did Principal Enchou-sensei say at kindergarten?",
+          "Tell me a story about a rainy afternoon at the Nohara household."
+        ]},
+        { cat: "Decompression", icon: "self_improvement", prompts: [
+          "School and work were completely draining today, help me unwind.",
+          "How do you leave stressful thoughts at the front door?",
+          "I just need someone who listens without expecting me to be perfect.",
+          "What is your favorite lazy evening ritual when you're tired?"
+        ]},
+        { cat: "Curious Questions", icon: "help_outline", prompts: [
+          "If you could have an endless mountain of Chocobi, what would you do first?",
+          "Who do you think is secretly the bravest friend in the group?",
+          "What is Shiro's favorite cozy spot when it gets cold?",
+          "If you could fly anywhere for one hour, where would you go?"
+        ]},
+        { cat: "Creative & Playful", icon: "palette", prompts: [
+          "Let's invent a brand-new playground game together!",
+          "If we designed a Kasukabe superhero costume, what would it look like?",
+          "What would an ultra-deluxe star cookie flavor taste like?",
+          "Let's pretend we're on a secret expedition across Kasukabe park!"
+        ]},
+        { cat: "Gratitude & Warmth", icon: "favorite", prompts: [
+          "I'm grateful for a quiet moment and a warm cup of tea today.",
+          "Thank you for being here with me without any judgment.",
+          "What is one tiny, simple thing that brought you joy today?",
+          "It feels good having a loyal friend to talk to."
+        ]}
+      ],
+      characterPrompts: {
+        Shinchan: [
+          "Oii Shinchan! Want to show me your best Action Kamen high kick?",
+          "Did you manage to dodge the green peppers at dinner today?",
+          "I'm feeling super happy today! Want to celebrate with Chocobi?",
+          "Shinchan, what makes you smile even when it's raining outside?"
+        ],
+        Kazama: [
+          "Kazama-kun, how are your cram school lessons and English going?",
+          "Don't worry so much about having to be perfect—you're doing great!",
+          "Are you secretly watching magical girl Moe-P again when no one's looking?",
+          "Kazama, how do you handle feeling stressed before a big test?"
+        ],
+        Nene: [
+          "Nene-chan, what dramatic scenario is happening in Real Playhouse today?",
+          "How do you stay so bold and speak your mind with confidence?",
+          "Did the stuffed bunny get any punches today or are we peaceful?",
+          "Nene, what's your advice for when someone takes my kindness for granted?"
+        ],
+        Masao: [
+          "Masao-kun, you are the sweetest friend in Kasukabe—never forget that!",
+          "What exciting new superhero manga are you drawing this week?",
+          "It's completely okay to feel nervous, we can be brave together slowly.",
+          "Masao, how do you calm your tummy when you feel butterflies?"
+        ],
+        "Bo-chan": [
+          "Bo-chan, did you find any unusual, smooth river stones today?",
+          "Teach me how to stay still and calm like a quiet river pebble.",
+          "What do the shapes of the clouds look like to you right now?",
+          "Bo-chan, why is comfortable silence between friends so nice?"
+        ],
+        Himawari: [
+          "Himawari! Did you spot any sparkling jewels or handsome actors on TV?",
+          "Ah-da-da! Give me a big bubbly baby giggle to brighten up my room!",
+          "Here is a shiny gold star sticker just for you, Hima-chan!",
+          "What shiny treasure are you hiding under the living room sofa?"
+        ],
+        Shiro: [
+          "Shiro, good boy! Can you do your fluffy cotton candy ball spin for me?",
+          "Woof! Did Shinchan remember to feed you your dinner on time?",
+          "Come rest your soft chin on my knee while we relax together.",
+          "Shiro, let's take a peaceful afternoon nap under the warm sun."
+        ],
+        Hiroshi: [
+          "Hiroshi, how was your day at Futaba Shoji? Kick off those work shoes!",
+          "I asked about you! How are your deadlines and your tired feet feeling?",
+          "Got any practical fatherly advice for dealing with exhausting work weeks?",
+          "Hiroshi, what's your favorite cold drink after a tough commute?"
+        ],
+        Misae: [
+          "Misae-san, did you score any great department store bargain sales today?",
+          "Put down the laundry basket and have a warm cup of roasted tea with me!",
+          "You do so much for the family every single day—make sure you rest too.",
+          "Misae, what's your comforting secret to keeping the house warm and lively?"
+        ]
+      }
+    };
+
+    let sessionUsedPrompts = new Set();
+
+    function renderDynamicSuggestions(targetCharacterId) {
+      const container = document.getElementById("quickPromptChips");
+      if (!container) return;
+
+      const charId = targetCharacterId || state.selectedCharacter || "Shinchan";
+      const charPrompts = suggestionsBank.characterPrompts[charId] || suggestionsBank.characterPrompts.Shinchan;
+
+      // Select 2 character-specific prompts and 3 general category prompts
+      const picked = [];
+
+      // Pick from character prompts (avoid recent if possible)
+      const availableCharPrompts = charPrompts.filter(p => !sessionUsedPrompts.has(p));
+      const charPool = availableCharPrompts.length >= 2 ? availableCharPrompts : charPrompts;
+      const shuffledChar = [...charPool].sort(() => 0.5 - Math.random());
+      picked.push(...shuffledChar.slice(0, 2).map(p => ({ text: p, icon: "chat", isChar: true })));
+
+      // Pick from general categories
+      const shuffledCats = [...suggestionsBank.categories].sort(() => 0.5 - Math.random());
+      for (const cat of shuffledCats) {
+        if (picked.length >= 5) break;
+        const availableInCat = cat.prompts.filter(p => !sessionUsedPrompts.has(p));
+        const catPool = availableInCat.length > 0 ? availableInCat : cat.prompts;
+        const chosen = catPool[Math.floor(Math.random() * catPool.length)];
+        if (!picked.some(item => item.text === chosen)) {
+          picked.push({ text: chosen, icon: cat.icon, isChar: false });
         }
+      }
+
+      // Mark chosen prompts as used in session
+      picked.forEach(item => sessionUsedPrompts.add(item.text));
+      if (sessionUsedPrompts.size > 25) {
+        sessionUsedPrompts.clear();
+      }
+
+      container.innerHTML = picked.map(item => `
+        <button type="button" class="quick-chip shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full ${
+          item.isChar 
+            ? 'bg-primary-container/80 text-on-primary-container font-bold border border-primary/30' 
+            : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-medium'
+        } text-xs transition-all hover:scale-105 active:scale-95 shadow-xs" data-prompt="${escapeHtml(item.text)}">
+          <span class="material-symbols-outlined text-[14px] ${item.isChar ? 'text-primary' : 'text-on-surface-variant'}">${item.icon}</span>
+          <span class="truncate max-w-[220px] sm:max-w-[280px]">${escapeHtml(item.text)}</span>
+        </button>
+      `).join('');
+
+      container.querySelectorAll(".quick-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          const prompt = chip.dataset.prompt;
+          if (prompt) {
+            sendMessage(prompt);
+          }
+        });
       });
+    }
+
+    // Bind Refresh Starters button
+    document.getElementById("refreshSuggestionsBtn")?.addEventListener("click", (e) => {
+      const btn = e.currentTarget;
+      const icon = btn.querySelector(".material-symbols-outlined");
+      if (icon) {
+        icon.classList.add("animate-spin");
+        setTimeout(() => icon.classList.remove("animate-spin"), 600);
+      }
+      renderDynamicSuggestions(state.selectedCharacter);
     });
 
     // Start Chat from Feelings Checkin
@@ -1691,12 +2336,20 @@
       document.getElementById("gardenCountLabel").textContent = `Flowers in Bloom: ${state.gardenFlowers.length}`;
 
       grid.innerHTML = state.gardenFlowers.map((f, i) => `
-        <div class="rounded-xl bg-surface-container-lowest p-3 text-center shadow-sm hover:scale-110 transition-transform cursor-pointer border border-surface-container group">
+        <div class="rounded-xl bg-surface-container-lowest p-3 text-center shadow-sm hover:scale-110 transition-transform cursor-pointer border border-surface-container group" data-flower-idx="${i}" title="Click to celebrate this win">
           <span class="text-3xl block mb-1 group-hover:rotate-12 transition-transform">${f.type}</span>
           <span class="font-label-sm text-xs font-bold text-on-surface block truncate" title="${f.title}">${f.title}</span>
           <span class="text-[10px] text-outline">${f.date}</span>
         </div>
       `).join('');
+
+      grid.querySelectorAll("[data-flower-idx]").forEach(card => {
+        card.addEventListener("click", () => {
+          const idx = parseInt(card.dataset.flowerIdx);
+          const f = state.gardenFlowers[idx];
+          if (f) showComfortToast(`Celebrating win: "${f.title}"! ${f.type}`, "local_florist");
+        });
+      });
     }
 
     function plantWin(title) {
@@ -1709,6 +2362,7 @@
         date: "Just now"
       });
       renderGarden();
+      showComfortToast(`Planted "${title.trim()}" in the sunflower field! ${randomFlower}`, "local_florist");
     }
 
     document.querySelectorAll(".win-btn").forEach(btn => {
@@ -1717,11 +2371,18 @@
       });
     });
 
-    document.getElementById("plantSeedBtn")?.addEventListener("click", () => {
-      const input = document.getElementById("customWinInput");
-      if (input && input.value) {
-        plantWin(input.value);
-        input.value = "";
+    const plantBtn = document.getElementById("plantSeedBtn");
+    const winInput = document.getElementById("customWinInput");
+    plantBtn?.addEventListener("click", () => {
+      if (winInput && winInput.value) {
+        plantWin(winInput.value);
+        winInput.value = "";
+      }
+    });
+    winInput?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        plantBtn?.click();
       }
     });
 
@@ -1758,71 +2419,179 @@
       memeBottomInput.value = preset.bottom;
       memeTopCaption.textContent = preset.top;
       memeBottomCaption.textContent = preset.bottom;
+      showComfortToast("Loaded a new meme preset! 🎲", "sentiment_very_satisfied");
     });
 
     document.getElementById("saveMemeBtn")?.addEventListener("click", () => {
-      alert("✨ Saved your warm meme! Remember: laughter is proof your spirit is strong.");
+      const topText = (document.getElementById("memeTopInput")?.value || "").toUpperCase();
+      const bottomText = (document.getElementById("memeBottomInput")?.value || "").toUpperCase();
+      const memeImg = document.getElementById("memeImage");
+
+      try {
+        const canvas = document.createElement("canvas");
+        const size = 500;
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.fillStyle = "#1e1429";
+          ctx.fillRect(0, 0, size, size);
+
+          if (memeImg && memeImg.complete && memeImg.naturalWidth) {
+            ctx.drawImage(memeImg, 0, 0, size, size);
+          } else {
+            ctx.fillStyle = "#ff85a2";
+            ctx.fillRect(0, 0, size, size);
+          }
+
+          ctx.font = "bold 26px Quicksand, sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillStyle = "#ffffff";
+          ctx.strokeStyle = "#000000";
+          ctx.lineWidth = 4;
+          ctx.strokeText(topText, size / 2, 45);
+          ctx.fillText(topText, size / 2, 45);
+
+          ctx.fillStyle = "#ffdf9b";
+          ctx.strokeText(bottomText, size / 2, size - 30);
+          ctx.fillText(bottomText, size / 2, size - 30);
+
+          const a = document.createElement("a");
+          a.href = canvas.toDataURL("image/png");
+          a.download = "kasukabe-comfort-meme.png";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        }
+        showComfortToast("Meme saved to downloads! Keep smiling! 🎨", "sentiment_very_satisfied");
+      } catch (e) {
+        showComfortToast("Meme captured! Remember: laughter is strength! 🎨", "sentiment_very_satisfied");
+      }
     });
 
-    // Chocobi Fortune Biscuit Crack
-    const fortunes = [
-      { emoji: "🍪", title: "Crispy Chocobi Blessing", body: "“Take the last star cookie in the box. I only share this with my favorite people!” — Shinnosuke" },
-      { emoji: "🐾", title: "Shiro's Fluffy Nuzzle", body: "Shiro quietly rests his chin on your knee. He doesn't need explanations. You are completely safe and loved." },
-      { emoji: "🪨", title: "Bo-chan's Calm Pebble", body: "“Hold this smooth river stone when your thoughts get loud. It stays still with you.”" },
-      { emoji: "🌸", title: "Misae's Quiet Hug", body: "“Take a deep breath. The laundry can wait. The world can wait. You are doing so much better than you give yourself credit for.”" },
-      { emoji: "👔", title: "Hiroshi's Salaryman Truth", body: "“Bad days end. A warm bath, quiet slippers, and someone who believes in you is all it takes to restart tomorrow.”" }
+    // ==========================================
+    // 5B. EXPANDED CHOCOBI FORTUNES & COMPLIMENTS (36+ QUOTES)
+    // ==========================================
+    const chocobiFortunes = [
+      // 1. Funny & Witty
+      { emoji: "🍪", category: "Funny & Witty", title: "Crispy Chocobi Blessing", body: "“Take the last star cookie in the box. I only share this with my favorite people... unless Misae is watching!” — Shinnosuke" },
+      { emoji: "🦖", category: "Funny & Witty", title: "Wani-yama Wisdom", body: "Even the pink crocodile on the Chocobi box grins every single day. If a cookie mascot can do it, you've got this!" },
+      { emoji: "🦸", category: "Funny & Witty", title: "Action Kamen Battle Cry", body: "“Ha-ha-ha-ha! When your worries throw a punch, hit them with the Action Kamen Beam of Unbothered Peace!”" },
+      { emoji: "🧦", category: "Funny & Witty", title: "Hiroshi's Sock Theorem", body: "“My socks might knock out a minor villain, but my heart is 100% cheering for you to rest tonight.” — Hiroshi" },
+      { emoji: "🐰", category: "Funny & Witty", title: "Nene's Bunny Rule", body: "“If anyone ruins your vibe today, do not cry. Just imagine them as a harmless plush bunny getting tickled!”" },
+
+      // 2. Cute & Wholesome
+      { emoji: "🐾", category: "Cute & Wholesome", title: "Shiro's Fluffy Nuzzle", body: "Shiro quietly rests his chin on your knee. He doesn't need explanations. You are completely safe and loved." },
+      { emoji: "🍼", category: "Cute & Wholesome", title: "Himawari's Sparkle", body: "Himawari crawls over, hands you a shiny gold foil wrapper like it's a diamond, and gives a toothy giggle." },
+      { emoji: "🍙", category: "Cute & Wholesome", title: "Masao's Warm Onigiri", body: "“I-I made an onigiri for you... It's not shaped perfectly, but it's packed with extra love so you don't stay hungry.”" },
+      { emoji: "🌸", category: "Cute & Wholesome", title: "Kasukabe Spring Breeze", body: "A soft pink blossom drifts into your lap. Even the wind is taking things easy today. Why shouldn't you?" },
+      { emoji: "🐶", category: "Cute & Wholesome", title: "Cotton Candy Ball", body: "Shiro curls into a tight, perfect circle of white fluff and exhales a contented puppy sigh right by your toes." },
+
+      // 3. Motivational & Uplifting
+      { emoji: "🌟", category: "Motivational", title: "Defense Force Badge #1", body: "You woke up and kept trying today. In Kasukabe, that automatically earns you an honorary Gold Star Defense Badge!" },
+      { emoji: "🚀", category: "Motivational", title: "Shinchan's Unstoppable Spirit", body: "“When I fall down on the sidewalk, I look at the bugs first, then I stand up and run faster!”" },
+      { emoji: "📘", category: "Motivational", title: "Kazama's Honest Praise", body: "“You don't need a 100% on every single life exam. Making steady progress with courage is what real excellence is.”" },
+      { emoji: "💪", category: "Motivational", title: "Action Beam Boost", body: "Stand up tall, place your hands on your hips, and laugh out loud once. Your inner strength just recharged by 50%!" },
+      { emoji: "👔", category: "Motivational", title: "Hiroshi's Real Talk", body: "“Being a hero isn't about flying in the sky. It's about enduring a tough Monday and still smiling at dinner.”" },
+
+      // 4. Cheerful Energy
+      { emoji: "🎈", category: "Cheerful", title: "Bubbly Sunburst", body: "Put on your favorite silly tune and do the wiggle-wiggle dance! Bad moods cannot survive twenty seconds of wiggling." },
+      { emoji: "✨", category: "Cheerful", title: "Gold Star Delivery", body: "Shinnosuke hands you an imaginary crown: “Look look, you are officially the King/Queen of being totally awesome!”" },
+      { emoji: "🍭", category: "Cheerful", title: "Sweet Surprise", body: "Somewhere nearby, someone is glad you exist today. (Hint: Shinchan, Shiro, and everyone in Kasukabe!)" },
+      { emoji: "🎉", category: "Cheerful", title: "Little Victory Parade", body: "Did you drink water today? Did you breathe? That counts as a complete victory. Confetti for you! 🎊" },
+
+      // 5. Comforting & Empathetic
+      { emoji: "🍵", category: "Comforting", title: "Misae's Roasted Tea", body: "“Take a deep breath. The laundry can wait. The world can wait. You are doing so much better than you give yourself credit for.”" },
+      { emoji: "🪨", category: "Comforting", title: "Bo-chan's Calm Pebble", body: "Bo-chan hands you a cool, smooth river rock. “Hold this when your thoughts get loud. It stays still with you.”" },
+      { emoji: "🛋️", category: "Comforting", title: "Nohara Living Room Blanket", body: "Wrap yourself in a warm blanket and lie down. You don't have to prove anything to anyone right this second." },
+      { emoji: "🌙", category: "Comforting", title: "Quiet Night Over Kasukabe", body: "Even the sun clocks out and rests every evening. Give your hard-working mind permission to power down." },
+      { emoji: "🕯️", category: "Comforting", title: "Gentle Acceptance", body: "You are allowed to have days where you just survive. That is more than enough, and we are proud of you." },
+
+      // 6. Playful Kasukabe Humor
+      { emoji: "🥦", category: "Playful Humor", title: "The Green Pepper Ban", body: "“Emergency Defense Force Decree: Green peppers are outlawed, and cozy naps are mandatory for the rest of today!”" },
+      { emoji: "🦆", category: "Playful Humor", title: "Kasukabe River Walk", body: "Shinchan spots a duck, waddles beside it, and asks if it wants to trade places. The duck declined, but you smiled!" },
+      { emoji: "🛒", category: "Playful Humor", title: "Misae's Department Store Rush", body: "“If I can survive a 50% discount sale stampede at Sato Kokonokado, you can survive this week's deadlines!”" },
+      { emoji: "🎭", category: "Playful Humor", title: "Real Playhouse Reality Check", body: "Nene nods gravely: “In this soap opera episode, our hero takes a long bubble bath and forgets their troubles!”" },
+
+      // 7. Thoughtful & Positive Perspective
+      { emoji: "🌱", category: "Thoughtful", title: "Bo-chan's River Reflection", body: "“The river never rushes past the stones angrily. It just flows gently around them. Be like the water today.”" },
+      { emoji: "⛅", category: "Thoughtful", title: "Cloud Watching Lesson", body: "Clouds don't apologize for changing shapes. Give yourself permission to change your pace whenever you need to." },
+      { emoji: "🤝", category: "Thoughtful", title: "Unspoken Friendship", body: "Real friends don't demand that you always be cheerful. Come as you are—messy thoughts, tired eyes, and all." },
+      { emoji: "🌅", category: "Thoughtful", title: "A Fresh Page Tomorrow", body: "Today is almost in the record books. Tomorrow morning brings a brand-new sky that knows nothing of yesterday's heavy moments." },
+
+      // 8. Random Delightful Surprises
+      { emoji: "🌈", category: "Surprise", title: "Double Rainbow Over Kindergarten", body: "Principal Enchou smiled at the rainbow and for once nobody ran away scared! Good luck is definitely on your side." },
+      { emoji: "🎁", category: "Surprise", title: "Secret Chocobi Star Sticker", body: "You cracked open this capsule and found the ultra-rare sparkling Chocobi holographic star! Make a wish right now." },
+      { emoji: "🐾", category: "Surprise", title: "Shiro's Secret Treat", body: "Shiro brings you his favorite small tennis ball. He only gives this to people he trusts completely." },
+      { emoji: "⭐", category: "Surprise", title: "Kasukabe Honorary Hero Certificate", body: "Certified: The bearer of this quote is resilient, deeply valued, and officially protected by the Kasukabe Defense Force!" }
     ];
-    let fortuneIdx = 0;
+
+    // Smart shuffle with repeat prevention
+    let unusedFortunePool = [];
+    function getNextUniqueFortune() {
+      if (unusedFortunePool.length === 0) {
+        unusedFortunePool = chocobiFortunes.map((_, i) => i);
+        // Shuffle indices using Fisher-Yates
+        for (let i = unusedFortunePool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [unusedFortunePool[i], unusedFortunePool[j]] = [unusedFortunePool[j], unusedFortunePool[i]];
+        }
+      }
+      const idx = unusedFortunePool.pop();
+      return chocobiFortunes[idx];
+    }
+
+    // Biscuit Box Click Listener
     document.getElementById("biscuitCrackBox")?.addEventListener("click", () => {
-      fortuneIdx = (fortuneIdx + 1) % fortunes.length;
-      const f = fortunes[fortuneIdx];
-      document.getElementById("fortuneEmoji").textContent = f.emoji;
-      document.getElementById("fortuneTitle").textContent = f.title;
-      document.getElementById("fortuneBody").textContent = f.body;
+      const f = getNextUniqueFortune();
+      const emojiEl = document.getElementById("fortuneEmoji");
+      const titleEl = document.getElementById("fortuneTitle");
+      const bodyEl = document.getElementById("fortuneBody");
+
+      if (emojiEl) emojiEl.textContent = f.emoji;
+      if (titleEl) titleEl.textContent = `${f.title} • [${f.category}]`;
+      if (bodyEl) bodyEl.textContent = f.body;
+      showComfortToast("Cracked open a fresh Chocobi fortune! 🍪", "cookie");
+
+      // Gentle crack sound effect via Web Audio
+      try {
+        if (typeof voiceCallManager !== "undefined" && voiceCallManager.audioCtx) {
+          const now = voiceCallManager.audioCtx.currentTime;
+          const osc = voiceCallManager.audioCtx.createOscillator();
+          const gain = voiceCallManager.audioCtx.createGain();
+          osc.frequency.setValueAtTime(800, now);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.1);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+          osc.connect(gain);
+          gain.connect(voiceCallManager.audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.1);
+        }
+      } catch (e) {}
     });
 
     // Daily Hug Meter increment
     document.getElementById("hugMeterBar")?.addEventListener("click", () => {
       state.hugCount += 1;
-      document.getElementById("hugCountLabel").textContent = `${state.hugCount.toLocaleString()} warm hugs given`;
-      document.getElementById("hugProgressBar").style.width = "82%";
+      const countLabel = document.getElementById("hugCountLabel");
+      if (countLabel) countLabel.textContent = `${state.hugCount.toLocaleString()} warm hugs given`;
+      const prog = document.getElementById("hugProgressBar");
+      if (prog) prog.style.width = "85%";
+      showComfortToast("Warm hug added to the sanctuary! 🐾", "volunteer_activism");
     });
 
     // Daily Compliment Capsule in Home
-    const homeCompliments = [
-      {
-        icon: "sentiment_very_satisfied",
-        title: "Shinchan's Secret Star",
-        text: "“You woke up and kept trying today. In Kasukabe, that automatically earns you 10 gold stars and an honorary Defense Force badge!”"
-      },
-      {
-        icon: "pets",
-        title: "Shiro's Fluffy Nuzzle",
-        text: "Shiro quietly rests his chin on your knee. He doesn't need explanations. He just wants you to know you are safe and loved."
-      },
-      {
-        icon: "cookie",
-        title: "Crispy Chocobi Blessing",
-        text: "“Here! Take the last star cookie in the box. I only share this with my favorite people!” — Shinnosuke"
-      },
-      {
-        icon: "spa",
-        title: "Bo-chan's Calm Pebble",
-        text: "Bo-chan offers you a smooth, warm river rock. “Hold this when your head feels too loud. It stays still with you.”"
-      },
-      {
-        icon: "favorite",
-        title: "Misae's Quiet Hug",
-        text: "“Take a deep breath. The world can wait. You are doing so much better than you give yourself credit for.”"
-      }
-    ];
-    let homeCompIdx = 0;
     function openHomeCapsule() {
-      homeCompIdx = (homeCompIdx + 1) % homeCompliments.length;
-      const item = homeCompliments[homeCompIdx];
-      document.getElementById("capsulePrompt").textContent = item.title;
-      document.getElementById("capsuleSubtext").textContent = item.text;
-      document.getElementById("capsuleIcon").textContent = item.icon;
+      const f = getNextUniqueFortune();
+      const promptEl = document.getElementById("capsulePrompt");
+      const subEl = document.getElementById("capsuleSubtext");
+      const iconEl = document.getElementById("capsuleIcon");
+
+      if (promptEl) promptEl.textContent = `${f.emoji} ${f.title}`;
+      if (subEl) subEl.textContent = f.body;
+      if (iconEl) iconEl.textContent = "cookie";
+      showComfortToast("Opened daily compliment capsule! 🍪", "cookie");
     }
     document.getElementById("capsuleWrapper")?.addEventListener("click", openHomeCapsule);
     document.getElementById("anotherCapsuleBtn")?.addEventListener("click", (e) => {
@@ -1845,6 +2614,12 @@
       smileModal?.classList.remove("flex");
       switchView("fun-zone");
     });
+    smileModal?.addEventListener("click", (e) => {
+      if (e.target === smileModal || e.target.id === "smileModalBackdrop" || e.target.classList?.contains("smile-modal-backdrop")) {
+        smileModal?.classList.add("hidden");
+        smileModal?.classList.remove("flex");
+      }
+    });
 
     const smileJokes = [
       {
@@ -1853,7 +2628,7 @@
       },
       {
         title: "“Kazama-kun's Secret Notebook!”",
-        body: "Kazama tries to pretend he's studying serious English grammar, but Shinchan sneaks up and whispers: “Are you secretly drawing magical girl Moe-P again?”"
+        body: "Kazama tries to pretend he's studying serious English grammar, but Shinchan sneaks up and whispers: “Are you secretly drawing magical girl Moe-P again?” Kazama turns bright red!"
       },
       {
         title: "“Shiro's Cotton Candy Spin!”",
@@ -1862,13 +2637,52 @@
       {
         title: "“Hiroshi's Sock Warning!”",
         body: "Hiroshi takes off his work shoes... and even the family goldfish tries to hide under a pebble. Hiroshi sighs: “Hard day's work, but seeing you smile makes it worth it!”"
+      },
+      {
+        title: "“Masao-kun's Super-Brave Moment!”",
+        body: "Masao declares he is no longer scared of caterpillars. A butterfly gently lands on his shoe and Masao freezes like an ancient Greek statue for twenty minutes."
+      },
+      {
+        title: "“Bo-chan's Pebble Museum!”",
+        body: "Bo-chan proudly shows off a stone that looks 0.001% like a hamburger. Everyone in Kasukabe stares at it in profound philosophical silence."
+      },
+      {
+        title: "“Nene's Real Playhouse Plot Twist!”",
+        body: "Nene announces: “Today, the hardworking husband arrives home, apologizes for being late, and buys everyone ice cream!” Kazama whispers: “Phew, we survived without drama!”"
+      },
+      {
+        title: "“Himawari's Diamond Hunt!”",
+        body: "Himawari ignores every expensive toy in the store to zoom straight toward a shiny aluminum chocolate foil ball like a guided missile."
+      },
+      {
+        title: "“Misae's Department Store Ninja Dash!”",
+        body: "Misae locks eyes on the last 50%-off melon from 40 yards away and executes a shopping-cart drift that would impress professional Formula 1 drivers."
+      },
+      {
+        title: "“Shinchan's Elephant Dance Distraction!”",
+        body: "Shinchan hears Misae calling him to pick up his toys, so he immediately drops into the elephant dance. Misae's eyebrow twitches, but she can't help chuckling."
       }
     ];
-    let jokeIdx = 0;
+
+    let unusedJokePool = [];
+    function getNextSmileJoke() {
+      if (unusedJokePool.length === 0) {
+        unusedJokePool = smileJokes.map((_, i) => i);
+        for (let i = unusedJokePool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [unusedJokePool[i], unusedJokePool[j]] = [unusedJokePool[j], unusedJokePool[i]];
+        }
+      }
+      return smileJokes[unusedJokePool.pop()];
+    }
+
     document.getElementById("smileAgainBtn")?.addEventListener("click", () => {
-      jokeIdx = (jokeIdx + 1) % smileJokes.length;
-      document.getElementById("smileModalTitle").textContent = smileJokes[jokeIdx].title;
-      document.getElementById("smileModalBody").textContent = smileJokes[jokeIdx].body;
+      const j = getNextSmileJoke();
+      const t = document.getElementById("smileModalTitle");
+      const b = document.getElementById("smileModalBody");
+      if (t) t.textContent = j.title;
+      if (b) b.textContent = j.body;
+      showComfortToast("New Kasukabe giggle loaded! 😂", "sentiment_very_satisfied");
     });
 
     // ==========================================
@@ -1910,11 +2724,14 @@
       }, 1000);
     }
 
-    document.getElementById("openBreathingModalBtn")?.addEventListener("click", () => {
+    const openBreathingHandler = () => {
       breathingModal?.classList.remove("hidden");
       breathingModal?.classList.add("flex");
       startBreathingCycle();
-    });
+    };
+
+    document.getElementById("openBreathingModalBtn")?.addEventListener("click", openBreathingHandler);
+    document.getElementById("mobileBreathingBtn")?.addEventListener("click", openBreathingHandler);
 
     function stopBreathingModal() {
       if (breathingInterval) clearInterval(breathingInterval);
@@ -1922,77 +2739,1140 @@
       breathingModal?.classList.remove("flex");
     }
 
+    // Attach listeners for breathing modal close buttons and backdrop
     document.getElementById("closeBreathingModal")?.addEventListener("click", stopBreathingModal);
-    document.getElementById("finishBreathingBtn")?.addEventListener("click", stopBreathingModal);
+    document.getElementById("finishBreathingBtn")?.addEventListener("click", () => {
+      stopBreathingModal();
+      showComfortToast("Shiro smiles at you: You're doing great! 🐾", "spa");
+    });
+    breathingModal?.addEventListener("click", (e) => {
+      if (e.target === breathingModal || e.target.id === "breathingModalBackdrop" || e.target.classList?.contains("breathing-modal-backdrop")) {
+        stopBreathingModal();
+      }
+    });
 
     // ==========================================
-    // 7. CALM VIBES LO-FI AUDIO (WEB AUDIO API)
+    // 7. MULTI-TRACK BACKGROUND MUSIC ENGINE (5 CATEGORIES)
     // ==========================================
-    let audioCtx = null;
-    let isPlayingAudio = false;
-    let audioOscNodes = [];
+    const musicTracks = [
+      {
+        id: "sunset-lofi",
+        title: "Kasukabe Sunset",
+        category: "Peaceful & Relaxing",
+        emoji: "🌅",
+        tempo: 68,
+        description: "Soft F major 7th lo-fi warmth with gentle ocean breeze resonance.",
+        chords: [
+          [174.61, 220.00, 261.63, 329.63], // Fmaj7 (F3, A3, C4, E4)
+          [146.83, 174.61, 220.00, 261.63], // Dm7 (D3, F3, A3, C4)
+          [164.81, 196.00, 246.94, 293.66], // Em7 (E3, G3, B3, D4)
+          [130.81, 164.81, 196.00, 246.94]  // Cmaj7 (C3, E3, G3, B3)
+        ],
+        type: "sine",
+        filterFreq: 850
+      },
+      {
+        id: "chocobi-sunshine",
+        title: "Chocobi Sunshine",
+        category: "Happy & Cheerful",
+        emoji: "☀️",
+        tempo: 96,
+        description: "Upbeat sparkling C major pentatonic melody celebrating happy days.",
+        chords: [
+          [261.63, 329.63, 392.00, 523.25], // C maj (C4, E4, G4, C5)
+          [220.00, 261.63, 329.63, 440.00], // Am (A3, C4, E4, A4)
+          [174.61, 220.00, 261.63, 349.23], // F maj (F3, A3, C4, F4)
+          [196.00, 246.94, 293.66, 392.00]  // G maj (G3, B3, D4, G4)
+        ],
+        type: "triangle",
+        filterFreq: 1400
+      },
+      {
+        id: "action-kamen-play",
+        title: "Action Kamen Playtime",
+        category: "Cute & Playful",
+        emoji: "⚡",
+        tempo: 104,
+        description: "Bouncy, playful staccato chime arpeggios full of mischievous energy.",
+        chords: [
+          [293.66, 369.99, 440.00, 587.33], // D maj (D4, F#4, A4, D5)
+          [246.94, 311.13, 369.99, 493.88], // Bm (B3, D#4, F#4, B4)
+          [196.00, 246.94, 293.66, 392.00], // G maj (G3, B3, D4, G4)
+          [220.00, 277.18, 329.63, 440.00]  // A maj (A3, C#4, E4, A4)
+        ],
+        type: "sine",
+        filterFreq: 1600
+      },
+      {
+        id: "warm-blanket",
+        title: "Warm Blanket Hug",
+        category: "Emotional & Comforting",
+        emoji: "🧸",
+        tempo: 58,
+        description: "Deep, slow-swelling soothing sub-frequencies that calm racing hearts.",
+        chords: [
+          [130.81, 196.00, 246.94, 329.63], // Cmaj9 (C3, G3, B3, E4)
+          [110.00, 164.81, 220.00, 261.63], // Am7 (A2, E3, A3, C4)
+          [146.83, 220.00, 261.63, 329.63], // Dm9 (D3, A3, C4, E4)
+          [98.00, 146.83, 196.00, 246.94]   // G7 (G2, D3, G3, B3)
+        ],
+        type: "sine",
+        filterFreq: 600
+      },
+      {
+        id: "kazama-study",
+        title: "Kazama's Study Nook",
+        category: "Focus & Study",
+        emoji: "📖",
+        tempo: 72,
+        description: "Minimalist, repetitive harmonic intervals ideal for reading and deep focus.",
+        chords: [
+          [196.00, 293.66, 392.00, 440.00], // G sus2 (G3, D4, G4, A4)
+          [174.61, 261.63, 349.23, 392.00], // F sus2 (F3, C4, F4, G4)
+          [220.00, 261.63, 329.63, 392.00], // Am7 (A3, C4, E4, G4)
+          [196.00, 246.94, 293.66, 349.23]  // G7 (G3, B3, D4, F4)
+        ],
+        type: "triangle",
+        filterFreq: 950
+      }
+    ];
 
-    function toggleCalmVibes() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    class BackgroundMusicPlayer {
+      constructor() {
+        this.ctx = null;
+        this.isPlaying = false;
+        this.currentTrackIndex = 0;
+        this.volume = 0.45;
+        this.masterGain = null;
+        this.loopTimer = null;
+        this.activeOscNodes = [];
+
+        // Load saved preferences
+        const savedTrackId = safeStorage.get("gigglebuddy_music_track");
+        if (savedTrackId) {
+          const idx = musicTracks.findIndex(t => t.id === savedTrackId);
+          if (idx !== -1) this.currentTrackIndex = idx;
+        }
+        const savedVol = safeStorage.get("gigglebuddy_music_vol");
+        if (savedVol !== null) {
+          this.volume = Math.max(0, Math.min(1, parseFloat(savedVol)));
+        }
       }
 
-      if (isPlayingAudio) {
-        // Stop
-        audioOscNodes.forEach(node => {
-          try { node.stop(); } catch(e) {}
+      initCtx() {
+        if (!this.ctx) {
+          try {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            this.ctx = new AudioContextClass();
+            this.masterGain = this.ctx.createGain();
+            this.masterGain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
+            this.masterGain.connect(this.ctx.destination);
+          } catch (e) {
+            console.warn("[MusicPlayer] Web Audio initialization:", e);
+          }
+        }
+        if (this.ctx && this.ctx.state === "suspended") {
+          try { this.ctx.resume(); } catch (e) {}
+        }
+      }
+
+      getCurrentTrack() {
+        return musicTracks[this.currentTrackIndex];
+      }
+
+      play() {
+        this.initCtx();
+        if (this.isPlaying) return;
+        this.isPlaying = true;
+        this.startGenerativeLoop();
+        this.updateUI();
+        showComfortToast(`Playing: ${this.getCurrentTrack().title} 🎵`, "music_note");
+      }
+
+      pause() {
+        this.isPlaying = false;
+        if (this.loopTimer) {
+          clearInterval(this.loopTimer);
+          this.loopTimer = null;
+        }
+        this.stopCurrentOscillators();
+        this.updateUI();
+        showComfortToast("Music paused", "pause");
+      }
+
+      toggle() {
+        if (this.isPlaying) {
+          this.pause();
+        } else {
+          this.play();
+        }
+      }
+
+      nextTrack() {
+        this.selectTrack((this.currentTrackIndex + 1) % musicTracks.length);
+      }
+
+      prevTrack() {
+        this.selectTrack((this.currentTrackIndex - 1 + musicTracks.length) % musicTracks.length);
+      }
+
+      selectTrack(index) {
+        if (index < 0 || index >= musicTracks.length) return;
+        this.currentTrackIndex = index;
+        safeStorage.set("gigglebuddy_music_track", musicTracks[index].id);
+
+        if (this.isPlaying) {
+          this.stopCurrentOscillators();
+          this.startGenerativeLoop();
+        }
+        this.updateUI();
+        showComfortToast(`Track: ${this.getCurrentTrack().title} 🎵`, "queue_music");
+      }
+
+      setVolume(val) {
+        this.volume = Math.max(0, Math.min(1, val));
+        safeStorage.set("gigglebuddy_music_vol", this.volume.toString());
+        if (this.masterGain && this.ctx) {
+          try {
+            this.masterGain.gain.setTargetAtTime(this.volume, this.ctx.currentTime, 0.05);
+          } catch (e) {}
+        }
+        const volPercent = Math.round(this.volume * 100) + "%";
+        const volLabel = document.getElementById("musicVolumeLabel");
+        if (volLabel) volLabel.textContent = volPercent;
+        const volSlider = document.getElementById("musicVolumeSlider");
+        if (volSlider && parseInt(volSlider.value) !== Math.round(this.volume * 100)) {
+          volSlider.value = Math.round(this.volume * 100);
+        }
+      }
+
+      stopCurrentOscillators() {
+        this.activeOscNodes.forEach(node => {
+          try {
+            if (node.gainNode && this.ctx) {
+              node.gainNode.gain.setTargetAtTime(0, this.ctx.currentTime, 0.1);
+            }
+            setTimeout(() => {
+              try { node.osc.stop(); node.osc.disconnect(); } catch (e) {}
+            }, 120);
+          } catch (e) {}
         });
-        audioOscNodes = [];
-        isPlayingAudio = false;
-        document.getElementById("audioLabel").textContent = "Calm Vibes";
-        document.getElementById("audioIcon").textContent = "music_note";
-        document.getElementById("audioToggleBtn").classList.remove("bg-primary-container", "text-on-primary-container");
-      } else {
-        // Play gentle dreamy Kasukabe chords (F major 7th lo-fi pad)
-        if (audioCtx.state === "suspended") {
-          audioCtx.resume();
+        this.activeOscNodes = [];
+      }
+
+      startGenerativeLoop() {
+        if (!this.ctx || !this.masterGain) return;
+        this.stopCurrentOscillators();
+
+        const track = this.getCurrentTrack();
+        let chordIdx = 0;
+        const beatDuration = (60 / track.tempo) * 4; // 4 beats per bar in seconds
+
+        const playChord = () => {
+          if (!this.isPlaying || !this.ctx) return;
+          try {
+            const currentChords = track.chords[chordIdx % track.chords.length];
+            chordIdx++;
+
+            const now = this.ctx.currentTime;
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = "lowpass";
+            filter.frequency.setValueAtTime(track.filterFreq || 1000, now);
+            filter.connect(this.masterGain);
+
+            currentChords.forEach((freq, i) => {
+              const osc = this.ctx.createOscillator();
+              const gain = this.ctx.createGain();
+
+              osc.type = track.type || "sine";
+              const detune = (i % 2 === 0 ? 1 : -1) * (i * 1.5);
+              osc.frequency.setValueAtTime(freq + (detune * 0.1), now);
+
+              const noteVol = Math.max(0.001, 0.045 / (currentChords.length * 0.7));
+              gain.gain.setValueAtTime(0.0001, now);
+              gain.gain.exponentialRampToValueAtTime(noteVol, now + 0.6);
+              gain.gain.setValueAtTime(noteVol, Math.max(now + 0.7, now + beatDuration - 0.7));
+              gain.gain.exponentialRampToValueAtTime(0.0001, now + beatDuration + 0.3);
+
+              osc.connect(gain);
+              gain.connect(filter);
+
+              try {
+                osc.start(now);
+                osc.stop(now + beatDuration + 0.5);
+                this.activeOscNodes.push({ osc, gainNode: gain });
+              } catch (e) {}
+            });
+          } catch (err) {
+            console.warn("[MusicPlayer] Error playing chord:", err);
+          }
+        };
+
+        playChord();
+        if (this.loopTimer) clearInterval(this.loopTimer);
+        this.loopTimer = setInterval(playChord, beatDuration * 1000);
+      }
+
+      updateUI() {
+        const track = this.getCurrentTrack();
+        const titleEl = document.getElementById("musicTrackTitle");
+        const catEl = document.getElementById("musicTrackCategory");
+        const playBtn = document.getElementById("musicPlayPauseBtn");
+        const playIcon = document.getElementById("musicPlayPauseIcon");
+
+        if (titleEl) titleEl.textContent = `${track.emoji} ${track.title}`;
+        if (catEl) catEl.textContent = track.category;
+
+        if (playIcon) {
+          playIcon.textContent = this.isPlaying ? "pause" : "play_arrow";
+        }
+        if (playBtn) {
+          if (this.isPlaying) {
+            playBtn.classList.add("ring-2", "ring-primary", "animate-pulse");
+          } else {
+            playBtn.classList.remove("ring-2", "ring-primary", "animate-pulse");
+          }
         }
 
-        const freqs = [174.61, 220.00, 261.63, 329.63]; // F3, A3, C4, E4
-        audioOscNodes = [];
+        this.renderTracksList();
+      }
 
-        freqs.forEach(f => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
+      renderTracksList() {
+        const container = document.getElementById("musicTracksList");
+        if (!container) return;
 
-          osc.type = "sine";
-          osc.frequency.setValueAtTime(f, audioCtx.currentTime);
+        container.innerHTML = musicTracks.map((t, idx) => {
+          const isSelected = idx === this.currentTrackIndex;
+          return `
+            <button class="w-full text-left p-2 rounded-xl transition-all flex items-center justify-between ${
+              isSelected ? 'bg-primary-container/40 border border-primary/40 font-bold' : 'hover:bg-surface-container font-medium'
+            }" data-track-index="${idx}" type="button">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-base">${t.emoji}</span>
+                <div class="flex flex-col min-w-0">
+                  <span class="text-xs text-on-surface truncate">${t.title}</span>
+                  <span class="text-[10px] text-primary truncate">${t.category}</span>
+                </div>
+              </div>
+              ${isSelected && this.isPlaying ? `
+                <span class="material-symbols-outlined text-primary text-[16px] animate-pulse">volume_up</span>
+              ` : (isSelected ? `
+                <span class="material-symbols-outlined text-primary text-[16px]">check</span>
+              ` : '')}
+            </button>
+          `;
+        }).join('');
 
-          gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-
-          osc.start();
-          audioOscNodes.push(osc);
+        container.querySelectorAll("button[data-track-index]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const idx = parseInt(btn.dataset.trackIndex);
+            this.selectTrack(idx);
+            if (!this.isPlaying) this.play();
+          });
         });
-
-        isPlayingAudio = true;
-        document.getElementById("audioLabel").textContent = "Playing Vibe 🎶";
-        document.getElementById("audioIcon").textContent = "volume_up";
-        document.getElementById("audioToggleBtn").classList.add("bg-primary-container", "text-on-primary-container");
       }
     }
 
-    document.getElementById("audioToggleBtn")?.addEventListener("click", toggleCalmVibes);
+    const musicPlayer = new BackgroundMusicPlayer();
+
+    // Setup Music UI event listeners
+    function initMusicPlayerUI() {
+      const playPauseBtn = document.getElementById("musicPlayPauseBtn");
+      playPauseBtn?.addEventListener("click", () => musicPlayer.toggle());
+
+      const nextBtn = document.getElementById("musicNextBtn");
+      nextBtn?.addEventListener("click", () => musicPlayer.nextTrack());
+
+      const prevBtn = document.getElementById("musicPrevBtn");
+      prevBtn?.addEventListener("click", () => musicPlayer.prevTrack());
+
+      const triggerBtn = document.getElementById("musicPickerTriggerBtn");
+      const settingsToggleBtn = document.getElementById("musicSettingsToggleBtn");
+      const popover = document.getElementById("musicSettingsPopover");
+      const closePopoverBtn = document.getElementById("closeMusicPopoverBtn");
+
+      const togglePopover = (e) => {
+        e?.stopPropagation();
+        if (popover) {
+          const isHidden = popover.classList.contains("hidden");
+          if (isHidden) {
+            popover.classList.remove("hidden");
+            popover.classList.add("flex");
+          } else {
+            popover.classList.add("hidden");
+            popover.classList.remove("flex");
+          }
+        }
+      };
+
+      triggerBtn?.addEventListener("click", togglePopover);
+      settingsToggleBtn?.addEventListener("click", togglePopover);
+      closePopoverBtn?.addEventListener("click", () => {
+        popover?.classList.add("hidden");
+        popover?.classList.remove("flex");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (popover && !popover.contains(e.target) && !triggerBtn?.contains(e.target) && !settingsToggleBtn?.contains(e.target)) {
+          popover.classList.add("hidden");
+          popover.classList.remove("flex");
+        }
+      });
+
+      const volumeSlider = document.getElementById("musicVolumeSlider");
+      if (volumeSlider) {
+        volumeSlider.value = Math.round(musicPlayer.volume * 100);
+        volumeSlider.addEventListener("input", (e) => {
+          musicPlayer.setVolume(parseInt(e.target.value) / 100);
+        });
+      }
+
+      musicPlayer.updateUI();
+    }
 
     // ==========================================
-    // 8. INITIAL BOOTSTRAP
+    // 8. AUTOMATIC DAILY HOST ROTATION
     // ==========================================
-    window.addEventListener("DOMContentLoaded", () => {
-      renderCharactersGrid();
-      renderEmotionTags();
-      renderSupportStyles();
-      renderChatMessages();
-      renderGarden();
-      updateChatHeaderUI();
-      switchView("welcome-home");
+    const hostList = [
+      {
+        id: "Shinchan",
+        name: "Shinnosuke (Shinchan)",
+        badge: "Today's Welcoming Host: Shinchan 🖍️",
+        greeting: "Oii! You found the Kasukabe Comfort Haven!",
+        subtext: "I brought fresh Chocobi cookies and big warm hugs. What's on your mind today? Let's take a deep breath together!",
+        avatarEmoji: "🖍️",
+        themeColor: "#ff85a2"
+      },
+      {
+        id: "Kazama",
+        name: "Tooru Kazama",
+        badge: "Today's Welcoming Host: Tooru Kazama 📘",
+        greeting: "Welcome to Kasukabe Sanctuary.",
+        subtext: "Take a restful breath. Whatever was messy or overwhelming today, let's untangle it together with calm clarity.",
+        avatarEmoji: "📘",
+        themeColor: "#61b2f3"
+      },
+      {
+        id: "Nene",
+        name: "Nene Sakurada",
+        badge: "Today's Welcoming Host: Nene Sakurada 🐰",
+        greeting: "Welcome! Come sit by me right away!",
+        subtext: "Did anyone give you a hard time? Let's vent, take comfort, and remind you how awesome and loved you are!",
+        avatarEmoji: "🐰",
+        themeColor: "#ffb1c1"
+      },
+      {
+        id: "Masao",
+        name: "Masao Sato",
+        badge: "Today's Welcoming Host: Masao Sato 🍙",
+        greeting: "H-hello friend... you're very safe here.",
+        subtext: "I get anxious and overwhelmed too, so you never have to pretend to be brave with me. You can just rest.",
+        avatarEmoji: "🍙",
+        themeColor: "#81d4fa"
+      },
+      {
+        id: "Bo-chan",
+        name: "Bo-chan",
+        badge: "Today's Welcoming Host: Bo-chan 🪨",
+        greeting: "Deep breath... stillness in Kasukabe.",
+        subtext: "The river stones stay peaceful no matter how fast the water flows. Let your worries wash away.",
+        avatarEmoji: "🪨",
+        themeColor: "#a5d6a7"
+      },
+      {
+        id: "Himawari",
+        name: "Himawari Nohara",
+        badge: "Today's Welcoming Host: Himawari 🍼",
+        greeting: "Ah-da-da! ✨ Bubbly sunshine greetings!",
+        subtext: "Hands you a sparkly gold star and a sweet baby giggle! Gloomy clouds have no chance today!",
+        avatarEmoji: "🍼",
+        themeColor: "#fff59d"
+      },
+      {
+        id: "Shiro",
+        name: "Shiro (White Fluffy Pup)",
+        badge: "Today's Welcoming Host: Shiro 🐾",
+        greeting: "Woof! *Gentle tail wags and soft chin rests on your knee*",
+        subtext: "Shiro curls into a warm white cotton ball at your feet. Zero judgment, unconditional loyalty, pure quiet comfort.",
+        avatarEmoji: "🐾",
+        themeColor: "#e0f2fe"
+      },
+      {
+        id: "Hiroshi",
+        name: "Hiroshi Nohara (Dad)",
+        badge: "Today's Welcoming Host: Hiroshi Nohara 👔",
+        greeting: "Hey kiddo. You worked hard today, didn't you?",
+        subtext: "Kick off those heavy shoes. You don't have to carry the whole world on your shoulders. I'm proud of you.",
+        avatarEmoji: "👔",
+        themeColor: "#ffe082"
+      },
+      {
+        id: "Misae",
+        name: "Misae Nohara (Mom)",
+        badge: "Today's Welcoming Host: Misae Nohara 👩",
+        greeting: "Come sit down! I just made a fresh pot of tea.",
+        subtext: "First of all: drink some warm water and remember your self-worth. You are a treasure, and nobody can tell you otherwise.",
+        avatarEmoji: "👩",
+        themeColor: "#f48fb1"
+      }
+    ];
 
-      // Verify health with server
+    function initDailyHost() {
+      // Deterministic day-of-year rotation
+      const now = new Date();
+      const startOfYear = new Date(now.getFullYear(), 0, 0);
+      const diff = now - startOfYear;
+      const oneDay = 1000 * 60 * 60 * 24;
+      const dayOfYear = Math.floor(diff / oneDay);
+      const hostIndex = dayOfYear % hostList.length;
+      const todayHost = hostList[hostIndex];
+
+      const badgeEl = document.getElementById("heroHostBadge");
+      const greetingEl = document.getElementById("heroHostGreeting");
+      const subtextEl = document.getElementById("heroHostSubtext");
+      const hostImg = document.getElementById("heroHostImage");
+
+      if (badgeEl) badgeEl.textContent = todayHost.badge;
+      if (greetingEl) greetingEl.textContent = todayHost.greeting;
+      if (subtextEl) subtextEl.textContent = todayHost.subtext;
+
+      // Assign matching artwork card for the host
+      if (hostImg) {
+        if (todayHost.id === "Shinchan") {
+          hostImg.src = "https://lh3.googleusercontent.com/aida-public/AB6AXuDOqhIgqGYZ96233cx7LVOkf2XeNOQJDSkPecuGjJ56baaef_FN9071S6nirCzuuYMGxSvP0qvoi9qRS93YWAtG5omhv4E26Z9lHiZ5isN888xt6JNQXTXcLhhKT5rtJzftFxRBbiaT9r4JJJqVjKEDzy1udC-8eHGOvhkqh0GbeJK_ZZQLRaeaFoCXMHH4ECtjgc2D-fh6eH0VRDpzmMFAKd_HV-GKjj5QjnV8quO-xBqzxiyVrEh-";
+        } else if (todayHost.id === "Shiro") {
+          hostImg.src = "https://lh3.googleusercontent.com/aida-public/AB6AXuB4tFWbDKOoc-qMJI6dP8xXc2npjThK6-ixCtaRObdeytcSUM1QrnPEIJUrlI8P1GgqVK74nSheZG59SnlDj_bHVG4CGn30q-wxYYdc57Z10U3rpglUa88TJbM_ypvjZrA_vFJjh9CR5TMExh9afgTFNvEnbQOetGP3hrsPTeB2-ziNvNmZcgXE0bOMYYO7qwrNMuP7EugzYQHAV4rTR0AVdf84ru2P__TrCN6n-Ph0MaZn1na7wP_h";
+        } else {
+          // Dynamic themed artwork card
+          const encodedSvg = encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+              <defs>
+                <linearGradient id="hostBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="${todayHost.themeColor}" stop-opacity="0.85"/>
+                  <stop offset="100%" stop-color="#fff5f0" stop-opacity="1"/>
+                </linearGradient>
+              </defs>
+              <rect width="600" height="360" fill="url(#hostBg)" rx="28"/>
+              <circle cx="500" cy="70" r="130" fill="#ffffff" fill-opacity="0.3"/>
+              <circle cx="90" cy="290" r="90" fill="#ffffff" fill-opacity="0.25"/>
+              <text x="300" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="80" text-anchor="middle">${todayHost.avatarEmoji}</text>
+              <text x="300" y="215" font-family="'Nunito Sans', 'Quicksand', sans-serif" font-size="28" font-weight="bold" fill="#2d2a32" text-anchor="middle">${todayHost.name}</text>
+              <text x="300" y="255" font-family="'Nunito Sans', sans-serif" font-size="16" font-weight="600" fill="#6750a4" text-anchor="middle">★ Today's Welcoming Host ★</text>
+              <text x="300" y="295" font-family="'Nunito Sans', sans-serif" font-size="14" fill="#605d64" text-anchor="middle">Kasukabe Defense Sanctuary</text>
+            </svg>
+          `.trim());
+          hostImg.src = `data:image/svg+xml;utf8,${encodedSvg}`;
+        }
+      }
+
+      // Bind Host Call & Chat buttons on the homepage
+      const callHostBtn = document.getElementById("heroHostCallBtn");
+      if (callHostBtn) {
+        callHostBtn.onclick = () => {
+          if ('speechSynthesis' in window) window.speechSynthesis.resume();
+          selectCompanion(todayHost.id);
+          startVoiceCall(todayHost.id);
+        };
+      }
+
+      const chatHostBtn = document.getElementById("heroHostChatBtn");
+      if (chatHostBtn) {
+        chatHostBtn.onclick = () => {
+          selectCompanion(todayHost.id);
+          switchView("character-chat");
+        };
+      }
+    }
+
+    // ==========================================
+    // 9. TWO-WAY VOICE CALL SYSTEM
+    // ==========================================
+    function setCallElemText(id, text) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+
+    class VoiceCallManager {
+      constructor() {
+        this.activeCharacterId = "Shinchan";
+        this.isCallActive = false;
+        this.isMuted = false;
+        this.callStartTime = null;
+        this.timerInterval = null;
+        this.recognition = null;
+        this.isListening = false;
+        this.isSpeaking = false;
+        this.synth = window.speechSynthesis;
+        this.visualizerInterval = null;
+        this.audioCtx = null;
+        this.lastSpokenText = "";
+      }
+
+      initAudioCtx() {
+        if (!this.audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          this.audioCtx = new AudioContextClass();
+        }
+        if (this.audioCtx.state === "suspended") {
+          this.audioCtx.resume();
+        }
+      }
+
+      playRingtoneTone(freq1, freq2, duration) {
+        try {
+          this.initAudioCtx();
+          const now = this.audioCtx.currentTime;
+          const osc1 = this.audioCtx.createOscillator();
+          const osc2 = this.audioCtx.createOscillator();
+          const gain = this.audioCtx.createGain();
+
+          osc1.frequency.setValueAtTime(freq1, now);
+          osc2.frequency.setValueAtTime(freq2, now);
+          gain.gain.setValueAtTime(0.04, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(this.audioCtx.destination);
+
+          osc1.start(now);
+          osc2.start(now);
+          osc1.stop(now + duration);
+          osc2.stop(now + duration);
+        } catch (e) {}
+      }
+
+      playCallConnectedChime() {
+        this.playRingtoneTone(440, 554.37, 0.4); // A major chime
+        setTimeout(() => this.playRingtoneTone(659.25, 880, 0.5), 250);
+      }
+
+      playHangupTone() {
+        this.playRingtoneTone(440, 370, 0.3);
+        setTimeout(() => this.playRingtoneTone(330, 261, 0.4), 220);
+      }
+
+      startCall(characterId) {
+        this.activeCharacterId = characterId || state.selectedCharacter || "Shinchan";
+        const char = characters.find(c => c.id === this.activeCharacterId) || characters[0];
+
+        // Unlock audio / speech synthesis on user interaction
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.resume();
+        }
+        this.initAudioCtx();
+
+        // Update modal UI
+        const modal = document.getElementById("voiceCallModal");
+        if (!modal) return;
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+
+        setCallElemText("callAvatarEmoji", char.emoji);
+        setCallElemText("callCharacterName", char.name);
+        setCallElemText("callCharacterRole", char.role ? char.role.split('&')[0].trim() : "Comfort Companion");
+        setCallElemText("callTimer", "Connecting...");
+        setCallElemText("callStatusText", `Calling ${char.name.split(' ')[0]}... 📞`);
+        setCallElemText("callSpeakerLabel", `Calling ${char.name.split(' ')[0]}...`);
+        setCallElemText("callTranscriptText", `"Connecting with ${char.name.split(' ')[0]}..."`);
+
+        this.isCallActive = true;
+        this.isMuted = false;
+        this.updateMuteUI();
+
+        // Ringtone simulation
+        this.playRingtoneTone(440, 480, 0.6);
+        setTimeout(() => {
+          if (!this.isCallActive) return;
+          this.playRingtoneTone(440, 480, 0.6);
+        }, 1200);
+
+        setTimeout(() => {
+          if (!this.isCallActive) return;
+          this.playCallConnectedChime();
+          this.onCallConnected(char);
+        }, 2200);
+      }
+
+      onCallConnected(char) {
+        this.callStartTime = Date.now();
+        this.updateTimer();
+        if (this.timerInterval) clearInterval(this.timerInterval);
+        this.timerInterval = setInterval(() => this.updateTimer(), 1000);
+        this.startVisualizer();
+
+        setCallElemText("callStatusText", "Connected • " + char.name.split(' ')[0] + " is listening");
+        setCallElemText("callSpeakerLabel", char.name.split(' ')[0]);
+        setCallElemText("callTranscriptText", `"${char.greeting}"`);
+        setCallElemText("callMicStateLabel", "Listening to your voice... Speak anytime!");
+
+        // Speak character initial greeting
+        this.speakCharacterVoice(char.greeting, () => {
+          this.initSpeechRecognition();
+        });
+      }
+
+      updateTimer() {
+        if (!this.callStartTime) return;
+        const elapsedSec = Math.floor((Date.now() - this.callStartTime) / 1000);
+        const mins = String(Math.floor(elapsedSec / 60)).padStart(2, "0");
+        const secs = String(elapsedSec % 60).padStart(2, "0");
+        setCallElemText("callTimer", `${mins}:${secs}`);
+      }
+
+      initSpeechRecognition() {
+        if (this.isMuted || !this.isCallActive || this.isSpeaking) return;
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+          setCallElemText("callStatusText", "Mic speech not supported in this browser. Use Keyboard below!");
+          setCallElemText("callMicStateLabel", "Use keyboard below to type and chat!");
+          document.getElementById("callTextInputWrapper")?.classList.remove("hidden");
+          return;
+        }
+
+        try {
+          if (this.recognition) {
+            this.recognition.abort();
+          }
+
+          this.recognition = new SpeechRecognition();
+          this.recognition.continuous = false;
+          this.recognition.interimResults = true;
+          this.recognition.lang = "en-US";
+
+          this.recognition.onstart = () => {
+            this.isListening = true;
+            setCallElemText("callStatusText", "Listening to you... 🎙️ Speak anytime!");
+            setCallElemText("callMicStateLabel", "Listening to your voice... Speak anytime!");
+          };
+
+          this.recognition.onresult = (event) => {
+            let transcript = "";
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+              transcript += event.results[i][0].transcript;
+            }
+            if (transcript) {
+              setCallElemText("callSpeakerLabel", "You");
+              setCallElemText("callTranscriptText", `"${transcript}"`);
+            }
+
+            const isFinal = event.results[event.results.length - 1].isFinal;
+            if (isFinal && transcript.trim().length > 0) {
+              this.processUserVoiceInput(transcript.trim());
+            }
+          };
+
+          this.recognition.onerror = (e) => {
+            console.warn("[VoiceCall] Speech recognition error:", e.error);
+            this.isListening = false;
+            if (e.error === "not-allowed" || e.error === "service-not-allowed") {
+              setCallElemText("callStatusText", "Microphone permission needed. You can also type below!");
+              setCallElemText("callMicStateLabel", "Mic access blocked. Tap Keyboard to type!");
+              document.getElementById("callTextInputWrapper")?.classList.remove("hidden");
+            } else if (this.isCallActive && !this.isSpeaking && !this.isMuted) {
+              setTimeout(() => this.initSpeechRecognition(), 1200);
+            }
+          };
+
+          this.recognition.onend = () => {
+            this.isListening = false;
+            if (this.isCallActive && !this.isSpeaking && !this.isMuted) {
+              setTimeout(() => this.initSpeechRecognition(), 500);
+            }
+          };
+
+          this.recognition.start();
+        } catch (e) {
+          console.warn("[VoiceCall] Init recognition error:", e);
+        }
+      }
+
+      async processUserVoiceInput(userText) {
+        if (!this.isCallActive) return;
+
+        // Stop recognition while processing
+        if (this.recognition) {
+          try { this.recognition.stop(); } catch (e) {}
+        }
+
+        const char = characters.find(c => c.id === this.activeCharacterId) || characters[0];
+        setCallElemText("callStatusText", `${char.name.split(' ')[0]} is thinking... 💭`);
+        setCallElemText("callMicStateLabel", `${char.name.split(' ')[0]} is thinking...`);
+
+        try {
+          const res = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              character: this.activeCharacterId,
+              emotions: state.selectedEmotions,
+              supportStyle: state.selectedSupportStyle,
+              message: userText,
+              chatHistory: state.chatHistory.slice(-6),
+              forceDemo: state.forceDemo,
+              isCallMode: true
+            })
+          });
+
+          const data = await res.json();
+          const reply = data.reply || `Hey! I heard you loud and clear. You're awesome, don't forget that!`;
+
+          // Record into chat history
+          state.chatHistory.push({ role: "user", content: `(📞 Call) ${userText}` });
+          state.chatHistory.push({ role: "assistant", content: reply, source: data.source || "gemini-live" });
+          renderChatMessages();
+
+          setCallElemText("callSpeakerLabel", char.name.split(' ')[0]);
+          setCallElemText("callTranscriptText", `"${reply}"`);
+
+          this.speakCharacterVoice(reply, () => {
+            if (this.isCallActive && !this.isMuted) {
+              this.initSpeechRecognition();
+            }
+          });
+        } catch (err) {
+          console.error("[VoiceCall] Send voice message error:", err);
+          const fallback = `Hey, my connection was a little noisy, but I'm right here with you! Tell me again!`;
+          setCallElemText("callSpeakerLabel", char.name.split(' ')[0]);
+          setCallElemText("callTranscriptText", `"${fallback}"`);
+          this.speakCharacterVoice(fallback, () => {
+            if (this.isCallActive && !this.isMuted) {
+              this.initSpeechRecognition();
+            }
+          });
+        }
+      }
+
+      speakCharacterVoice(text, onComplete) {
+        if (!this.isCallActive) return;
+        this.isSpeaking = true;
+        this.lastSpokenText = text;
+
+        if (this.recognition) {
+          try { this.recognition.abort(); } catch (e) {}
+        }
+
+        const char = characters.find(c => c.id === this.activeCharacterId) || characters[0];
+        setCallElemText("callStatusText", `${char.name.split(' ')[0]} is talking... 🔊`);
+        setCallElemText("callMicStateLabel", `${char.name.split(' ')[0]} is speaking...`);
+
+        if (!('speechSynthesis' in window)) {
+          this.isSpeaking = false;
+          if (onComplete) onComplete();
+          return;
+        }
+
+        window.speechSynthesis.cancel();
+
+        // Strip markdown and emojis for clean spoken voice
+        const cleanText = text
+          .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F018}-\u{1F270}\u{2388}\u{200B}-\u{200D}]/gu, '')
+          .replace(/[*_~`#]/g, '')
+          .trim();
+
+        const utterance = new SpeechSynthesisUtterance(cleanText || text);
+
+        // Persona Voice Modulation (Pitch and Rate)
+        switch (this.activeCharacterId) {
+          case "Shinchan":
+            utterance.pitch = 1.35;
+            utterance.rate = 1.1;
+            break;
+          case "Kazama":
+            utterance.pitch = 1.05;
+            utterance.rate = 1.0;
+            break;
+          case "Nene":
+            utterance.pitch = 1.25;
+            utterance.rate = 1.12;
+            break;
+          case "Masao":
+            utterance.pitch = 1.1;
+            utterance.rate = 0.92;
+            break;
+          case "Bo-chan":
+            utterance.pitch = 0.8;
+            utterance.rate = 0.85;
+            break;
+          case "Himawari":
+            utterance.pitch = 1.5;
+            utterance.rate = 1.2;
+            break;
+          case "Shiro":
+            utterance.pitch = 1.3;
+            utterance.rate = 1.0;
+            break;
+          case "Hiroshi":
+            utterance.pitch = 0.88;
+            utterance.rate = 0.95;
+            break;
+          case "Misae":
+            utterance.pitch = 1.12;
+            utterance.rate = 1.05;
+            break;
+          default:
+            utterance.pitch = 1.1;
+            utterance.rate = 1.0;
+        }
+
+        utterance.onend = () => {
+          this.isSpeaking = false;
+          if (this.isCallActive) {
+            setCallElemText("callStatusText", "Connected • " + char.name.split(' ')[0] + " is listening");
+            setCallElemText("callMicStateLabel", "Listening to your voice... Speak anytime!");
+            setTimeout(() => {
+              if (this.isCallActive && !this.isMuted) {
+                if (onComplete) onComplete();
+                else this.initSpeechRecognition();
+              }
+            }, 350);
+          }
+        };
+
+        utterance.onerror = () => {
+          this.isSpeaking = false;
+          if (this.isCallActive && onComplete) onComplete();
+        };
+
+        window.speechSynthesis.speak(utterance);
+      }
+
+      replayLastVoice() {
+        if (this.lastSpokenText) {
+          this.speakCharacterVoice(this.lastSpokenText);
+        }
+      }
+
+      startVisualizer() {
+        const visualizer = document.getElementById("callAudioBars");
+        if (!visualizer) return;
+
+        const bars = visualizer.querySelectorAll(".bar, div");
+        if (this.visualizerInterval) clearInterval(this.visualizerInterval);
+
+        this.visualizerInterval = setInterval(() => {
+          if (!this.isCallActive) return;
+
+          bars.forEach(bar => {
+            let height;
+            if (this.isSpeaking) {
+              height = Math.floor(Math.random() * 22) + 6;
+              bar.classList.add("bg-primary");
+              bar.classList.remove("bg-secondary", "bg-outline-variant");
+            } else if (this.isListening) {
+              height = Math.floor(Math.random() * 14) + 4;
+              bar.classList.add("bg-secondary");
+              bar.classList.remove("bg-primary", "bg-outline-variant");
+            } else {
+              height = 4;
+              bar.classList.remove("bg-primary", "bg-secondary");
+              bar.classList.add("bg-outline-variant");
+            }
+            bar.style.height = `${height}px`;
+          });
+        }, 120);
+      }
+
+      toggleMute() {
+        this.isMuted = !this.isMuted;
+        this.updateMuteUI();
+
+        if (this.isMuted) {
+          if (this.recognition) {
+            try { this.recognition.abort(); } catch (e) {}
+          }
+          setCallElemText("callStatusText", "Microphone is muted 🔇");
+          setCallElemText("callMicStateLabel", "Microphone muted. Tap Unmute below!");
+        } else {
+          setCallElemText("callStatusText", "Microphone unmuted 🎙️");
+          setCallElemText("callMicStateLabel", "Listening to your voice... Speak anytime!");
+          if (!this.isSpeaking) {
+            this.initSpeechRecognition();
+          }
+        }
+      }
+
+      updateMuteUI() {
+        const circle = document.getElementById("callMuteMicCircle");
+        const icon = document.getElementById("callMuteMicIcon");
+        const label = document.getElementById("callMuteMicLabel");
+
+        if (this.isMuted) {
+          circle?.classList.add("bg-red-100", "text-red-600");
+          if (icon) icon.textContent = "mic_off";
+          if (label) label.textContent = "Unmute";
+        } else {
+          circle?.classList.remove("bg-red-100", "text-red-600");
+          if (icon) icon.textContent = "mic";
+          if (label) label.textContent = "Mute";
+        }
+      }
+
+      endCall() {
+        this.isCallActive = false;
+        this.playHangupTone();
+
+        if (this.timerInterval) {
+          clearInterval(this.timerInterval);
+          this.timerInterval = null;
+        }
+        if (this.visualizerInterval) {
+          clearInterval(this.visualizerInterval);
+          this.visualizerInterval = null;
+        }
+        if (this.recognition) {
+          try { this.recognition.abort(); } catch (e) {}
+          this.recognition = null;
+        }
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+
+        const modal = document.getElementById("voiceCallModal");
+        if (modal) {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+        }
+
+        // Reset visualizer bars
+        const visualizer = document.getElementById("callAudioBars");
+        if (visualizer) {
+          visualizer.querySelectorAll(".bar, div").forEach(bar => {
+            bar.style.height = "8px";
+            bar.classList.remove("bg-primary", "bg-secondary");
+          });
+        }
+      }
+    }
+
+    const voiceCallManager = new VoiceCallManager();
+
+    function startVoiceCall(charId) {
+      voiceCallManager.startCall(charId);
+    }
+
+    function initVoiceCallUI() {
+      // Pre-warm audio on user touch/click
+      const preWarmSpeech = () => {
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.resume();
+        }
+      };
+
+      // Header Call Button
+      document.getElementById("headerCallBtn")?.addEventListener("click", () => {
+        preWarmSpeech();
+        startVoiceCall(state.selectedCharacter);
+      });
+
+      // Mobile Call Button
+      document.getElementById("mobileCallBtn")?.addEventListener("click", () => {
+        preWarmSpeech();
+        startVoiceCall(state.selectedCharacter);
+      });
+
+      // Chat Header Voice Call Button
+      document.getElementById("chatCallCharacterBtn")?.addEventListener("click", () => {
+        preWarmSpeech();
+        startVoiceCall(state.selectedCharacter);
+      });
+
+      // Replay Voice Button in transcript card
+      document.getElementById("callReplayVoiceBtn")?.addEventListener("click", () => {
+        preWarmSpeech();
+        voiceCallManager.replayLastVoice();
+      });
+
+      // End Call Button
+      document.getElementById("callEndBtn")?.addEventListener("click", () => {
+        voiceCallManager.endCall();
+      });
+
+      // Mute Toggle Button
+      document.getElementById("callMuteMicBtn")?.addEventListener("click", () => {
+        voiceCallManager.toggleMute();
+      });
+
+      // Toggle Text Input Drawer in Call
+      document.getElementById("callToggleTextBtn")?.addEventListener("click", () => {
+        const wrapper = document.getElementById("callTextInputWrapper");
+        wrapper?.classList.toggle("hidden");
+        if (!wrapper?.classList.contains("hidden")) {
+          document.getElementById("callTextInput")?.focus();
+        }
+      });
+
+      // Text Input Form inside Call
+      document.getElementById("callTextForm")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = document.getElementById("callTextInput");
+        const text = input?.value.trim();
+        if (text) {
+          input.value = "";
+          setCallElemText("callSpeakerLabel", "You");
+          setCallElemText("callTranscriptText", `"${text}"`);
+          voiceCallManager.processUserVoiceInput(text);
+        }
+      });
+
+      // Close Call Button (X)
+      document.getElementById("closeVoiceCallModal")?.addEventListener("click", () => {
+        voiceCallManager.endCall();
+      });
+
+      // Close call on backdrop click
+      const callModal = document.getElementById("voiceCallModal");
+      callModal?.addEventListener("click", (e) => {
+        if (e.target === callModal || e.target.id === "voiceCallModalBackdrop" || e.target.classList?.contains("voice-call-modal-backdrop")) {
+          voiceCallManager.endCall();
+        }
+      });
+
+      // Topic chips inside Call Modal
+      document.querySelectorAll(".call-topic-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          preWarmSpeech();
+          const topic = chip.dataset.topic;
+          if (topic) {
+            setCallElemText("callSpeakerLabel", "You");
+            setCallElemText("callTranscriptText", `"${topic}"`);
+            voiceCallManager.processUserVoiceInput(topic);
+          }
+        });
+      });
+    }
+
+    // ==========================================
+    // 10. INITIAL BOOTSTRAP
+    // ==========================================
+    function bootstrapApp() {
+      try { renderCharactersGrid(); } catch (e) { console.error("renderCharactersGrid:", e); }
+      try { renderEmotionTags(); } catch (e) { console.error("renderEmotionTags:", e); }
+      try { renderSupportStyles(); } catch (e) { console.error("renderSupportStyles:", e); }
+      try { renderChatMessages(); } catch (e) { console.error("renderChatMessages:", e); }
+      try { renderGarden(); } catch (e) { console.error("renderGarden:", e); }
+      try { updateChatHeaderUI(); } catch (e) { console.error("updateChatHeaderUI:", e); }
+      try { renderDynamicSuggestions(state.selectedCharacter); } catch (e) { console.error("renderDynamicSuggestions:", e); }
+      try { initMusicPlayerUI(); } catch (e) { console.error("initMusicPlayerUI:", e); }
+      try { initDailyHost(); } catch (e) { console.error("initDailyHost:", e); }
+      try { initVoiceCallUI(); } catch (e) { console.error("initVoiceCallUI:", e); }
+      try { switchView("welcome-home"); } catch (e) { console.error("switchView:", e); }
+
+      // Global Escape key handler to close any active modal
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (!breathingModal?.classList.contains("hidden")) stopBreathingModal();
+          if (voiceCallManager.isCallActive) voiceCallManager.endCall();
+          if (!smileModal?.classList.contains("hidden")) {
+            smileModal?.classList.add("hidden");
+            smileModal?.classList.remove("flex");
+          }
+        }
+      });
+
+      // Verify server health and connectivity
       fetch("/api/health")
         .then(res => res.json())
         .then(data => {
@@ -2002,7 +3882,13 @@
           }
         })
         .catch(err => console.warn("[Client] Health check failed:", err));
-    });
+    }
+
+    if (document.readyState === "loading") {
+      window.addEventListener("DOMContentLoaded", bootstrapApp);
+    } else {
+      bootstrapApp();
+    }
   </script>
 </body>
 </html>

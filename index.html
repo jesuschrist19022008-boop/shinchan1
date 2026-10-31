@@ -24,6 +24,71 @@
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    #breathingModal,
+    #smileModal,
+    #voiceCallModal {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100% !important;
+      width: 100vw !important;
+      height: 100% !important;
+      height: 100dvh !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+      z-index: 50 !important;
+    }
+    #breathingModal.hidden,
+    #smileModal.hidden,
+    #voiceCallModal.hidden {
+      display: none !important;
+    }
+    #breathingModal:not(.hidden),
+    #smileModal:not(.hidden),
+    #voiceCallModal:not(.hidden) {
+      display: block !important;
+    }
+    .breathing-modal-backdrop,
+    .smile-modal-backdrop,
+    .voice-call-modal-backdrop {
+      min-height: 100% !important;
+      min-height: 100dvh !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      padding-top: 1.5rem !important;
+      padding-bottom: 2.5rem !important;
+      padding-left: 0.75rem !important;
+      padding-right: 0.75rem !important;
+      box-sizing: border-box !important;
+    }
+    @media (min-width: 640px) {
+      .breathing-modal-backdrop,
+      .smile-modal-backdrop,
+      .voice-call-modal-backdrop {
+        padding-top: 2rem !important;
+        padding-bottom: 3rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+    }
+    .breathing-card,
+    .smile-card,
+    .voice-call-card {
+      margin-top: auto !important;
+      margin-bottom: auto !important;
+      min-height: fit-content !important;
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+      flex-shrink: 0 !important;
+      width: 100% !important;
+      max-width: 28rem !important;
+      box-sizing: border-box !important;
+    }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #faf0ff; }
     ::-webkit-scrollbar-thumb { background: #ffb1c1; border-radius: 9999px; }
@@ -1100,33 +1165,35 @@
   <!-- ========================================== -->
   <!-- MODAL 1: MAKE ME SMILE POPUP               -->
   <!-- ========================================== -->
-  <div class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 md:p-space-md bg-on-surface/40 backdrop-blur-sm transition-opacity duration-300 overflow-y-auto overscroll-contain" id="smileModal">
-    <div class="relative w-full max-w-md my-auto max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100vh-3rem)] rounded-xl bg-surface-container-lowest p-4 sm:p-6 md:p-space-lg shadow-2xl flex flex-col items-center text-center animate-bounce-short border border-surface-container overflow-y-auto shrink-0">
-      <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" id="closeSmileModal" type="button" title="Close">
-        <span class="material-symbols-outlined text-[18px]">close</span>
-      </button>
-      <div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-3xl mb-space-sm shadow-md shrink-0">
-        🦖
-      </div>
-      <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-xs shrink-0">
-        Special Chocobi Delivery!
-      </span>
-      <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-xs shrink-0" id="smileModalTitle">
-        "Look, look! An Action Kamen Pose!"
-      </h3>
-      <p class="font-body-md text-body-md text-on-surface-variant mb-space-md shrink-0" id="smileModalBody">
-        Shinnosuke attempts an epic high kick, drops his snack, and Shiro smoothly catches it mid-air without blinking. Even the pigeon on the fence is clapping!
-      </p>
-      <div class="p-space-sm rounded-lg bg-surface-container-low w-full mb-space-md text-on-surface-variant font-body-sm text-body-sm italic shrink-0">
-        "Remember: Nobody expects you to have everything figured out today. Eat a biscuit and take it slow."
-      </div>
-      <div class="flex items-center gap-2 w-full shrink-0">
-        <button class="flex-1 py-3 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:opacity-95 transition-all" id="smileAgainBtn" type="button">
-          Another Giggle!
+  <div class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden bg-on-surface/40 backdrop-blur-sm transition-opacity duration-300" id="smileModal">
+    <div class="min-h-full min-h-[100dvh] w-full flex flex-col items-center justify-start py-6 sm:py-8 px-3 sm:px-4 md:px-space-md text-center smile-modal-backdrop" id="smileModalBackdrop">
+      <div class="relative w-full max-w-md my-auto h-auto min-h-fit rounded-xl bg-surface-container-lowest p-4 sm:p-6 md:p-space-lg shadow-2xl flex flex-col items-center text-center animate-bounce-short border border-surface-container overflow-visible shrink-0 smile-card">
+        <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer" id="closeSmileModal" type="button" title="Close">
+          <span class="material-symbols-outlined text-[18px]">close</span>
         </button>
-        <button class="flex-1 py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md text-center hover:opacity-95 transition-all" id="smileToFunZoneBtn" type="button">
-          To Fun Zone
-        </button>
+        <div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-3xl mb-space-sm shadow-md shrink-0">
+          🦖
+        </div>
+        <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-xs shrink-0">
+          Special Chocobi Delivery!
+        </span>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-xs shrink-0" id="smileModalTitle">
+          "Look, look! An Action Kamen Pose!"
+        </h3>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-space-md shrink-0" id="smileModalBody">
+          Shinnosuke attempts an epic high kick, drops his snack, and Shiro smoothly catches it mid-air without blinking. Even the pigeon on the fence is clapping!
+        </p>
+        <div class="p-space-sm rounded-lg bg-surface-container-low w-full mb-space-md text-on-surface-variant font-body-sm text-body-sm italic shrink-0">
+          "Remember: Nobody expects you to have everything figured out today. Eat a biscuit and take it slow."
+        </div>
+        <div class="flex items-center gap-2 w-full shrink-0">
+          <button class="flex-1 py-3 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:opacity-95 transition-all cursor-pointer" id="smileAgainBtn" type="button">
+            Another Giggle!
+          </button>
+          <button class="flex-1 py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md text-center hover:opacity-95 transition-all cursor-pointer" id="smileToFunZoneBtn" type="button">
+            To Fun Zone
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1134,171 +1201,175 @@
   <!-- ========================================== -->
   <!-- MODAL 2: GUIDED BREATHING RESET (MOOD RESET) -->
   <!-- ========================================== -->
-  <div class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 md:p-6 bg-on-surface/50 backdrop-blur-md transition-opacity duration-300 overflow-y-auto overscroll-contain" id="breathingModal">
-    <div class="relative w-full max-w-md my-auto max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100vh-3rem)] rounded-2xl bg-surface-container-lowest p-4 sm:p-6 md:p-space-lg shadow-2xl flex flex-col items-center text-center border border-surface-container overflow-y-auto shrink-0">
-      <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" id="closeBreathingModal" type="button" title="Close Mood Reset">
-        <span class="material-symbols-outlined text-[18px]">close</span>
-      </button>
+  <div class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden bg-on-surface/50 backdrop-blur-md transition-opacity duration-300" id="breathingModal">
+    <div class="min-h-full min-h-[100dvh] w-full flex flex-col items-center justify-start py-6 sm:py-8 px-3 sm:px-4 md:px-6 text-center breathing-modal-backdrop" id="breathingModalBackdrop">
+      <div class="relative w-full max-w-md my-auto h-auto min-h-fit rounded-2xl bg-surface-container-lowest p-5 sm:p-6 md:p-space-lg shadow-2xl flex flex-col items-center text-center border border-surface-container overflow-visible shrink-0 breathing-card">
+        <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer" id="closeBreathingModal" type="button" title="Close Mood Reset">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
 
-      <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-2 sm:mb-space-sm shrink-0">
-        4-4-4 Grounding Rhythm
-      </span>
-      <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1 shrink-0">
-        Breathe With Shiro
-      </h3>
-      <p class="font-body-sm text-body-sm text-on-surface-variant mb-2 sm:mb-space-md shrink-0">
-        Inhale warmth, hold quiet peace, exhale tension.
-      </p>
+        <span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mb-space-sm shrink-0">
+          4-4-4 Grounding Rhythm
+        </span>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1 shrink-0">
+          Breathe With Shiro
+        </h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg shrink-0">
+          Inhale warmth, hold quiet peace, exhale tension.
+        </p>
 
-      <!-- Breathing Animated Rings Canvas -->
-      <div class="relative w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 flex items-center justify-center my-2 sm:my-3 shrink-0">
-        <div class="absolute inset-0 rounded-full bg-primary-container/20 animate-breathe pointer-events-none"></div>
-        <div class="absolute w-36 h-36 sm:w-42 sm:h-42 md:w-44 md:h-44 rounded-full bg-secondary-container/30 animate-breathe [animation-delay:1s] pointer-events-none"></div>
-        <div class="w-28 h-28 sm:w-30 sm:h-30 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-primary-fixed to-secondary-fixed flex flex-col items-center justify-center shadow-lg transition-transform duration-1000 shrink-0" id="breathCenterCircle">
-          <span class="text-2xl sm:text-3xl mb-0.5 sm:mb-1 select-none">🐕</span>
-          <span class="font-label-md sm:font-label-lg text-primary font-bold" id="breathPhaseText">Inhale</span>
+        <!-- Breathing Animated Rings Canvas -->
+        <div class="relative w-44 h-44 sm:w-56 sm:h-56 flex items-center justify-center my-2 sm:my-4 shrink-0 overflow-visible max-w-full">
+          <div class="absolute inset-0 rounded-full bg-primary-container/20 animate-breathe pointer-events-none"></div>
+          <div class="absolute w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-secondary-container/30 animate-breathe [animation-delay:1s] pointer-events-none"></div>
+          <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-primary-fixed to-secondary-fixed flex flex-col items-center justify-center shadow-lg transition-transform duration-1000 shrink-0" id="breathCenterCircle">
+            <span class="text-2xl sm:text-3xl mb-1 select-none">🐕</span>
+            <span class="font-label-lg text-primary font-bold text-sm sm:text-base" id="breathPhaseText">Inhale</span>
+          </div>
         </div>
+
+        <p class="font-headline-sm text-headline-sm text-primary font-bold my-2 shrink-0" id="breathTimerNum">
+          4
+        </p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant italic mb-space-md max-w-sm shrink-0">
+          "Drop your shoulders. Unclench your jaw. You are safe right now."
+        </p>
+
+        <button class="w-full py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm hover:opacity-95 transition-all shrink-0 cursor-pointer" id="finishBreathingBtn" type="button">
+          I Feel Grounded 💗
+        </button>
       </div>
-
-      <p class="font-headline-sm text-headline-sm text-primary font-bold my-1 sm:my-2 shrink-0" id="breathTimerNum">
-        4
-      </p>
-      <p class="font-body-sm text-body-sm text-on-surface-variant italic mb-3 sm:mb-space-md max-w-sm shrink-0">
-        "Drop your shoulders. Unclench your jaw. You are safe right now."
-      </p>
-
-      <button class="w-full py-2.5 sm:py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm hover:opacity-95 transition-all shrink-0" id="finishBreathingBtn" type="button">
-        I Feel Grounded 💗
-      </button>
     </div>
   </div>
 
   <!-- ========================================== -->
   <!-- MODAL 3: CALL YOUR FAVOURITE CHARACTER     -->
   <!-- ========================================== -->
-  <div class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 bg-on-surface/60 backdrop-blur-md transition-opacity duration-300 overflow-y-auto overscroll-contain" id="voiceCallModal">
-    <div class="relative w-full max-w-md my-auto max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100vh-3rem)] rounded-3xl bg-surface-container-lowest p-4 sm:p-6 md:p-7 shadow-2xl flex flex-col items-center text-center border-2 border-primary/20 overflow-y-auto shrink-0">
-      <!-- Close Call Button -->
-      <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" id="closeVoiceCallModal" type="button" title="Close Call">
-        <span class="material-symbols-outlined text-[18px]">close</span>
-      </button>
+  <div class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden bg-on-surface/60 backdrop-blur-md transition-opacity duration-300" id="voiceCallModal">
+    <div class="min-h-full min-h-[100dvh] w-full flex flex-col items-center justify-start py-6 sm:py-8 px-3 sm:px-4 text-center voice-call-modal-backdrop" id="voiceCallModalBackdrop">
+      <div class="relative w-full max-w-md my-auto h-auto min-h-fit rounded-3xl bg-surface-container-lowest p-4 sm:p-6 md:p-7 shadow-2xl flex flex-col items-center text-center border-2 border-primary/20 overflow-visible shrink-0 voice-call-card">
+        <!-- Close Call Button -->
+        <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer" id="closeVoiceCallModal" type="button" title="Close Call">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
 
-      <!-- Decorative background blur circles -->
-      <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-primary-container/30 blur-2xl pointer-events-none"></div>
-      <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-secondary-container/40 blur-2xl pointer-events-none"></div>
+        <!-- Decorative background blur circles -->
+        <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-primary-container/30 blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-secondary-container/40 blur-2xl pointer-events-none"></div>
 
-      <!-- Top Bar: Connection status & duration -->
-      <div class="relative z-10 w-full flex items-center justify-between mb-3">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-xs font-semibold" id="callStatusBadge">
-          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse" id="callStatusDot"></span>
-          <span id="callStatusText">Connecting...</span>
+        <!-- Top Bar: Connection status & duration -->
+        <div class="relative z-10 w-full flex items-center justify-between mb-3 pr-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-xs font-semibold" id="callStatusBadge">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse" id="callStatusDot"></span>
+            <span id="callStatusText">Connecting...</span>
+          </div>
+          <div class="font-mono text-xs font-bold text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full" id="callTimer">
+            00:00
+          </div>
         </div>
-        <div class="font-mono text-xs font-bold text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full" id="callTimer">
-          00:00
+
+        <!-- Character Calling Avatar with pulsing sound waves -->
+        <div class="relative z-10 my-2.5 sm:my-3 flex items-center justify-center">
+          <!-- Pulse ripple 1 -->
+          <div class="absolute w-44 h-44 rounded-full bg-primary-container/20 animate-ping [animation-duration:3s] pointer-events-none" id="callRipple1"></div>
+          <!-- Pulse ripple 2 -->
+          <div class="absolute w-36 h-36 rounded-full bg-secondary-container/30 animate-pulse pointer-events-none" id="callRipple2"></div>
+          <!-- Avatar circle -->
+          <div class="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary-fixed to-secondary-fixed flex items-center justify-center shadow-xl border-4 border-white transition-transform duration-300" id="callAvatarContainer">
+            <span class="text-4xl select-none" id="callAvatarEmoji">🖍️</span>
+          </div>
         </div>
-      </div>
 
-      <!-- Character Calling Avatar with pulsing sound waves -->
-      <div class="relative z-10 my-3 flex items-center justify-center">
-        <!-- Pulse ripple 1 -->
-        <div class="absolute w-44 h-44 rounded-full bg-primary-container/20 animate-ping [animation-duration:3s] pointer-events-none" id="callRipple1"></div>
-        <!-- Pulse ripple 2 -->
-        <div class="absolute w-36 h-36 rounded-full bg-secondary-container/30 animate-pulse pointer-events-none" id="callRipple2"></div>
-        <!-- Avatar circle -->
-        <div class="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary-fixed to-secondary-fixed flex items-center justify-center shadow-xl border-4 border-white transition-transform duration-300" id="callAvatarContainer">
-          <span class="text-4xl select-none" id="callAvatarEmoji">🖍️</span>
-        </div>
-      </div>
-
-      <!-- Character Info -->
-      <div class="relative z-10 my-1">
-        <h3 class="font-headline-sm text-xl text-on-surface font-extrabold" id="callCharacterName">
-          Shinnosuke (Shinchan)
-        </h3>
-        <p class="font-body-sm text-xs text-primary font-medium mt-0.5" id="callCharacterRole">
-          Playful Comfort &amp; Sincere Voice
-        </p>
-      </div>
-
-      <!-- Live Voice Subtitles / Speech Transcript Display -->
-      <div class="relative z-10 w-full min-h-[72px] max-h-28 overflow-y-auto my-2.5 p-3 rounded-2xl bg-surface-container-low/90 border border-surface-container text-center flex flex-col justify-center items-center shadow-inner">
-        <div class="flex items-center justify-between w-full px-1 mb-0.5">
-          <p class="text-[10px] uppercase tracking-wider font-bold text-outline" id="callSpeakerLabel">
-            Connecting call...
+        <!-- Character Info -->
+        <div class="relative z-10 my-1">
+          <h3 class="font-headline-sm text-xl text-on-surface font-extrabold" id="callCharacterName">
+            Shinnosuke (Shinchan)
+          </h3>
+          <p class="font-body-sm text-xs text-primary font-medium mt-0.5" id="callCharacterRole">
+            Playful Comfort &amp; Sincere Voice
           </p>
-          <button class="inline-flex items-center gap-0.5 text-[10px] font-bold text-primary hover:underline cursor-pointer" id="callReplayVoiceBtn" type="button" title="Replay voice audio">
-            <span class="material-symbols-outlined text-[13px]">volume_up</span>
-            <span>Replay Voice</span>
+        </div>
+
+        <!-- Live Voice Subtitles / Speech Transcript Display -->
+        <div class="relative z-10 w-full min-h-[64px] max-h-36 overflow-y-auto my-2 p-3 rounded-2xl bg-surface-container-low/90 border border-surface-container text-center flex flex-col justify-center items-center shadow-inner">
+          <div class="flex items-center justify-between w-full px-1 mb-0.5">
+            <p class="text-[10px] uppercase tracking-wider font-bold text-outline" id="callSpeakerLabel">
+              Connecting call...
+            </p>
+            <button class="inline-flex items-center gap-0.5 text-[10px] font-bold text-primary hover:underline cursor-pointer" id="callReplayVoiceBtn" type="button" title="Replay voice audio">
+              <span class="material-symbols-outlined text-[13px]">volume_up</span>
+              <span>Replay Voice</span>
+            </button>
+          </div>
+          <p class="font-body-md text-xs sm:text-sm text-on-surface font-semibold leading-relaxed" id="callTranscriptText">
+            "Oii! Can you hear me? Press speak or talk naturally!"
+          </p>
+        </div>
+
+        <!-- Real-time Audio Visualizer Bars -->
+        <div class="relative z-10 w-full h-6 flex items-center justify-center gap-1.5 my-1" id="callAudioBars">
+          <div class="w-1.5 h-2 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-4 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-6 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-3 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-5 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-4 bg-primary rounded-full transition-all duration-150 bar"></div>
+          <div class="w-1.5 h-2 bg-primary rounded-full transition-all duration-150 bar"></div>
+        </div>
+
+        <!-- Push-to-Talk / Mic Status Message -->
+        <div class="relative z-10 text-[11px] text-on-surface-variant font-medium mb-2.5 flex items-center gap-1.5" id="callMicInstruction">
+          <span class="material-symbols-outlined text-[15px] text-primary animate-pulse" id="callMicIcon">mic</span>
+          <span id="callMicStateLabel">Listening to your voice... Speak anytime!</span>
+        </div>
+
+        <!-- Quick Voice Topic Suggestions -->
+        <div class="relative z-10 w-full flex items-center justify-center flex-wrap gap-1.5 mb-2" id="callTopicChips">
+          <button type="button" class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant transition-all call-topic-chip cursor-pointer" data-topic="I had such a happy day today!">
+            🎈 I'm happy today!
+          </button>
+          <button type="button" class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant transition-all call-topic-chip cursor-pointer" data-topic="Tell me a funny joke to make me smile!">
+            😂 Tell me a joke!
+          </button>
+          <button type="button" class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant transition-all call-topic-chip cursor-pointer" data-topic="I feel a bit overwhelmed right now. Can we talk?">
+            ✨ Need a warm hug
           </button>
         </div>
-        <p class="font-body-md text-xs sm:text-sm text-on-surface font-semibold leading-relaxed" id="callTranscriptText">
-          "Oii! Can you hear me? Press speak or talk naturally!"
-        </p>
-      </div>
 
-      <!-- Real-time Audio Visualizer Bars -->
-      <div class="relative z-10 w-full h-6 flex items-center justify-center gap-1.5 my-1" id="callAudioBars">
-        <div class="w-1.5 h-2 bg-primary rounded-full transition-all duration-150 bar"></div>
-        <div class="w-1.5 h-4 bg-primary rounded-full transition-all duration-150 bar"></div>
-        <div class="w-1.5 h-6 bg-primary rounded-full transition-all duration-150 bar"></div>
-        <div class="w-1.5 h-3 bg-primary rounded-full transition-all duration-150 bar"></div>
-        <div class="w-1.5 h-5 bg-primary rounded-full transition-all duration-150 bar"></div>
-        <div class="w-1.5 h-4 bg-primary rounded-full transition-all duration-150 bar"></div>
-        <div class="w-1.5 h-2 bg-primary rounded-full transition-all duration-150 bar"></div>
-      </div>
+        <!-- Optional In-Call Text Input Fallback (Collapsible) -->
+        <div class="relative z-10 w-full mb-2.5 hidden" id="callTextInputWrapper">
+          <form class="flex items-center gap-2" id="callTextForm">
+            <input class="flex-1 px-3.5 py-2 rounded-full bg-surface-container text-xs text-on-surface border border-outline-variant focus:outline-none focus:ring-1 focus:ring-primary" id="callTextInput" placeholder="Type here if mic is quiet..." type="text" autocomplete="off"/>
+            <button class="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold hover:opacity-95 cursor-pointer" type="submit">Say</button>
+          </form>
+        </div>
 
-      <!-- Push-to-Talk / Mic Status Message -->
-      <div class="relative z-10 text-[11px] text-on-surface-variant font-medium mb-3 flex items-center gap-1.5" id="callMicInstruction">
-        <span class="material-symbols-outlined text-[15px] text-primary animate-pulse" id="callMicIcon">mic</span>
-        <span id="callMicStateLabel">Listening to your voice... Speak anytime!</span>
-      </div>
+        <!-- Bottom Call Controls Row -->
+        <div class="relative z-10 w-full flex items-center justify-around pt-3 border-t border-surface-container mt-1 shrink-0">
+          <!-- Mute/Unmute Mic -->
+          <button class="flex flex-col items-center gap-1 text-on-surface group cursor-pointer" id="callMuteMicBtn" type="button" title="Mute Microphone">
+            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-surface-container-high transition-colors shadow-sm" id="callMuteMicCircle">
+              <span class="material-symbols-outlined text-[20px]" id="callMuteMicIcon">mic</span>
+            </div>
+            <span class="text-[10px] font-medium" id="callMuteMicLabel">Mute</span>
+          </button>
 
-      <!-- Quick Voice Topic Suggestions -->
-      <div class="relative z-10 w-full flex items-center justify-center flex-wrap gap-1.5 mb-2.5" id="callTopicChips">
-        <button type="button" class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant transition-all call-topic-chip" data-topic="I had such a happy day today!">
-          🎈 I'm happy today!
-        </button>
-        <button type="button" class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant transition-all call-topic-chip" data-topic="Tell me a funny joke to make me smile!">
-          😂 Tell me a joke!
-        </button>
-        <button type="button" class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant transition-all call-topic-chip" data-topic="I feel a bit overwhelmed right now. Can we talk?">
-          ✨ Need a warm hug
-        </button>
-      </div>
+          <!-- End Call Button (Big Red Circle) -->
+          <button class="flex flex-col items-center gap-1 group cursor-pointer" id="callEndBtn" type="button" title="End Call">
+            <div class="w-12 h-12 rounded-full bg-red-500 hover:bg-red-600 active:scale-95 text-white flex items-center justify-center shadow-lg transition-all">
+              <span class="material-symbols-outlined text-[24px]">call_end</span>
+            </div>
+            <span class="text-[10px] font-bold text-red-600">End Call</span>
+          </button>
 
-      <!-- Optional In-Call Text Input Fallback (Collapsible) -->
-      <div class="relative z-10 w-full mb-3 hidden" id="callTextInputWrapper">
-        <form class="flex items-center gap-2" id="callTextForm">
-          <input class="flex-1 px-3.5 py-2 rounded-full bg-surface-container text-xs text-on-surface border border-outline-variant focus:outline-none focus:ring-1 focus:ring-primary" id="callTextInput" placeholder="Type here if mic is quiet..." type="text" autocomplete="off"/>
-          <button class="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold hover:opacity-95" type="submit">Say</button>
-        </form>
-      </div>
-
-      <!-- Bottom Call Controls Row -->
-      <div class="relative z-10 w-full flex items-center justify-around pt-2 border-t border-surface-container">
-        <!-- Mute/Unmute Mic -->
-        <button class="flex flex-col items-center gap-1 text-on-surface group" id="callMuteMicBtn" type="button" title="Mute Microphone">
-          <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-surface-container-high transition-colors shadow-sm" id="callMuteMicCircle">
-            <span class="material-symbols-outlined text-[20px]" id="callMuteMicIcon">mic</span>
-          </div>
-          <span class="text-[10px] font-medium" id="callMuteMicLabel">Mute</span>
-        </button>
-
-        <!-- End Call Button (Big Red Circle) -->
-        <button class="flex flex-col items-center gap-1 group" id="callEndBtn" type="button" title="End Call">
-          <div class="w-12 h-12 rounded-full bg-red-500 hover:bg-red-600 active:scale-95 text-white flex items-center justify-center shadow-lg transition-all">
-            <span class="material-symbols-outlined text-[24px]">call_end</span>
-          </div>
-          <span class="text-[10px] font-bold text-red-600">End Call</span>
-        </button>
-
-        <!-- Speaker Mute / Keyboard Toggle -->
-        <button class="flex flex-col items-center gap-1 text-on-surface group" id="callToggleTextBtn" type="button" title="Keyboard Text Input">
-          <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-surface-container-high transition-colors shadow-sm" id="callTextCircle">
-            <span class="material-symbols-outlined text-[20px]">keyboard</span>
-          </div>
-          <span class="text-[10px] font-medium" id="callTextLabel">Keyboard</span>
-        </button>
+          <!-- Speaker Mute / Keyboard Toggle -->
+          <button class="flex flex-col items-center gap-1 text-on-surface group cursor-pointer" id="callToggleTextBtn" type="button" title="Keyboard Text Input">
+            <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-surface-container-high transition-colors shadow-sm" id="callTextCircle">
+              <span class="material-symbols-outlined text-[20px]">keyboard</span>
+            </div>
+            <span class="text-[10px] font-medium" id="callTextLabel">Keyboard</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -2544,7 +2615,7 @@
       switchView("fun-zone");
     });
     smileModal?.addEventListener("click", (e) => {
-      if (e.target === smileModal) {
+      if (e.target === smileModal || e.target.id === "smileModalBackdrop" || e.target.classList?.contains("smile-modal-backdrop")) {
         smileModal?.classList.add("hidden");
         smileModal?.classList.remove("flex");
       }
@@ -2675,7 +2746,9 @@
       showComfortToast("Shiro smiles at you: You're doing great! 🐾", "spa");
     });
     breathingModal?.addEventListener("click", (e) => {
-      if (e.target === breathingModal) stopBreathingModal();
+      if (e.target === breathingModal || e.target.id === "breathingModalBackdrop" || e.target.classList?.contains("breathing-modal-backdrop")) {
+        stopBreathingModal();
+      }
     });
 
     // ==========================================
@@ -3752,7 +3825,7 @@
       // Close call on backdrop click
       const callModal = document.getElementById("voiceCallModal");
       callModal?.addEventListener("click", (e) => {
-        if (e.target === callModal) {
+        if (e.target === callModal || e.target.id === "voiceCallModalBackdrop" || e.target.classList?.contains("voice-call-modal-backdrop")) {
           voiceCallManager.endCall();
         }
       });
@@ -3786,6 +3859,18 @@
       try { initDailyHost(); } catch (e) { console.error("initDailyHost:", e); }
       try { initVoiceCallUI(); } catch (e) { console.error("initVoiceCallUI:", e); }
       try { switchView("welcome-home"); } catch (e) { console.error("switchView:", e); }
+
+      // Global Escape key handler to close any active modal
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (!breathingModal?.classList.contains("hidden")) stopBreathingModal();
+          if (voiceCallManager.isCallActive) voiceCallManager.endCall();
+          if (!smileModal?.classList.contains("hidden")) {
+            smileModal?.classList.add("hidden");
+            smileModal?.classList.remove("flex");
+          }
+        }
+      });
 
       // Verify server health and connectivity
       fetch("/api/health")
