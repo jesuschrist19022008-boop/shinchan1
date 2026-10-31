@@ -1,6 +1,6 @@
 {
-  "name": "Shinchan Comfort Corner",
-  "description": "A wholesome, emotionally intelligent comfort haven featuring Shinnosuke Nohara and Kasukabe friends, with personalized Gemini character chat, feelings check-in, and calming activities.",
+  "name": "Shinchan's Info Detective",
+  "description": "Digital Dark Spot – AI-Assisted Information Gap Detection Platform for Shinchan Online Hackathon 2026. Every mystery has a clue. Every information gap has a detective!",
   "permissions": [],
   "capabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

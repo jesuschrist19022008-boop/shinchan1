@@ -1,7 +1,7 @@
 {
-  "name": "shinchan-comfort-corner",
+  "name": "shinchan-info-detective",
   "version": "1.0.0",
-  "description": "Shinchan Comfort Corner - Wholesome emotional support app featuring Kasukabe friends",
+  "description": "Shinchan's Info Detective - Digital Dark Spot AI-Assisted Information Gap Detection Platform for Shinchan Online Hackathon 2026",
   "private": true,
   "type": "module",
   "scripts": {
