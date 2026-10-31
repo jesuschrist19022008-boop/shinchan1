@@ -280,14 +280,14 @@
       <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="choose-character">Friends</button>
       <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="feelings-check-in">Feelings</button>
       <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="character-chat">Chat 💬</button>
-      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn bg-primary-container text-on-primary-container" id="mobileCallBtn">Call 📞</button>
+      <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-primary-container text-on-primary-container hover:scale-105 active:scale-95 transition-all shadow-xs" id="mobileCallBtn" type="button">Call 📞</button>
       <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="fun-zone">Fun Zone</button>
       <button class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap mobile-nav-btn" data-target="safety-about">Safety</button>
     </div>
   </header>
 
   <!-- Main Content Container with App Views -->
-  <main class="w-full pt-28 lg:pt-28 bg-background flex-1">
+  <main class="w-full pt-32 lg:pt-28 bg-background flex-1">
     <div class="max-w-[1200px] mx-auto px-margin py-space-md">
 
       <!-- ========================================== -->
@@ -1014,33 +1014,57 @@
             </p>
 
             <div class="space-y-3 mb-space-md">
-              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span class="font-label-md text-label-md text-on-surface block font-bold">United States &amp; Canada</span>
                   <span class="font-body-sm text-body-sm text-on-surface-variant">Suicide &amp; Crisis Lifeline (24/7, Free, Confidential)</span>
                 </div>
-                <span class="font-label-lg text-primary font-extrabold text-lg">988</span>
+                <a href="tel:988" class="self-start sm:self-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-md text-xs font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" title="Call 988 Lifeline">
+                  <span class="material-symbols-outlined text-[16px]">call</span>
+                  <span>Call 988</span>
+                </a>
               </div>
-              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span class="font-label-md text-label-md text-on-surface block font-bold">United Kingdom</span>
                   <span class="font-body-sm text-body-sm text-on-surface-variant">Samaritans UK &amp; NHS Mental Health</span>
                 </div>
-                <span class="font-label-lg text-primary font-extrabold text-lg">111 / 116 123</span>
+                <div class="flex items-center gap-2 self-start sm:self-auto">
+                  <a href="tel:111" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-xs font-bold transition-all" title="Call 111 NHS">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span>111</span>
+                  </a>
+                  <a href="tel:116123" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-xs font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" title="Call 116 123 Samaritans">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span>116 123</span>
+                  </a>
+                </div>
               </div>
-              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span class="font-label-md text-label-md text-on-surface block font-bold">India</span>
                   <span class="font-body-sm text-body-sm text-on-surface-variant">Tele-MANAS &amp; Vandrevala Foundation</span>
                 </div>
-                <span class="font-label-lg text-primary font-extrabold text-lg">14416 / 9999 666 555</span>
+                <div class="flex items-center gap-2 self-start sm:self-auto">
+                  <a href="tel:14416" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-xs font-bold transition-all" title="Call Tele-MANAS 14416">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span>14416</span>
+                  </a>
+                  <a href="tel:9999666555" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-xs font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" title="Call Vandrevala Foundation">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span>9999 666 555</span>
+                  </a>
+                </div>
               </div>
-              <div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+              <div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span class="font-label-md text-label-md text-on-surface block font-bold">International (Worldwide Directory)</span>
                   <span class="font-body-sm text-body-sm text-on-surface-variant">Befrienders Worldwide &amp; Find A Helpline</span>
                 </div>
-                <span class="font-label-sm text-primary font-bold">findahelpline.com</span>
+                <a href="https://findahelpline.com" target="_blank" rel="noopener noreferrer" class="self-start sm:self-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-white font-label-md text-xs font-bold shadow-sm hover:scale-105 active:scale-95 transition-all" title="Open Find A Helpline Directory">
+                  <span>findahelpline.com</span>
+                  <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                </a>
               </div>
             </div>
 
@@ -1146,6 +1170,11 @@
   <!-- ========================================== -->
   <div class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-on-surface/60 backdrop-blur-md transition-opacity duration-300" id="voiceCallModal">
     <div class="relative w-full max-w-md rounded-3xl bg-surface-container-lowest p-6 sm:p-7 shadow-2xl flex flex-col items-center text-center border-2 border-primary/20 overflow-hidden">
+      <!-- Close Call Button -->
+      <button class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" id="closeVoiceCallModal" type="button" title="Close Call">
+        <span class="material-symbols-outlined text-[18px]">close</span>
+      </button>
+
       <!-- Decorative background blur circles -->
       <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-primary-container/30 blur-2xl pointer-events-none"></div>
       <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-secondary-container/40 blur-2xl pointer-events-none"></div>
@@ -1316,6 +1345,9 @@
       </div>
     </div>
   </footer>
+
+  <!-- Comfort Toast Container -->
+  <div id="comfortToastContainer" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none flex flex-col items-center gap-2 max-w-sm w-full px-4"></div>
 
   <!-- Application Logic -->
   <script>
@@ -1493,19 +1525,52 @@
       }
     }
 
-    // Attach click handlers to any data-nav buttons
+    // Safe LocalStorage wrapper for sandboxed iframes
+    const safeStorage = {
+      get(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+      },
+      set(key, val) {
+        try { localStorage.setItem(key, val); } catch (e) {}
+      }
+    };
+
+    // Comfort Toast Notification
+    function showComfortToast(message, icon = "favorite") {
+      const container = document.getElementById("comfortToastContainer");
+      if (!container) return;
+      const toast = document.createElement("div");
+      toast.className = "pointer-events-auto flex items-center gap-2 px-4 py-2.5 rounded-full bg-on-surface text-surface text-xs font-semibold shadow-xl transition-all duration-300 transform translate-y-4 opacity-0 border border-primary-container/40";
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-primary text-[18px] shrink-0">${icon}</span>
+        <span class="truncate">${escapeHtml(message)}</span>
+      `;
+      container.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.classList.remove("translate-y-4", "opacity-0");
+      });
+      setTimeout(() => {
+        toast.classList.add("translate-y-4", "opacity-0");
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Attach click handlers to any data-nav buttons or nav-btn
     document.addEventListener("click", (e) => {
       const navTarget = e.target.closest("[data-nav]");
       if (navTarget) {
         e.preventDefault();
         const target = navTarget.getAttribute("data-nav");
-        switchView(target);
+        if (target) {
+          switchView(target);
+          return;
+        }
       }
       const navBtn = e.target.closest(".nav-btn, .mobile-nav-btn");
-      if (navBtn) {
+      if (navBtn && navBtn.dataset.target) {
         e.preventDefault();
-        const target = navBtn.dataset.target;
-        switchView(target);
+        switchView(navBtn.dataset.target);
+        return;
       }
     });
 
@@ -1519,7 +1584,7 @@
       container.innerHTML = characters.map(char => {
         const isSelected = char.id === state.selectedCharacter;
         return `
-          <div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-md hover:shadow-xl transition-all border ${isSelected ? 'border-primary ring-2 ring-primary/30' : 'border-surface-container'} flex flex-col justify-between group">
+          <div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-md hover:shadow-xl transition-all border ${isSelected ? 'border-primary ring-2 ring-primary/30' : 'border-surface-container'} flex flex-col justify-between group cursor-pointer" data-char-card="${char.id}">
             <div>
               <div class="flex items-center justify-between mb-3">
                 <div class="w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 transition-transform">
@@ -1537,10 +1602,10 @@
             </div>
 
             <div class="flex items-center gap-2 mt-2">
-              <button class="flex-1 py-2.5 rounded-full ${isSelected ? 'bg-primary text-on-primary font-bold shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface'} text-xs font-semibold transition-all select-char-btn" data-char-id="${char.id}">
+              <button class="flex-1 py-2.5 rounded-full ${isSelected ? 'bg-primary text-on-primary font-bold shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface'} text-xs font-semibold transition-all select-char-btn" data-char-id="${char.id}" type="button">
                 ${isSelected ? 'Active Friend' : `Chat with ${char.name.split(' ')[0]}`}
               </button>
-              <button class="px-3.5 py-2.5 rounded-full bg-secondary-container text-on-secondary-container hover:scale-105 active:scale-95 text-xs font-bold transition-all call-char-btn flex items-center justify-center gap-1 shadow-sm shrink-0" data-char-id="${char.id}" title="Call ${char.name.split(' ')[0]}">
+              <button class="px-3.5 py-2.5 rounded-full bg-secondary-container text-on-secondary-container hover:scale-105 active:scale-95 text-xs font-bold transition-all call-char-btn flex items-center justify-center gap-1 shadow-sm shrink-0" data-char-id="${char.id}" title="Call ${char.name.split(' ')[0]}" type="button">
                 <span class="material-symbols-outlined text-[15px]">call</span>
                 <span>Call 📞</span>
               </button>
@@ -1550,7 +1615,8 @@
       }).join('');
 
       container.querySelectorAll(".select-char-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
           const charId = btn.dataset.charId;
           selectCompanion(charId);
           switchView("feelings-check-in");
@@ -1558,10 +1624,20 @@
       });
 
       container.querySelectorAll(".call-char-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
           const charId = btn.dataset.charId;
           selectCompanion(charId);
           startVoiceCall(charId);
+        });
+      });
+
+      container.querySelectorAll("[data-char-card]").forEach(card => {
+        card.addEventListener("click", (e) => {
+          if (e.target.closest("button")) return;
+          const charId = card.dataset.charCard;
+          selectCompanion(charId);
+          switchView("feelings-check-in");
         });
       });
     }
@@ -1570,6 +1646,7 @@
       const char = characters.find(c => c.id === charId);
       if (!char) return;
       state.selectedCharacter = charId;
+      showComfortToast(`Joined with ${char.name.split(' ')[0]} ${char.emoji}!`, "sentiment_satisfied");
 
       // Update header elements
       document.getElementById("headerCompanionLabel").textContent = `Companion: ${char.name.split(' ')[0]} ${char.emoji}`;
@@ -2011,7 +2088,7 @@
           "It's completely okay to feel nervous, we can be brave together slowly.",
           "Masao, how do you calm your tummy when you feel butterflies?"
         ],
-        Bo-chan: [
+        "Bo-chan": [
           "Bo-chan, did you find any unusual, smooth river stones today?",
           "Teach me how to stay still and calm like a quiet river pebble.",
           "What do the shapes of the clouds look like to you right now?",
@@ -2180,12 +2257,20 @@
       document.getElementById("gardenCountLabel").textContent = `Flowers in Bloom: ${state.gardenFlowers.length}`;
 
       grid.innerHTML = state.gardenFlowers.map((f, i) => `
-        <div class="rounded-xl bg-surface-container-lowest p-3 text-center shadow-sm hover:scale-110 transition-transform cursor-pointer border border-surface-container group">
+        <div class="rounded-xl bg-surface-container-lowest p-3 text-center shadow-sm hover:scale-110 transition-transform cursor-pointer border border-surface-container group" data-flower-idx="${i}" title="Click to celebrate this win">
           <span class="text-3xl block mb-1 group-hover:rotate-12 transition-transform">${f.type}</span>
           <span class="font-label-sm text-xs font-bold text-on-surface block truncate" title="${f.title}">${f.title}</span>
           <span class="text-[10px] text-outline">${f.date}</span>
         </div>
       `).join('');
+
+      grid.querySelectorAll("[data-flower-idx]").forEach(card => {
+        card.addEventListener("click", () => {
+          const idx = parseInt(card.dataset.flowerIdx);
+          const f = state.gardenFlowers[idx];
+          if (f) showComfortToast(`Celebrating win: "${f.title}"! ${f.type}`, "local_florist");
+        });
+      });
     }
 
     function plantWin(title) {
@@ -2198,6 +2283,7 @@
         date: "Just now"
       });
       renderGarden();
+      showComfortToast(`Planted "${title.trim()}" in the sunflower field! ${randomFlower}`, "local_florist");
     }
 
     document.querySelectorAll(".win-btn").forEach(btn => {
@@ -2206,11 +2292,18 @@
       });
     });
 
-    document.getElementById("plantSeedBtn")?.addEventListener("click", () => {
-      const input = document.getElementById("customWinInput");
-      if (input && input.value) {
-        plantWin(input.value);
-        input.value = "";
+    const plantBtn = document.getElementById("plantSeedBtn");
+    const winInput = document.getElementById("customWinInput");
+    plantBtn?.addEventListener("click", () => {
+      if (winInput && winInput.value) {
+        plantWin(winInput.value);
+        winInput.value = "";
+      }
+    });
+    winInput?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        plantBtn?.click();
       }
     });
 
@@ -2247,10 +2340,54 @@
       memeBottomInput.value = preset.bottom;
       memeTopCaption.textContent = preset.top;
       memeBottomCaption.textContent = preset.bottom;
+      showComfortToast("Loaded a new meme preset! 🎲", "sentiment_very_satisfied");
     });
 
     document.getElementById("saveMemeBtn")?.addEventListener("click", () => {
-      alert("✨ Saved your warm meme! Remember: laughter is proof your spirit is strong.");
+      const topText = (document.getElementById("memeTopInput")?.value || "").toUpperCase();
+      const bottomText = (document.getElementById("memeBottomInput")?.value || "").toUpperCase();
+      const memeImg = document.getElementById("memeImage");
+
+      try {
+        const canvas = document.createElement("canvas");
+        const size = 500;
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.fillStyle = "#1e1429";
+          ctx.fillRect(0, 0, size, size);
+
+          if (memeImg && memeImg.complete && memeImg.naturalWidth) {
+            ctx.drawImage(memeImg, 0, 0, size, size);
+          } else {
+            ctx.fillStyle = "#ff85a2";
+            ctx.fillRect(0, 0, size, size);
+          }
+
+          ctx.font = "bold 26px Quicksand, sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillStyle = "#ffffff";
+          ctx.strokeStyle = "#000000";
+          ctx.lineWidth = 4;
+          ctx.strokeText(topText, size / 2, 45);
+          ctx.fillText(topText, size / 2, 45);
+
+          ctx.fillStyle = "#ffdf9b";
+          ctx.strokeText(bottomText, size / 2, size - 30);
+          ctx.fillText(bottomText, size / 2, size - 30);
+
+          const a = document.createElement("a");
+          a.href = canvas.toDataURL("image/png");
+          a.download = "kasukabe-comfort-meme.png";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        }
+        showComfortToast("Meme saved to downloads! Keep smiling! 🎨", "sentiment_very_satisfied");
+      } catch (e) {
+        showComfortToast("Meme captured! Remember: laughter is strength! 🎨", "sentiment_very_satisfied");
+      }
     });
 
     // ==========================================
@@ -2335,6 +2472,7 @@
       if (emojiEl) emojiEl.textContent = f.emoji;
       if (titleEl) titleEl.textContent = `${f.title} • [${f.category}]`;
       if (bodyEl) bodyEl.textContent = f.body;
+      showComfortToast("Cracked open a fresh Chocobi fortune! 🍪", "cookie");
 
       // Gentle crack sound effect via Web Audio
       try {
@@ -2361,6 +2499,7 @@
       if (countLabel) countLabel.textContent = `${state.hugCount.toLocaleString()} warm hugs given`;
       const prog = document.getElementById("hugProgressBar");
       if (prog) prog.style.width = "85%";
+      showComfortToast("Warm hug added to the sanctuary! 🐾", "volunteer_activism");
     });
 
     // Daily Compliment Capsule in Home
@@ -2373,6 +2512,7 @@
       if (promptEl) promptEl.textContent = `${f.emoji} ${f.title}`;
       if (subEl) subEl.textContent = f.body;
       if (iconEl) iconEl.textContent = "cookie";
+      showComfortToast("Opened daily compliment capsule! 🍪", "cookie");
     }
     document.getElementById("capsuleWrapper")?.addEventListener("click", openHomeCapsule);
     document.getElementById("anotherCapsuleBtn")?.addEventListener("click", (e) => {
@@ -2394,6 +2534,12 @@
       smileModal?.classList.add("hidden");
       smileModal?.classList.remove("flex");
       switchView("fun-zone");
+    });
+    smileModal?.addEventListener("click", (e) => {
+      if (e.target === smileModal) {
+        smileModal?.classList.add("hidden");
+        smileModal?.classList.remove("flex");
+      }
     });
 
     const smileJokes = [
@@ -2457,6 +2603,7 @@
       const b = document.getElementById("smileModalBody");
       if (t) t.textContent = j.title;
       if (b) b.textContent = j.body;
+      showComfortToast("New Kasukabe giggle loaded! 😂", "sentiment_very_satisfied");
     });
 
     // ==========================================
@@ -2509,6 +2656,16 @@
       breathingModal?.classList.add("hidden");
       breathingModal?.classList.remove("flex");
     }
+
+    // Attach listeners for breathing modal close buttons and backdrop
+    document.getElementById("closeBreathingModal")?.addEventListener("click", stopBreathingModal);
+    document.getElementById("finishBreathingBtn")?.addEventListener("click", () => {
+      stopBreathingModal();
+      showComfortToast("Shiro smiles at you: You're doing great! 🐾", "spa");
+    });
+    breathingModal?.addEventListener("click", (e) => {
+      if (e.target === breathingModal) stopBreathingModal();
+    });
 
     // ==========================================
     // 7. MULTI-TRACK BACKGROUND MUSIC ENGINE (5 CATEGORIES)
@@ -2607,12 +2764,12 @@
         this.activeOscNodes = [];
 
         // Load saved preferences
-        const savedTrackId = localStorage.getItem("gigglebuddy_music_track");
+        const savedTrackId = safeStorage.get("gigglebuddy_music_track");
         if (savedTrackId) {
           const idx = musicTracks.findIndex(t => t.id === savedTrackId);
           if (idx !== -1) this.currentTrackIndex = idx;
         }
-        const savedVol = localStorage.getItem("gigglebuddy_music_vol");
+        const savedVol = safeStorage.get("gigglebuddy_music_vol");
         if (savedVol !== null) {
           this.volume = Math.max(0, Math.min(1, parseFloat(savedVol)));
         }
@@ -2620,14 +2777,18 @@
 
       initCtx() {
         if (!this.ctx) {
-          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-          this.ctx = new AudioContextClass();
-          this.masterGain = this.ctx.createGain();
-          this.masterGain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
-          this.masterGain.connect(this.ctx.destination);
+          try {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            this.ctx = new AudioContextClass();
+            this.masterGain = this.ctx.createGain();
+            this.masterGain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
+            this.masterGain.connect(this.ctx.destination);
+          } catch (e) {
+            console.warn("[MusicPlayer] Web Audio initialization:", e);
+          }
         }
-        if (this.ctx.state === "suspended") {
-          this.ctx.resume();
+        if (this.ctx && this.ctx.state === "suspended") {
+          try { this.ctx.resume(); } catch (e) {}
         }
       }
 
@@ -2641,6 +2802,7 @@
         this.isPlaying = true;
         this.startGenerativeLoop();
         this.updateUI();
+        showComfortToast(`Playing: ${this.getCurrentTrack().title} 🎵`, "music_note");
       }
 
       pause() {
@@ -2651,6 +2813,7 @@
         }
         this.stopCurrentOscillators();
         this.updateUI();
+        showComfortToast("Music paused", "pause");
       }
 
       toggle() {
@@ -2672,20 +2835,23 @@
       selectTrack(index) {
         if (index < 0 || index >= musicTracks.length) return;
         this.currentTrackIndex = index;
-        localStorage.setItem("gigglebuddy_music_track", musicTracks[index].id);
+        safeStorage.set("gigglebuddy_music_track", musicTracks[index].id);
 
         if (this.isPlaying) {
           this.stopCurrentOscillators();
           this.startGenerativeLoop();
         }
         this.updateUI();
+        showComfortToast(`Track: ${this.getCurrentTrack().title} 🎵`, "queue_music");
       }
 
       setVolume(val) {
         this.volume = Math.max(0, Math.min(1, val));
-        localStorage.setItem("gigglebuddy_music_vol", this.volume.toString());
+        safeStorage.set("gigglebuddy_music_vol", this.volume.toString());
         if (this.masterGain && this.ctx) {
-          this.masterGain.gain.setTargetAtTime(this.volume, this.ctx.currentTime, 0.05);
+          try {
+            this.masterGain.gain.setTargetAtTime(this.volume, this.ctx.currentTime, 0.05);
+          } catch (e) {}
         }
         const volPercent = Math.round(this.volume * 100) + "%";
         const volLabel = document.getElementById("musicVolumeLabel");
@@ -2720,40 +2886,42 @@
 
         const playChord = () => {
           if (!this.isPlaying || !this.ctx) return;
-          const currentChords = track.chords[chordIdx % track.chords.length];
-          chordIdx++;
+          try {
+            const currentChords = track.chords[chordIdx % track.chords.length];
+            chordIdx++;
 
-          const now = this.ctx.currentTime;
-          const filter = this.ctx.createBiquadFilter();
-          filter.type = "lowpass";
-          filter.frequency.setValueAtTime(track.filterFreq || 1000, now);
-          filter.connect(this.masterGain);
+            const now = this.ctx.currentTime;
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = "lowpass";
+            filter.frequency.setValueAtTime(track.filterFreq || 1000, now);
+            filter.connect(this.masterGain);
 
-          currentChords.forEach((freq, i) => {
-            const osc = this.ctx.createOscillator();
-            const gain = this.ctx.createGain();
+            currentChords.forEach((freq, i) => {
+              const osc = this.ctx.createOscillator();
+              const gain = this.ctx.createGain();
 
-            osc.type = track.type || "sine";
-            // Tiny frequency drift for lush organic sound
-            const detune = (i % 2 === 0 ? 1 : -1) * (i * 1.5);
-            osc.frequency.setValueAtTime(freq + (detune * 0.1), now);
+              osc.type = track.type || "sine";
+              const detune = (i % 2 === 0 ? 1 : -1) * (i * 1.5);
+              osc.frequency.setValueAtTime(freq + (detune * 0.1), now);
 
-            // Envelope: gentle fade-in, sustain, gentle fade-out
-            const noteVol = 0.045 / (currentChords.length * 0.7);
-            gain.gain.setValueAtTime(0.0001, now);
-            gain.gain.exponentialRampToValueAtTime(noteVol, now + 0.6);
-            gain.gain.setValueAtTime(noteVol, now + beatDuration - 0.7);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + beatDuration + 0.3);
+              const noteVol = Math.max(0.001, 0.045 / (currentChords.length * 0.7));
+              gain.gain.setValueAtTime(0.0001, now);
+              gain.gain.exponentialRampToValueAtTime(noteVol, now + 0.6);
+              gain.gain.setValueAtTime(noteVol, Math.max(now + 0.7, now + beatDuration - 0.7));
+              gain.gain.exponentialRampToValueAtTime(0.0001, now + beatDuration + 0.3);
 
-            osc.connect(gain);
-            gain.connect(filter);
+              osc.connect(gain);
+              gain.connect(filter);
 
-            try {
-              osc.start(now);
-              osc.stop(now + beatDuration + 0.5);
-              this.activeOscNodes.push({ osc, gainNode: gain });
-            } catch (e) {}
-          });
+              try {
+                osc.start(now);
+                osc.stop(now + beatDuration + 0.5);
+                this.activeOscNodes.push({ osc, gainNode: gain });
+              } catch (e) {}
+            });
+          } catch (err) {
+            console.warn("[MusicPlayer] Error playing chord:", err);
+          }
         };
 
         playChord();
@@ -3565,6 +3733,19 @@
         }
       });
 
+      // Close Call Button (X)
+      document.getElementById("closeVoiceCallModal")?.addEventListener("click", () => {
+        voiceCallManager.endCall();
+      });
+
+      // Close call on backdrop click
+      const callModal = document.getElementById("voiceCallModal");
+      callModal?.addEventListener("click", (e) => {
+        if (e.target === callModal) {
+          voiceCallManager.endCall();
+        }
+      });
+
       // Topic chips inside Call Modal
       document.querySelectorAll(".call-topic-chip").forEach(chip => {
         chip.addEventListener("click", () => {
@@ -3582,18 +3763,18 @@
     // ==========================================
     // 10. INITIAL BOOTSTRAP
     // ==========================================
-    window.addEventListener("DOMContentLoaded", () => {
-      renderCharactersGrid();
-      renderEmotionTags();
-      renderSupportStyles();
-      renderChatMessages();
-      renderGarden();
-      updateChatHeaderUI();
-      renderDynamicSuggestions(state.selectedCharacter);
-      initMusicPlayerUI();
-      initDailyHost();
-      initVoiceCallUI();
-      switchView("welcome-home");
+    function bootstrapApp() {
+      try { renderCharactersGrid(); } catch (e) { console.error("renderCharactersGrid:", e); }
+      try { renderEmotionTags(); } catch (e) { console.error("renderEmotionTags:", e); }
+      try { renderSupportStyles(); } catch (e) { console.error("renderSupportStyles:", e); }
+      try { renderChatMessages(); } catch (e) { console.error("renderChatMessages:", e); }
+      try { renderGarden(); } catch (e) { console.error("renderGarden:", e); }
+      try { updateChatHeaderUI(); } catch (e) { console.error("updateChatHeaderUI:", e); }
+      try { renderDynamicSuggestions(state.selectedCharacter); } catch (e) { console.error("renderDynamicSuggestions:", e); }
+      try { initMusicPlayerUI(); } catch (e) { console.error("initMusicPlayerUI:", e); }
+      try { initDailyHost(); } catch (e) { console.error("initDailyHost:", e); }
+      try { initVoiceCallUI(); } catch (e) { console.error("initVoiceCallUI:", e); }
+      try { switchView("welcome-home"); } catch (e) { console.error("switchView:", e); }
 
       // Verify server health and connectivity
       fetch("/api/health")
@@ -3605,7 +3786,13 @@
           }
         })
         .catch(err => console.warn("[Client] Health check failed:", err));
-    });
+    }
+
+    if (document.readyState === "loading") {
+      window.addEventListener("DOMContentLoaded", bootstrapApp);
+    } else {
+      bootstrapApp();
+    }
   </script>
 </body>
 </html>
